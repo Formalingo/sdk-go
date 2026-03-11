@@ -58,6 +58,11 @@ func (m *V1FormsItemRecipientsWithRItemRequestBuilder) Put(ctx context.Context, 
     }
     return res.(V1FormsItemRecipientsItemWithRPutResponseable), nil
 }
+// Responses the responses property
+// returns a *V1FormsItemRecipientsItemResponsesRequestBuilder when successful
+func (m *V1FormsItemRecipientsWithRItemRequestBuilder) Responses()(*V1FormsItemRecipientsItemResponsesRequestBuilder) {
+    return NewV1FormsItemRecipientsItemResponsesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ToDeleteRequestInformation delete a recipient
 // returns a *RequestInformation when successful
 func (m *V1FormsItemRecipientsWithRItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

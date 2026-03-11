@@ -9,3 +9,4 @@ Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Signer/properties/li
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/CreateRecipientBody/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/UpdateRecipientBody/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/SignerInput/properties/email - The format email is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/SubmissionPdf/properties/downloadUrl - The format uri is not supported by Kiota and the string type will be used.

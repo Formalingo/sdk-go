@@ -12,6 +12,8 @@ type CreateSubmissionBody struct {
     additionalData map[string]any
     // One entry per signer role. Must provide all required roles.
     signers []SignerInputable
+    // If true, suppresses signer_invite notifications for all signers in this submission.
+    suppress_notifications *bool
 }
 // NewCreateSubmissionBody instantiates a new CreateSubmissionBody and sets the default values.
 func NewCreateSubmissionBody()(*CreateSubmissionBody) {
@@ -50,12 +52,27 @@ func (m *CreateSubmissionBody) GetFieldDeserializers()(map[string]func(i878a80d2
         }
         return nil
     }
+    res["suppress_notifications"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSuppressNotifications(val)
+        }
+        return nil
+    }
     return res
 }
 // GetSigners gets the signers property value. One entry per signer role. Must provide all required roles.
 // returns a []SignerInputable when successful
 func (m *CreateSubmissionBody) GetSigners()([]SignerInputable) {
     return m.signers
+}
+// GetSuppressNotifications gets the suppress_notifications property value. If true, suppresses signer_invite notifications for all signers in this submission.
+// returns a *bool when successful
+func (m *CreateSubmissionBody) GetSuppressNotifications()(*bool) {
+    return m.suppress_notifications
 }
 // Serialize serializes information the current object
 func (m *CreateSubmissionBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -67,6 +84,12 @@ func (m *CreateSubmissionBody) Serialize(writer i878a80d2330e89d26896388a3f487ee
             }
         }
         err := writer.WriteCollectionOfObjectValues("signers", cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("suppress_notifications", m.GetSuppressNotifications())
         if err != nil {
             return err
         }
@@ -87,9 +110,15 @@ func (m *CreateSubmissionBody) SetAdditionalData(value map[string]any)() {
 func (m *CreateSubmissionBody) SetSigners(value []SignerInputable)() {
     m.signers = value
 }
+// SetSuppressNotifications sets the suppress_notifications property value. If true, suppresses signer_invite notifications for all signers in this submission.
+func (m *CreateSubmissionBody) SetSuppressNotifications(value *bool)() {
+    m.suppress_notifications = value
+}
 type CreateSubmissionBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetSigners()([]SignerInputable)
+    GetSuppressNotifications()(*bool)
     SetSigners(value []SignerInputable)()
+    SetSuppressNotifications(value *bool)()
 }

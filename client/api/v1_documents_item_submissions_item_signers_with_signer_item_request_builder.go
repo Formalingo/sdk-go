@@ -57,6 +57,11 @@ func (m *V1DocumentsItemSubmissionsItemSignersWithSignerItemRequestBuilder) Put(
     }
     return res.(V1DocumentsItemSubmissionsItemSignersItemWithSignerPutResponseable), nil
 }
+// Responses the responses property
+// returns a *V1DocumentsItemSubmissionsItemSignersItemResponsesRequestBuilder when successful
+func (m *V1DocumentsItemSubmissionsItemSignersWithSignerItemRequestBuilder) Responses()(*V1DocumentsItemSubmissionsItemSignersItemResponsesRequestBuilder) {
+    return NewV1DocumentsItemSubmissionsItemSignersItemResponsesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ToDeleteRequestInformation remove a signer
 // returns a *RequestInformation when successful
 func (m *V1DocumentsItemSubmissionsItemSignersWithSignerItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

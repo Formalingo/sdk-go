@@ -6,21 +6,21 @@ type DocumentsPutRequestBody_status int
 
 const (
     DRAFT_DOCUMENTSPUTREQUESTBODY_STATUS DocumentsPutRequestBody_status = iota
-    SENT_DOCUMENTSPUTREQUESTBODY_STATUS
+    PUBLISHED_DOCUMENTSPUTREQUESTBODY_STATUS
     COMPLETED_DOCUMENTSPUTREQUESTBODY_STATUS
     EXPIRED_DOCUMENTSPUTREQUESTBODY_STATUS
 )
 
 func (i DocumentsPutRequestBody_status) String() string {
-    return []string{"draft", "sent", "completed", "expired"}[i]
+    return []string{"draft", "published", "completed", "expired"}[i]
 }
 func ParseDocumentsPutRequestBody_status(v string) (any, error) {
     result := DRAFT_DOCUMENTSPUTREQUESTBODY_STATUS
     switch v {
         case "draft":
             result = DRAFT_DOCUMENTSPUTREQUESTBODY_STATUS
-        case "sent":
-            result = SENT_DOCUMENTSPUTREQUESTBODY_STATUS
+        case "published":
+            result = PUBLISHED_DOCUMENTSPUTREQUESTBODY_STATUS
         case "completed":
             result = COMPLETED_DOCUMENTSPUTREQUESTBODY_STATUS
         case "expired":

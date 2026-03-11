@@ -41,6 +41,11 @@ func (m *V1DocumentsItemSubmissionsWithSItemRequestBuilder) Delete(ctx context.C
     }
     return res.(V1DocumentsItemSubmissionsItemWithSDeleteResponseable), nil
 }
+// Pdf the pdf property
+// returns a *V1DocumentsItemSubmissionsItemPdfRequestBuilder when successful
+func (m *V1DocumentsItemSubmissionsWithSItemRequestBuilder) Pdf()(*V1DocumentsItemSubmissionsItemPdfRequestBuilder) {
+    return NewV1DocumentsItemSubmissionsItemPdfRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Signers the signers property
 // returns a *V1DocumentsItemSubmissionsItemSignersRequestBuilder when successful
 func (m *V1DocumentsItemSubmissionsWithSItemRequestBuilder) Signers()(*V1DocumentsItemSubmissionsItemSignersRequestBuilder) {

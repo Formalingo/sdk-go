@@ -6,21 +6,21 @@ type Document_status int
 
 const (
     DRAFT_DOCUMENT_STATUS Document_status = iota
-    SENT_DOCUMENT_STATUS
+    PUBLISHED_DOCUMENT_STATUS
     COMPLETED_DOCUMENT_STATUS
     EXPIRED_DOCUMENT_STATUS
 )
 
 func (i Document_status) String() string {
-    return []string{"draft", "sent", "completed", "expired"}[i]
+    return []string{"draft", "published", "completed", "expired"}[i]
 }
 func ParseDocument_status(v string) (any, error) {
     result := DRAFT_DOCUMENT_STATUS
     switch v {
         case "draft":
             result = DRAFT_DOCUMENT_STATUS
-        case "sent":
-            result = SENT_DOCUMENT_STATUS
+        case "published":
+            result = PUBLISHED_DOCUMENT_STATUS
         case "completed":
             result = COMPLETED_DOCUMENT_STATUS
         case "expired":

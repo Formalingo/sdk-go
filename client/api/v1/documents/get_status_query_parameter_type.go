@@ -6,21 +6,21 @@ type GetStatusQueryParameterType int
 
 const (
     DRAFT_GETSTATUSQUERYPARAMETERTYPE GetStatusQueryParameterType = iota
-    SENT_GETSTATUSQUERYPARAMETERTYPE
+    PUBLISHED_GETSTATUSQUERYPARAMETERTYPE
     COMPLETED_GETSTATUSQUERYPARAMETERTYPE
     EXPIRED_GETSTATUSQUERYPARAMETERTYPE
 )
 
 func (i GetStatusQueryParameterType) String() string {
-    return []string{"draft", "sent", "completed", "expired"}[i]
+    return []string{"draft", "published", "completed", "expired"}[i]
 }
 func ParseGetStatusQueryParameterType(v string) (any, error) {
     result := DRAFT_GETSTATUSQUERYPARAMETERTYPE
     switch v {
         case "draft":
             result = DRAFT_GETSTATUSQUERYPARAMETERTYPE
-        case "sent":
-            result = SENT_GETSTATUSQUERYPARAMETERTYPE
+        case "published":
+            result = PUBLISHED_GETSTATUSQUERYPARAMETERTYPE
         case "completed":
             result = COMPLETED_GETSTATUSQUERYPARAMETERTYPE
         case "expired":

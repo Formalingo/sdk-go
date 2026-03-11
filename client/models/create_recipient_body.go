@@ -23,6 +23,8 @@ type CreateRecipientBody struct {
     phone *string
     // Map of question ID → pre-filled value. The value is saved as a Response.
     prefill CreateRecipientBody_prefillable
+    // If true, suppresses recipient_invite notification for this recipient.
+    suppress_notifications *bool
 }
 // NewCreateRecipientBody instantiates a new CreateRecipientBody and sets the default values.
 func NewCreateRecipientBody()(*CreateRecipientBody) {
@@ -115,6 +117,16 @@ func (m *CreateRecipientBody) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["suppress_notifications"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSuppressNotifications(val)
+        }
+        return nil
+    }
     return res
 }
 // GetLabel gets the label property value. The label property
@@ -136,6 +148,11 @@ func (m *CreateRecipientBody) GetPhone()(*string) {
 // returns a CreateRecipientBody_prefillable when successful
 func (m *CreateRecipientBody) GetPrefill()(CreateRecipientBody_prefillable) {
     return m.prefill
+}
+// GetSuppressNotifications gets the suppress_notifications property value. If true, suppresses recipient_invite notification for this recipient.
+// returns a *bool when successful
+func (m *CreateRecipientBody) GetSuppressNotifications()(*bool) {
+    return m.suppress_notifications
 }
 // Serialize serializes information the current object
 func (m *CreateRecipientBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -176,6 +193,12 @@ func (m *CreateRecipientBody) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
+        err := writer.WriteBoolValue("suppress_notifications", m.GetSuppressNotifications())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -211,6 +234,10 @@ func (m *CreateRecipientBody) SetPhone(value *string)() {
 func (m *CreateRecipientBody) SetPrefill(value CreateRecipientBody_prefillable)() {
     m.prefill = value
 }
+// SetSuppressNotifications sets the suppress_notifications property value. If true, suppresses recipient_invite notification for this recipient.
+func (m *CreateRecipientBody) SetSuppressNotifications(value *bool)() {
+    m.suppress_notifications = value
+}
 type CreateRecipientBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -220,10 +247,12 @@ type CreateRecipientBodyable interface {
     GetPassword()(*string)
     GetPhone()(*string)
     GetPrefill()(CreateRecipientBody_prefillable)
+    GetSuppressNotifications()(*bool)
     SetEmail(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetLabel(value *string)()
     SetPassword(value *string)()
     SetPhone(value *string)()
     SetPrefill(value CreateRecipientBody_prefillable)()
+    SetSuppressNotifications(value *bool)()
 }
