@@ -53,7 +53,7 @@ func (m *V1DocumentsItemSubmissionsRequestBuilder) Get(ctx context.Context, requ
     }
     return res.(V1DocumentsItemSubmissionsGetResponseable), nil
 }
-// Post creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer.
+// Post creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer. Prefill keys can be field UUIDs or field labels (resolved per signer role). The `readonlyFieldIds` field also accepts labels.
 // returns a V1DocumentsItemSubmissionsPostResponseable when successful
 func (m *V1DocumentsItemSubmissionsRequestBuilder) Post(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateSubmissionBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemSubmissionsPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
@@ -77,7 +77,7 @@ func (m *V1DocumentsItemSubmissionsRequestBuilder) ToGetRequestInformation(ctx c
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPostRequestInformation creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer.
+// ToPostRequestInformation creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer. Prefill keys can be field UUIDs or field labels (resolved per signer role). The `readonlyFieldIds` field also accepts labels.
 // returns a *RequestInformation when successful
 func (m *V1DocumentsItemSubmissionsRequestBuilder) ToPostRequestInformation(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateSubmissionBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

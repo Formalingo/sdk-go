@@ -4,7 +4,6 @@
 package models
 
 import (
-    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -19,12 +18,12 @@ type SignerInput struct {
     password *string
     // The phone property
     phone *string
-    // Map of field ID → pre-filled value. Creates DocumentResponse records immediately.
+    // Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. Creates DocumentResponse records immediately.
     prefill SignerInput_prefillable
     // If true, prefilled fields are marked read-only on the document
     prefillReadonly *bool
-    // List of field IDs to mark as read-only for this signer, regardless of the document-level isReadOnly setting. Useful for locking specific fields per-signer at submission time.
-    readonlyFieldIds []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // List of field IDs or field labels to mark as read-only for this signer, regardless of the document-level isReadOnly setting. Labels are resolved against fields assigned to this signer's role. Useful for locking specific fields per-signer at submission time.
+    readonlyFieldIds []string
     // Must match a signer role defined in the document editor
     role *string
 }
@@ -115,15 +114,15 @@ func (m *SignerInput) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["readonlyFieldIds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("uuid")
+        val, err := n.GetCollectionOfPrimitiveValues("string")
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID, len(val))
+            res := make([]string, len(val))
             for i, v := range val {
                 if v != nil {
-                    res[i] = *(v.(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID))
+                    res[i] = *(v.(*string))
                 }
             }
             m.SetReadonlyFieldIds(res)
@@ -157,7 +156,7 @@ func (m *SignerInput) GetPassword()(*string) {
 func (m *SignerInput) GetPhone()(*string) {
     return m.phone
 }
-// GetPrefill gets the prefill property value. Map of field ID → pre-filled value. Creates DocumentResponse records immediately.
+// GetPrefill gets the prefill property value. Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. Creates DocumentResponse records immediately.
 // returns a SignerInput_prefillable when successful
 func (m *SignerInput) GetPrefill()(SignerInput_prefillable) {
     return m.prefill
@@ -167,9 +166,9 @@ func (m *SignerInput) GetPrefill()(SignerInput_prefillable) {
 func (m *SignerInput) GetPrefillReadonly()(*bool) {
     return m.prefillReadonly
 }
-// GetReadonlyFieldIds gets the readonlyFieldIds property value. List of field IDs to mark as read-only for this signer, regardless of the document-level isReadOnly setting. Useful for locking specific fields per-signer at submission time.
-// returns a []UUID when successful
-func (m *SignerInput) GetReadonlyFieldIds()([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+// GetReadonlyFieldIds gets the readonlyFieldIds property value. List of field IDs or field labels to mark as read-only for this signer, regardless of the document-level isReadOnly setting. Labels are resolved against fields assigned to this signer's role. Useful for locking specific fields per-signer at submission time.
+// returns a []string when successful
+func (m *SignerInput) GetReadonlyFieldIds()([]string) {
     return m.readonlyFieldIds
 }
 // GetRole gets the role property value. Must match a signer role defined in the document editor
@@ -216,7 +215,7 @@ func (m *SignerInput) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     if m.GetReadonlyFieldIds() != nil {
-        err := writer.WriteCollectionOfUUIDValues("readonlyFieldIds", m.GetReadonlyFieldIds())
+        err := writer.WriteCollectionOfStringValues("readonlyFieldIds", m.GetReadonlyFieldIds())
         if err != nil {
             return err
         }
@@ -255,7 +254,7 @@ func (m *SignerInput) SetPassword(value *string)() {
 func (m *SignerInput) SetPhone(value *string)() {
     m.phone = value
 }
-// SetPrefill sets the prefill property value. Map of field ID → pre-filled value. Creates DocumentResponse records immediately.
+// SetPrefill sets the prefill property value. Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. Creates DocumentResponse records immediately.
 func (m *SignerInput) SetPrefill(value SignerInput_prefillable)() {
     m.prefill = value
 }
@@ -263,8 +262,8 @@ func (m *SignerInput) SetPrefill(value SignerInput_prefillable)() {
 func (m *SignerInput) SetPrefillReadonly(value *bool)() {
     m.prefillReadonly = value
 }
-// SetReadonlyFieldIds sets the readonlyFieldIds property value. List of field IDs to mark as read-only for this signer, regardless of the document-level isReadOnly setting. Useful for locking specific fields per-signer at submission time.
-func (m *SignerInput) SetReadonlyFieldIds(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+// SetReadonlyFieldIds sets the readonlyFieldIds property value. List of field IDs or field labels to mark as read-only for this signer, regardless of the document-level isReadOnly setting. Labels are resolved against fields assigned to this signer's role. Useful for locking specific fields per-signer at submission time.
+func (m *SignerInput) SetReadonlyFieldIds(value []string)() {
     m.readonlyFieldIds = value
 }
 // SetRole sets the role property value. Must match a signer role defined in the document editor
@@ -280,7 +279,7 @@ type SignerInputable interface {
     GetPhone()(*string)
     GetPrefill()(SignerInput_prefillable)
     GetPrefillReadonly()(*bool)
-    GetReadonlyFieldIds()([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetReadonlyFieldIds()([]string)
     GetRole()(*string)
     SetEmail(value *string)()
     SetName(value *string)()
@@ -288,6 +287,6 @@ type SignerInputable interface {
     SetPhone(value *string)()
     SetPrefill(value SignerInput_prefillable)()
     SetPrefillReadonly(value *bool)()
-    SetReadonlyFieldIds(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetReadonlyFieldIds(value []string)()
     SetRole(value *string)()
 }

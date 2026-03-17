@@ -1,6 +1,6 @@
 {
-  "descriptionHash": "92B1110C4DA37440E62427AB7AE55806672432565A0D3F88DC6104FBEB025027A206F6F9E6346C80A2F8C2D2062B0122671B8A97C56917EAE621D6B35DF18D44",
-  "descriptionLocation": "../../../../../../../tmp/formalingo-openapi.json",
+  "descriptionHash": "389F3B00FFAD3A94290B77C5E4865E73ABCB445492CEA439A8C11E611702E235A0183DE6B7EC85CA1BEC1E0EFFCC90D6284D7E7B9F86165BCBF22849008BF65A",
+  "descriptionLocation": "../../../../../../../tmp/openapi.json",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.30.0",
   "clientClassName": "FormalingoClient",
