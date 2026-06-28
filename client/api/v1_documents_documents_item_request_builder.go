@@ -67,6 +67,16 @@ func (m *V1DocumentsDocumentsItemRequestBuilder) Get(ctx context.Context, reques
     }
     return res.(V1DocumentsItemDocumentsGetResponseable), nil
 }
+// ParseJobs the parseJobs property
+// returns a *V1DocumentsItemParseJobsRequestBuilder when successful
+func (m *V1DocumentsDocumentsItemRequestBuilder) ParseJobs()(*V1DocumentsItemParseJobsRequestBuilder) {
+    return NewV1DocumentsItemParseJobsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Publish the publish property
+// returns a *V1DocumentsItemPublishRequestBuilder when successful
+func (m *V1DocumentsDocumentsItemRequestBuilder) Publish()(*V1DocumentsItemPublishRequestBuilder) {
+    return NewV1DocumentsItemPublishRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Put update a document
 // returns a V1DocumentsItemDocumentsPutResponseable when successful
 func (m *V1DocumentsDocumentsItemRequestBuilder) Put(ctx context.Context, body V1DocumentsItemDocumentsPutRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemDocumentsPutResponseable, error) {
@@ -82,6 +92,11 @@ func (m *V1DocumentsDocumentsItemRequestBuilder) Put(ctx context.Context, body V
         return nil, nil
     }
     return res.(V1DocumentsItemDocumentsPutResponseable), nil
+}
+// Revisions the revisions property
+// returns a *V1DocumentsItemRevisionsRequestBuilder when successful
+func (m *V1DocumentsDocumentsItemRequestBuilder) Revisions()(*V1DocumentsItemRevisionsRequestBuilder) {
+    return NewV1DocumentsItemRevisionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // SignerRoles the signerRoles property
 // returns a *V1DocumentsItemSignerRolesRequestBuilder when successful

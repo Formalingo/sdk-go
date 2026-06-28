@@ -27,6 +27,7 @@ func NewV1DocumentsItemSubmissionsItemPdfRequestBuilder(rawUrl string, requestAd
 }
 // Get returns a short-lived (5-minute) presigned download URL for the completed signed PDF. Returns 404 if the submission is not yet completed or the PDF is still generating.
 // returns a V1DocumentsItemSubmissionsItemPdfGetResponseable when successful
+// returns a V1DocumentsItemSubmissionsItemPdf403Error error when the service returns a 403 status code
 // returns a V1DocumentsItemSubmissionsItemPdf404Error error when the service returns a 404 status code
 func (m *V1DocumentsItemSubmissionsItemPdfRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemSubmissionsItemPdfGetResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -34,6 +35,7 @@ func (m *V1DocumentsItemSubmissionsItemPdfRequestBuilder) Get(ctx context.Contex
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "403": CreateV1DocumentsItemSubmissionsItemPdf403ErrorFromDiscriminatorValue,
         "404": CreateV1DocumentsItemSubmissionsItemPdf404ErrorFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemSubmissionsItemPdfGetResponseFromDiscriminatorValue, errorMapping)

@@ -11,6 +11,11 @@ import (
 type V1RequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Analytics the analytics property
+// returns a *V1AnalyticsRequestBuilder when successful
+func (m *V1RequestBuilder) Analytics()(*V1AnalyticsRequestBuilder) {
+    return NewV1AnalyticsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV1RequestBuilderInternal instantiates a new V1RequestBuilder and sets the default values.
 func NewV1RequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1RequestBuilder) {
     m := &V1RequestBuilder{
@@ -24,6 +29,11 @@ func NewV1RequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c9
     urlParams["request-raw-url"] = rawUrl
     return NewV1RequestBuilderInternal(urlParams, requestAdapter)
 }
+// Deliveries the deliveries property
+// returns a *V1DeliveriesRequestBuilder when successful
+func (m *V1RequestBuilder) Deliveries()(*V1DeliveriesRequestBuilder) {
+    return NewV1DeliveriesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Documents the documents property
 // returns a *V1DocumentsRequestBuilder when successful
 func (m *V1RequestBuilder) Documents()(*V1DocumentsRequestBuilder) {
@@ -33,4 +43,14 @@ func (m *V1RequestBuilder) Documents()(*V1DocumentsRequestBuilder) {
 // returns a *V1FormsRequestBuilder when successful
 func (m *V1RequestBuilder) Forms()(*V1FormsRequestBuilder) {
     return NewV1FormsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Integrations the integrations property
+// returns a *V1IntegrationsRequestBuilder when successful
+func (m *V1RequestBuilder) Integrations()(*V1IntegrationsRequestBuilder) {
+    return NewV1IntegrationsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Quota the quota property
+// returns a *V1QuotaRequestBuilder when successful
+func (m *V1RequestBuilder) Quota()(*V1QuotaRequestBuilder) {
+    return NewV1QuotaRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

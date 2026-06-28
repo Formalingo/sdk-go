@@ -14,6 +14,11 @@ import (
 type V1FormsItemRecipientsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Bulk the bulk property
+// returns a *V1FormsItemRecipientsBulkRequestBuilder when successful
+func (m *V1FormsItemRecipientsRequestBuilder) Bulk()(*V1FormsItemRecipientsBulkRequestBuilder) {
+    return NewV1FormsItemRecipientsBulkRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ByRid gets an item from the client.api.v1.forms.item.recipients.item collection
 // returns a *V1FormsItemRecipientsWithRItemRequestBuilder when successful
 func (m *V1FormsItemRecipientsRequestBuilder) ByRid(rid i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*V1FormsItemRecipientsWithRItemRequestBuilder) {

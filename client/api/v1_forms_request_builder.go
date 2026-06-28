@@ -18,7 +18,17 @@ type V1FormsRequestBuilder struct {
 // V1FormsRequestBuilderGetQueryParameters list forms
 type V1FormsRequestBuilderGetQueryParameters struct {
     Limit *int32 `uriparametername:"limit"`
+    MaxSent *int32 `uriparametername:"maxSent"`
+    MaxSubmissions *int32 `uriparametername:"maxSubmissions"`
+    // Only forms with at least this many recipients
+    MinSent *int32 `uriparametername:"minSent"`
+    // Only forms with at least this many completed submissions
+    MinSubmissions *int32 `uriparametername:"minSubmissions"`
+    // Sort direction (default: desc)
+    Order *i58b33e3ea71870ab20a07cb09d8124ebc1e4adefff891791f9d791781abb0ba0.GetOrderQueryParameterType `uriparametername:"order"`
     Page *int32 `uriparametername:"page"`
+    // Sort key (default: updated)
+    Sort *i58b33e3ea71870ab20a07cb09d8124ebc1e4adefff891791f9d791781abb0ba0.GetSortQueryParameterType `uriparametername:"sort"`
     Status *i58b33e3ea71870ab20a07cb09d8124ebc1e4adefff891791f9d791781abb0ba0.GetStatusQueryParameterType `uriparametername:"status"`
 }
 // ById gets an item from the client.api.v1.forms.item collection
@@ -34,7 +44,7 @@ func (m *V1FormsRequestBuilder) ById(id i561e97a8befe7661a44c8f54600992b4207a3a0
 // NewV1FormsRequestBuilderInternal instantiates a new V1FormsRequestBuilder and sets the default values.
 func NewV1FormsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1FormsRequestBuilder) {
     m := &V1FormsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/forms{?limit*,page*,status*}", pathParameters),
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/forms{?limit*,maxSent*,maxSubmissions*,minSent*,minSubmissions*,order*,page*,sort*,status*}", pathParameters),
     }
     return m
 }

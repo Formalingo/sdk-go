@@ -26,10 +26,14 @@ type Form struct {
     publicToken *string
     // The question_count property
     question_count *float64
+    // Total recipients (links/invites) for the form
+    sent_count *float64
     // The settings property
     settings Form_settingsable
     // The status property
     status *Form_status
+    // Recipients who have completed the form
+    submission_count *float64
     // The title property
     title *string
     // The updatedAt property
@@ -148,6 +152,16 @@ func (m *Form) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         }
         return nil
     }
+    res["sent_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSentCount(val)
+        }
+        return nil
+    }
     res["settings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateForm_settingsFromDiscriminatorValue)
         if err != nil {
@@ -165,6 +179,16 @@ func (m *Form) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         }
         if val != nil {
             m.SetStatus(val.(*Form_status))
+        }
+        return nil
+    }
+    res["submission_count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSubmissionCount(val)
         }
         return nil
     }
@@ -215,6 +239,11 @@ func (m *Form) GetPublicToken()(*string) {
 func (m *Form) GetQuestionCount()(*float64) {
     return m.question_count
 }
+// GetSentCount gets the sent_count property value. Total recipients (links/invites) for the form
+// returns a *float64 when successful
+func (m *Form) GetSentCount()(*float64) {
+    return m.sent_count
+}
 // GetSettings gets the settings property value. The settings property
 // returns a Form_settingsable when successful
 func (m *Form) GetSettings()(Form_settingsable) {
@@ -224,6 +253,11 @@ func (m *Form) GetSettings()(Form_settingsable) {
 // returns a *Form_status when successful
 func (m *Form) GetStatus()(*Form_status) {
     return m.status
+}
+// GetSubmissionCount gets the submission_count property value. Recipients who have completed the form
+// returns a *float64 when successful
+func (m *Form) GetSubmissionCount()(*float64) {
+    return m.submission_count
 }
 // GetTitle gets the title property value. The title property
 // returns a *string when successful
@@ -285,6 +319,12 @@ func (m *Form) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
         }
     }
     {
+        err := writer.WriteFloat64Value("sent_count", m.GetSentCount())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteObjectValue("settings", m.GetSettings())
         if err != nil {
             return err
@@ -293,6 +333,12 @@ func (m *Form) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetStatus() != nil {
         cast := (*m.GetStatus()).String()
         err := writer.WriteStringValue("status", &cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteFloat64Value("submission_count", m.GetSubmissionCount())
         if err != nil {
             return err
         }
@@ -355,6 +401,10 @@ func (m *Form) SetPublicToken(value *string)() {
 func (m *Form) SetQuestionCount(value *float64)() {
     m.question_count = value
 }
+// SetSentCount sets the sent_count property value. Total recipients (links/invites) for the form
+func (m *Form) SetSentCount(value *float64)() {
+    m.sent_count = value
+}
 // SetSettings sets the settings property value. The settings property
 func (m *Form) SetSettings(value Form_settingsable)() {
     m.settings = value
@@ -362,6 +412,10 @@ func (m *Form) SetSettings(value Form_settingsable)() {
 // SetStatus sets the status property value. The status property
 func (m *Form) SetStatus(value *Form_status)() {
     m.status = value
+}
+// SetSubmissionCount sets the submission_count property value. Recipients who have completed the form
+func (m *Form) SetSubmissionCount(value *float64)() {
+    m.submission_count = value
 }
 // SetTitle sets the title property value. The title property
 func (m *Form) SetTitle(value *string)() {
@@ -385,8 +439,10 @@ type Formable interface {
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetPublicToken()(*string)
     GetQuestionCount()(*float64)
+    GetSentCount()(*float64)
     GetSettings()(Form_settingsable)
     GetStatus()(*Form_status)
+    GetSubmissionCount()(*float64)
     GetTitle()(*string)
     GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetWorkspaceId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -397,8 +453,10 @@ type Formable interface {
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetPublicToken(value *string)()
     SetQuestionCount(value *float64)()
+    SetSentCount(value *float64)()
     SetSettings(value Form_settingsable)()
     SetStatus(value *Form_status)()
+    SetSubmissionCount(value *float64)()
     SetTitle(value *string)()
     SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetWorkspaceId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

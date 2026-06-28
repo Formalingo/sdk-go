@@ -71,6 +71,11 @@ func (m *V1FormsFormsItemRequestBuilder) Get(ctx context.Context, requestConfigu
     }
     return res.(V1FormsItemFormsGetResponseable), nil
 }
+// Publish the publish property
+// returns a *V1FormsItemPublishRequestBuilder when successful
+func (m *V1FormsFormsItemRequestBuilder) Publish()(*V1FormsItemPublishRequestBuilder) {
+    return NewV1FormsItemPublishRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Put update a form
 // returns a V1FormsItemFormsPutResponseable when successful
 // returns a V1FormsItemForms400Error error when the service returns a 400 status code
@@ -102,6 +107,11 @@ func (m *V1FormsFormsItemRequestBuilder) Questions()(*V1FormsItemQuestionsReques
 // returns a *V1FormsItemRecipientsRequestBuilder when successful
 func (m *V1FormsFormsItemRequestBuilder) Recipients()(*V1FormsItemRecipientsRequestBuilder) {
     return NewV1FormsItemRecipientsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Revisions the revisions property
+// returns a *V1FormsItemRevisionsRequestBuilder when successful
+func (m *V1FormsFormsItemRequestBuilder) Revisions()(*V1FormsItemRevisionsRequestBuilder) {
+    return NewV1FormsItemRevisionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Sections the sections property
 // returns a *V1FormsItemSectionsRequestBuilder when successful
