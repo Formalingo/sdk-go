@@ -5,8 +5,8 @@ package api
 
 import (
     "context"
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1DocumentsItemParseJobsItemApplyRequestBuilder builds and executes requests for operations under \api\v1\documents\{id}\parse-jobs\{jobId}\apply
@@ -32,7 +32,7 @@ func NewV1DocumentsItemParseJobsItemApplyRequestBuilder(rawUrl string, requestAd
 // returns a V1DocumentsItemParseJobsItemApplyDocumentParseJobResponse403Error error when the service returns a 403 status code
 // returns a V1DocumentsItemParseJobsItemApplyDocumentParseJobResponse404Error error when the service returns a 404 status code
 // returns a V1DocumentsItemParseJobsItemApplyDocumentParseJobResponse409Error error when the service returns a 409 status code
-func (m *V1DocumentsItemParseJobsItemApplyRequestBuilder) Post(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.ApplyDocumentParseJobResponseable, error) {
+func (m *V1DocumentsItemParseJobsItemApplyRequestBuilder) Post(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.ApplyDocumentParseJobResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
@@ -43,14 +43,14 @@ func (m *V1DocumentsItemParseJobsItemApplyRequestBuilder) Post(ctx context.Conte
         "404": CreateV1DocumentsItemParseJobsItemApplyDocumentParseJobResponse404ErrorFromDiscriminatorValue,
         "409": CreateV1DocumentsItemParseJobsItemApplyDocumentParseJobResponse409ErrorFromDiscriminatorValue,
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateApplyDocumentParseJobResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateApplyDocumentParseJobResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.ApplyDocumentParseJobResponseable), nil
+    return res.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.ApplyDocumentParseJobResponseable), nil
 }
 // ToPostRequestInformation applies the detected fields from a completed preview parse job to the document draft. Requires the `documents:parse_ai` permission in addition to `write:documents`.
 // returns a *RequestInformation when successful

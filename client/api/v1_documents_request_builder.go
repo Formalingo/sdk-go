@@ -7,7 +7,7 @@ import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
-    ieafc854b77dfbc2b78741e83e02b3e8a327be08e2710ef67821f53a065f6fee3 "client/api/v1/documents"
+    i79be7cff200e1d6c9fba1b9ecdb62a41f32d66ef9948d7c3b7d88d97e8efb7bb "github.com/Formalingo/sdk-go/client/api/v1/documents"
 )
 
 // V1DocumentsRequestBuilder builds and executes requests for operations under \api\v1\documents
@@ -18,9 +18,9 @@ type V1DocumentsRequestBuilder struct {
 type V1DocumentsRequestBuilderGetQueryParameters struct {
     Limit *int32 `uriparametername:"limit"`
     Page *int32 `uriparametername:"page"`
-    Status *ieafc854b77dfbc2b78741e83e02b3e8a327be08e2710ef67821f53a065f6fee3.GetStatusQueryParameterType `uriparametername:"status"`
+    Status *i79be7cff200e1d6c9fba1b9ecdb62a41f32d66ef9948d7c3b7d88d97e8efb7bb.GetStatusQueryParameterType `uriparametername:"status"`
 }
-// ById gets an item from the client.api.v1.documents.item collection
+// ById gets an item from the github.com/Formalingo/sdk-go/client.api.v1.documents.item collection
 // returns a *V1DocumentsDocumentsItemRequestBuilder when successful
 func (m *V1DocumentsRequestBuilder) ById(id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*V1DocumentsDocumentsItemRequestBuilder) {
     urlTplParams := make(map[string]string)

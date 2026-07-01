@@ -6,7 +6,7 @@ package api
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i2b22f64b3e6f01297c2bd74814426695425b615dee9318287cddcc800a60da31 "client/api/v1/documents/item"
+    i11a45c5e34dd0c0080a08d2dcbba983da3b67730b359cfa94e84806a6a7abdab "github.com/Formalingo/sdk-go/client/api/v1/documents/item"
 )
 
 // V1DocumentsDocumentsItemRequestBuilder builds and executes requests for operations under \api\v1\documents\{id}
@@ -15,7 +15,7 @@ type V1DocumentsDocumentsItemRequestBuilder struct {
 }
 // V1DocumentsDocumentsItemRequestBuilderDeleteQueryParameters soft-deletes by default. Pass `?permanent=true` to permanently delete.
 type V1DocumentsDocumentsItemRequestBuilderDeleteQueryParameters struct {
-    Permanent *i2b22f64b3e6f01297c2bd74814426695425b615dee9318287cddcc800a60da31.DeletePermanentQueryParameterType `uriparametername:"permanent"`
+    Permanent *i11a45c5e34dd0c0080a08d2dcbba983da3b67730b359cfa94e84806a6a7abdab.DeletePermanentQueryParameterType `uriparametername:"permanent"`
 }
 // NewV1DocumentsDocumentsItemRequestBuilderInternal instantiates a new V1DocumentsDocumentsItemRequestBuilder and sets the default values.
 func NewV1DocumentsDocumentsItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1DocumentsDocumentsItemRequestBuilder) {

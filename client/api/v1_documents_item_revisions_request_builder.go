@@ -18,7 +18,7 @@ type V1DocumentsItemRevisionsRequestBuilderGetQueryParameters struct {
     Limit *int32 `uriparametername:"limit"`
     Page *int32 `uriparametername:"page"`
 }
-// ByVersion gets an item from the client.api.v1.documents.item.revisions.item collection
+// ByVersion gets an item from the github.com/Formalingo/sdk-go/client.api.v1.documents.item.revisions.item collection
 // returns a *V1DocumentsItemRevisionsWithVersionItemRequestBuilder when successful
 func (m *V1DocumentsItemRevisionsRequestBuilder) ByVersion(version int32)(*V1DocumentsItemRevisionsWithVersionItemRequestBuilder) {
     urlTplParams := make(map[string]string)

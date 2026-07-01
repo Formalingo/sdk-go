@@ -12,7 +12,7 @@ type CreateSubmissionBody struct {
     additionalData map[string]any
     // One entry per signer role. Must provide all required roles.
     signers []SignerInputable
-    // If true, suppresses signer_invite notifications for all signers in this submission.
+    // Suppresses signer_invite notifications for all signers in this submission. Defaults to true; set false to send notifications.
     suppress_notifications *bool
 }
 // NewCreateSubmissionBody instantiates a new CreateSubmissionBody and sets the default values.
@@ -69,7 +69,7 @@ func (m *CreateSubmissionBody) GetFieldDeserializers()(map[string]func(i878a80d2
 func (m *CreateSubmissionBody) GetSigners()([]SignerInputable) {
     return m.signers
 }
-// GetSuppressNotifications gets the suppress_notifications property value. If true, suppresses signer_invite notifications for all signers in this submission.
+// GetSuppressNotifications gets the suppress_notifications property value. Suppresses signer_invite notifications for all signers in this submission. Defaults to true; set false to send notifications.
 // returns a *bool when successful
 func (m *CreateSubmissionBody) GetSuppressNotifications()(*bool) {
     return m.suppress_notifications
@@ -110,7 +110,7 @@ func (m *CreateSubmissionBody) SetAdditionalData(value map[string]any)() {
 func (m *CreateSubmissionBody) SetSigners(value []SignerInputable)() {
     m.signers = value
 }
-// SetSuppressNotifications sets the suppress_notifications property value. If true, suppresses signer_invite notifications for all signers in this submission.
+// SetSuppressNotifications sets the suppress_notifications property value. Suppresses signer_invite notifications for all signers in this submission. Defaults to true; set false to send notifications.
 func (m *CreateSubmissionBody) SetSuppressNotifications(value *bool)() {
     m.suppress_notifications = value
 }

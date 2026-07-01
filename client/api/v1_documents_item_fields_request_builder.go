@@ -5,16 +5,16 @@ package api
 
 import (
     "context"
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1DocumentsItemFieldsRequestBuilder builds and executes requests for operations under \api\v1\documents\{id}\fields
 type V1DocumentsItemFieldsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// ByFid gets an item from the client.api.v1.documents.item.fields.item collection
+// ByFid gets an item from the github.com/Formalingo/sdk-go/client.api.v1.documents.item.fields.item collection
 // returns a *V1DocumentsItemFieldsWithFItemRequestBuilder when successful
 func (m *V1DocumentsItemFieldsRequestBuilder) ByFid(fid i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*V1DocumentsItemFieldsWithFItemRequestBuilder) {
     urlTplParams := make(map[string]string)
@@ -55,7 +55,7 @@ func (m *V1DocumentsItemFieldsRequestBuilder) Get(ctx context.Context, requestCo
 }
 // Post create a field
 // returns a V1DocumentsItemFieldsPostResponseable when successful
-func (m *V1DocumentsItemFieldsRequestBuilder) Post(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateFieldBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemFieldsPostResponseable, error) {
+func (m *V1DocumentsItemFieldsRequestBuilder) Post(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateFieldBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemFieldsPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -79,7 +79,7 @@ func (m *V1DocumentsItemFieldsRequestBuilder) ToGetRequestInformation(ctx contex
 }
 // ToPostRequestInformation create a field
 // returns a *RequestInformation when successful
-func (m *V1DocumentsItemFieldsRequestBuilder) ToPostRequestInformation(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateFieldBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *V1DocumentsItemFieldsRequestBuilder) ToPostRequestInformation(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateFieldBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
     requestInfo.Headers.TryAdd("Accept", "application/json")

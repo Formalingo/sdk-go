@@ -13,7 +13,7 @@ import (
 type V1DocumentsItemSubmissionsItemSignersRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// BySignerId gets an item from the client.api.v1.documents.item.submissions.item.signers.item collection
+// BySignerId gets an item from the github.com/Formalingo/sdk-go/client.api.v1.documents.item.submissions.item.signers.item collection
 // returns a *V1DocumentsItemSubmissionsItemSignersWithSignerItemRequestBuilder when successful
 func (m *V1DocumentsItemSubmissionsItemSignersRequestBuilder) BySignerId(signerId i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*V1DocumentsItemSubmissionsItemSignersWithSignerItemRequestBuilder) {
     urlTplParams := make(map[string]string)

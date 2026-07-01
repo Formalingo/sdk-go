@@ -19,10 +19,11 @@ const (
     EMAIL_DETECTEDDOCUMENTFIELD_TYPE
     PHONE_DETECTEDDOCUMENTFIELD_TYPE
     INITIALS_DETECTEDDOCUMENTFIELD_TYPE
+    CALCULATION_DETECTEDDOCUMENTFIELD_TYPE
 )
 
 func (i DetectedDocumentField_type) String() string {
-    return []string{"short_text", "long_text", "mcq", "multi_select", "rating", "date", "number", "yes_no", "file_upload", "dropdown", "digital_signature", "email", "phone", "initials"}[i]
+    return []string{"short_text", "long_text", "mcq", "multi_select", "rating", "date", "number", "yes_no", "file_upload", "dropdown", "digital_signature", "email", "phone", "initials", "calculation"}[i]
 }
 func ParseDetectedDocumentField_type(v string) (any, error) {
     result := SHORT_TEXT_DETECTEDDOCUMENTFIELD_TYPE
@@ -55,6 +56,8 @@ func ParseDetectedDocumentField_type(v string) (any, error) {
             result = PHONE_DETECTEDDOCUMENTFIELD_TYPE
         case "initials":
             result = INITIALS_DETECTEDDOCUMENTFIELD_TYPE
+        case "calculation":
+            result = CALCULATION_DETECTEDDOCUMENTFIELD_TYPE
         default:
             return nil, nil
     }

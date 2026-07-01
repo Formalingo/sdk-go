@@ -21,7 +21,7 @@ type CreateRecipientBody struct {
     password *string
     // The phone property
     phone *string
-    // Map of question ID → pre-filled value. The value is saved as a Response.
+    // Map of question ID or exact question text → pre-filled value. The value is saved as a Response.
     prefill CreateRecipientBody_prefillable
     // If true, suppresses recipient_invite notification for this recipient.
     suppress_notifications *bool
@@ -144,7 +144,7 @@ func (m *CreateRecipientBody) GetPassword()(*string) {
 func (m *CreateRecipientBody) GetPhone()(*string) {
     return m.phone
 }
-// GetPrefill gets the prefill property value. Map of question ID → pre-filled value. The value is saved as a Response.
+// GetPrefill gets the prefill property value. Map of question ID or exact question text → pre-filled value. The value is saved as a Response.
 // returns a CreateRecipientBody_prefillable when successful
 func (m *CreateRecipientBody) GetPrefill()(CreateRecipientBody_prefillable) {
     return m.prefill
@@ -230,7 +230,7 @@ func (m *CreateRecipientBody) SetPassword(value *string)() {
 func (m *CreateRecipientBody) SetPhone(value *string)() {
     m.phone = value
 }
-// SetPrefill sets the prefill property value. Map of question ID → pre-filled value. The value is saved as a Response.
+// SetPrefill sets the prefill property value. Map of question ID or exact question text → pre-filled value. The value is saved as a Response.
 func (m *CreateRecipientBody) SetPrefill(value CreateRecipientBody_prefillable)() {
     m.prefill = value
 }

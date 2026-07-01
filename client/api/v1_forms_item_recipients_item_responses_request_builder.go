@@ -5,8 +5,8 @@ package api
 
 import (
     "context"
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1FormsItemRecipientsItemResponsesRequestBuilder builds and executes requests for operations under \api\v1\forms\{id}\recipients\{rid}\responses
@@ -45,7 +45,7 @@ func (m *V1FormsItemRecipientsItemResponsesRequestBuilder) Get(ctx context.Conte
 // Patch update question values for a recipient. Rejected with 409 if the recipient has already completed the form.
 // returns a V1FormsItemRecipientsItemResponsesPatchResponseable when successful
 // returns a V1FormsItemRecipientsItemResponses409Error error when the service returns a 409 status code
-func (m *V1FormsItemRecipientsItemResponsesRequestBuilder) Patch(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.UpdateRecipientResponsesBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemRecipientsItemResponsesPatchResponseable, error) {
+func (m *V1FormsItemRecipientsItemResponsesRequestBuilder) Patch(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.UpdateRecipientResponsesBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemRecipientsItemResponsesPatchResponseable, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -72,7 +72,7 @@ func (m *V1FormsItemRecipientsItemResponsesRequestBuilder) ToGetRequestInformati
 }
 // ToPatchRequestInformation update question values for a recipient. Rejected with 409 if the recipient has already completed the form.
 // returns a *RequestInformation when successful
-func (m *V1FormsItemRecipientsItemResponsesRequestBuilder) ToPatchRequestInformation(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.UpdateRecipientResponsesBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *V1FormsItemRecipientsItemResponsesRequestBuilder) ToPatchRequestInformation(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.UpdateRecipientResponsesBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PATCH, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
     requestInfo.Headers.TryAdd("Accept", "application/json")

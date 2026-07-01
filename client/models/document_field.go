@@ -32,7 +32,7 @@ type DocumentField struct {
     isRequired *bool
     // The label property
     label *string
-    // The options property
+    // Type-specific options. For calculation fields, use { formula: "{{Field A}} {{Field B}}", result_type: "text" | "number" }.
     options DocumentField_optionsable
     // The order property
     order *float64
@@ -290,7 +290,7 @@ func (m *DocumentField) GetIsRequired()(*bool) {
 func (m *DocumentField) GetLabel()(*string) {
     return m.label
 }
-// GetOptions gets the options property value. The options property
+// GetOptions gets the options property value. Type-specific options. For calculation fields, use { formula: "{{Field A}} {{Field B}}", result_type: "text" | "number" }.
 // returns a DocumentField_optionsable when successful
 func (m *DocumentField) GetOptions()(DocumentField_optionsable) {
     return m.options
@@ -483,7 +483,7 @@ func (m *DocumentField) SetIsRequired(value *bool)() {
 func (m *DocumentField) SetLabel(value *string)() {
     m.label = value
 }
-// SetOptions sets the options property value. The options property
+// SetOptions sets the options property value. Type-specific options. For calculation fields, use { formula: "{{Field A}} {{Field B}}", result_type: "text" | "number" }.
 func (m *DocumentField) SetOptions(value DocumentField_optionsable)() {
     m.options = value
 }

@@ -5,8 +5,8 @@ package api
 
 import (
     "context"
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1FormsItemRecipientsWithRItemRequestBuilder builds and executes requests for operations under \api\v1\forms\{id}\recipients\{rid}
@@ -44,7 +44,7 @@ func (m *V1FormsItemRecipientsWithRItemRequestBuilder) Delete(ctx context.Contex
 }
 // Put update a recipient
 // returns a V1FormsItemRecipientsItemWithRPutResponseable when successful
-func (m *V1FormsItemRecipientsWithRItemRequestBuilder) Put(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.UpdateRecipientBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemRecipientsItemWithRPutResponseable, error) {
+func (m *V1FormsItemRecipientsWithRItemRequestBuilder) Put(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.UpdateRecipientBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemRecipientsItemWithRPutResponseable, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -73,7 +73,7 @@ func (m *V1FormsItemRecipientsWithRItemRequestBuilder) ToDeleteRequestInformatio
 }
 // ToPutRequestInformation update a recipient
 // returns a *RequestInformation when successful
-func (m *V1FormsItemRecipientsWithRItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.UpdateRecipientBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *V1FormsItemRecipientsWithRItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.UpdateRecipientBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
     requestInfo.Headers.TryAdd("Accept", "application/json")

@@ -4,17 +4,17 @@
 package api
 
 import (
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 type V1DocumentsItemPublishPostResponse_data struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The document property
-    document iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Documentable
+    document id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Documentable
     // The revision property
-    revision iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentRevisionable
+    revision id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentRevisionable
 }
 // NewV1DocumentsItemPublishPostResponse_data instantiates a new V1DocumentsItemPublishPostResponse_data and sets the default values.
 func NewV1DocumentsItemPublishPostResponse_data()(*V1DocumentsItemPublishPostResponse_data) {
@@ -35,7 +35,7 @@ func (m *V1DocumentsItemPublishPostResponse_data) GetAdditionalData()(map[string
 }
 // GetDocument gets the document property value. The document property
 // returns a Documentable when successful
-func (m *V1DocumentsItemPublishPostResponse_data) GetDocument()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Documentable) {
+func (m *V1DocumentsItemPublishPostResponse_data) GetDocument()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Documentable) {
     return m.document
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -43,22 +43,22 @@ func (m *V1DocumentsItemPublishPostResponse_data) GetDocument()(iaff47e4a4868373
 func (m *V1DocumentsItemPublishPostResponse_data) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["document"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateDocumentFromDiscriminatorValue)
+        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDocument(val.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Documentable))
+            m.SetDocument(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Documentable))
         }
         return nil
     }
     res["revision"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateDocumentRevisionFromDiscriminatorValue)
+        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentRevisionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRevision(val.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentRevisionable))
+            m.SetRevision(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentRevisionable))
         }
         return nil
     }
@@ -66,7 +66,7 @@ func (m *V1DocumentsItemPublishPostResponse_data) GetFieldDeserializers()(map[st
 }
 // GetRevision gets the revision property value. The revision property
 // returns a DocumentRevisionable when successful
-func (m *V1DocumentsItemPublishPostResponse_data) GetRevision()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentRevisionable) {
+func (m *V1DocumentsItemPublishPostResponse_data) GetRevision()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentRevisionable) {
     return m.revision
 }
 // Serialize serializes information the current object
@@ -96,18 +96,18 @@ func (m *V1DocumentsItemPublishPostResponse_data) SetAdditionalData(value map[st
     m.additionalData = value
 }
 // SetDocument sets the document property value. The document property
-func (m *V1DocumentsItemPublishPostResponse_data) SetDocument(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Documentable)() {
+func (m *V1DocumentsItemPublishPostResponse_data) SetDocument(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Documentable)() {
     m.document = value
 }
 // SetRevision sets the revision property value. The revision property
-func (m *V1DocumentsItemPublishPostResponse_data) SetRevision(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentRevisionable)() {
+func (m *V1DocumentsItemPublishPostResponse_data) SetRevision(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentRevisionable)() {
     m.revision = value
 }
 type V1DocumentsItemPublishPostResponse_dataable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDocument()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Documentable)
-    GetRevision()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentRevisionable)
-    SetDocument(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Documentable)()
-    SetRevision(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentRevisionable)()
+    GetDocument()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Documentable)
+    GetRevision()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentRevisionable)
+    SetDocument(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Documentable)()
+    SetRevision(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentRevisionable)()
 }

@@ -5,16 +5,16 @@ package api
 
 import (
     "context"
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1DocumentsItemParseJobsRequestBuilder builds and executes requests for operations under \api\v1\documents\{id}\parse-jobs
 type V1DocumentsItemParseJobsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// ByJobId gets an item from the client.api.v1.documents.item.parseJobs.item collection
+// ByJobId gets an item from the github.com/Formalingo/sdk-go/client.api.v1.documents.item.parseJobs.item collection
 // returns a *V1DocumentsItemParseJobsWithJobItemRequestBuilder when successful
 func (m *V1DocumentsItemParseJobsRequestBuilder) ByJobId(jobId i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*V1DocumentsItemParseJobsWithJobItemRequestBuilder) {
     urlTplParams := make(map[string]string)
@@ -42,7 +42,7 @@ func NewV1DocumentsItemParseJobsRequestBuilder(rawUrl string, requestAdapter i2a
 // returns a V1DocumentsItemParseJobsStartDocumentParseJobResponse400Error error when the service returns a 400 status code
 // returns a V1DocumentsItemParseJobsStartDocumentParseJobResponse403Error error when the service returns a 403 status code
 // returns a V1DocumentsItemParseJobsStartDocumentParseJobResponse404Error error when the service returns a 404 status code
-func (m *V1DocumentsItemParseJobsRequestBuilder) Post(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.StartDocumentParseJobBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.StartDocumentParseJobResponseable, error) {
+func (m *V1DocumentsItemParseJobsRequestBuilder) Post(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.StartDocumentParseJobBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.StartDocumentParseJobResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -52,18 +52,18 @@ func (m *V1DocumentsItemParseJobsRequestBuilder) Post(ctx context.Context, body 
         "403": CreateV1DocumentsItemParseJobsStartDocumentParseJobResponse403ErrorFromDiscriminatorValue,
         "404": CreateV1DocumentsItemParseJobsStartDocumentParseJobResponse404ErrorFromDiscriminatorValue,
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateStartDocumentParseJobResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateStartDocumentParseJobResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.StartDocumentParseJobResponseable), nil
+    return res.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.StartDocumentParseJobResponseable), nil
 }
 // ToPostRequestInformation creates an AI-assisted document parse job. Requires the `documents:parse_ai` permission in addition to `write:documents`.
 // returns a *RequestInformation when successful
-func (m *V1DocumentsItemParseJobsRequestBuilder) ToPostRequestInformation(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.StartDocumentParseJobBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *V1DocumentsItemParseJobsRequestBuilder) ToPostRequestInformation(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.StartDocumentParseJobBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
     requestInfo.Headers.TryAdd("Accept", "application/json")

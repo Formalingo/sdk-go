@@ -5,16 +5,16 @@ package api
 
 import (
     "context"
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1DocumentsItemSubmissionsRequestBuilder builds and executes requests for operations under \api\v1\documents\{id}\submissions
 type V1DocumentsItemSubmissionsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// BySid gets an item from the client.api.v1.documents.item.submissions.item collection
+// BySid gets an item from the github.com/Formalingo/sdk-go/client.api.v1.documents.item.submissions.item collection
 // returns a *V1DocumentsItemSubmissionsWithSItemRequestBuilder when successful
 func (m *V1DocumentsItemSubmissionsRequestBuilder) BySid(sid i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*V1DocumentsItemSubmissionsWithSItemRequestBuilder) {
     urlTplParams := make(map[string]string)
@@ -53,9 +53,9 @@ func (m *V1DocumentsItemSubmissionsRequestBuilder) Get(ctx context.Context, requ
     }
     return res.(V1DocumentsItemSubmissionsGetResponseable), nil
 }
-// Post creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer. Prefill keys can be field UUIDs or field labels (resolved per signer role). The `readonlyFieldIds` field also accepts labels.
+// Post creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer. Prefill keys can be field UUIDs or field labels (resolved per signer role). The `readonlyFieldIds` field also accepts labels. Notifications are suppressed by default; set `suppress_notifications` to false to send signer invites.
 // returns a V1DocumentsItemSubmissionsPostResponseable when successful
-func (m *V1DocumentsItemSubmissionsRequestBuilder) Post(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateSubmissionBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemSubmissionsPostResponseable, error) {
+func (m *V1DocumentsItemSubmissionsRequestBuilder) Post(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateSubmissionBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemSubmissionsPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -77,9 +77,9 @@ func (m *V1DocumentsItemSubmissionsRequestBuilder) ToGetRequestInformation(ctx c
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPostRequestInformation creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer. Prefill keys can be field UUIDs or field labels (resolved per signer role). The `readonlyFieldIds` field also accepts labels.
+// ToPostRequestInformation creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer. Prefill keys can be field UUIDs or field labels (resolved per signer role). The `readonlyFieldIds` field also accepts labels. Notifications are suppressed by default; set `suppress_notifications` to false to send signer invites.
 // returns a *RequestInformation when successful
-func (m *V1DocumentsItemSubmissionsRequestBuilder) ToPostRequestInformation(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateSubmissionBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *V1DocumentsItemSubmissionsRequestBuilder) ToPostRequestInformation(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateSubmissionBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
     requestInfo.Headers.TryAdd("Accept", "application/json")

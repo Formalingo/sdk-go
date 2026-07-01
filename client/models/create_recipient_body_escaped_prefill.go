@@ -7,7 +7,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// CreateRecipientBody_prefill map of question ID → pre-filled value. The value is saved as a Response.
+// CreateRecipientBody_prefill map of question ID or exact question text → pre-filled value. The value is saved as a Response.
 type CreateRecipientBody_prefill struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any

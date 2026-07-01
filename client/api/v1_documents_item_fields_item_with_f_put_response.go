@@ -4,15 +4,15 @@
 package api
 
 import (
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 type V1DocumentsItemFieldsItemWithFPutResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The data property
-    data iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentFieldable
+    data id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentFieldable
     // The success property
     success *bool
 }
@@ -35,7 +35,7 @@ func (m *V1DocumentsItemFieldsItemWithFPutResponse) GetAdditionalData()(map[stri
 }
 // GetData gets the data property value. The data property
 // returns a DocumentFieldable when successful
-func (m *V1DocumentsItemFieldsItemWithFPutResponse) GetData()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentFieldable) {
+func (m *V1DocumentsItemFieldsItemWithFPutResponse) GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentFieldable) {
     return m.data
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -43,12 +43,12 @@ func (m *V1DocumentsItemFieldsItemWithFPutResponse) GetData()(iaff47e4a4868373fa
 func (m *V1DocumentsItemFieldsItemWithFPutResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["data"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateDocumentFieldFromDiscriminatorValue)
+        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentFieldFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetData(val.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentFieldable))
+            m.SetData(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentFieldable))
         }
         return nil
     }
@@ -96,7 +96,7 @@ func (m *V1DocumentsItemFieldsItemWithFPutResponse) SetAdditionalData(value map[
     m.additionalData = value
 }
 // SetData sets the data property value. The data property
-func (m *V1DocumentsItemFieldsItemWithFPutResponse) SetData(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentFieldable)() {
+func (m *V1DocumentsItemFieldsItemWithFPutResponse) SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentFieldable)() {
     m.data = value
 }
 // SetSuccess sets the success property value. The success property
@@ -106,8 +106,8 @@ func (m *V1DocumentsItemFieldsItemWithFPutResponse) SetSuccess(value *bool)() {
 type V1DocumentsItemFieldsItemWithFPutResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetData()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentFieldable)
+    GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentFieldable)
     GetSuccess()(*bool)
-    SetData(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.DocumentFieldable)()
+    SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentFieldable)()
     SetSuccess(value *bool)()
 }

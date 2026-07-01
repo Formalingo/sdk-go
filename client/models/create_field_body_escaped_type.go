@@ -19,10 +19,11 @@ const (
     EMAIL_CREATEFIELDBODY_TYPE
     PHONE_CREATEFIELDBODY_TYPE
     INITIALS_CREATEFIELDBODY_TYPE
+    CALCULATION_CREATEFIELDBODY_TYPE
 )
 
 func (i CreateFieldBody_type) String() string {
-    return []string{"short_text", "long_text", "mcq", "multi_select", "rating", "date", "number", "yes_no", "file_upload", "dropdown", "digital_signature", "email", "phone", "initials"}[i]
+    return []string{"short_text", "long_text", "mcq", "multi_select", "rating", "date", "number", "yes_no", "file_upload", "dropdown", "digital_signature", "email", "phone", "initials", "calculation"}[i]
 }
 func ParseCreateFieldBody_type(v string) (any, error) {
     result := SHORT_TEXT_CREATEFIELDBODY_TYPE
@@ -55,6 +56,8 @@ func ParseCreateFieldBody_type(v string) (any, error) {
             result = PHONE_CREATEFIELDBODY_TYPE
         case "initials":
             result = INITIALS_CREATEFIELDBODY_TYPE
+        case "calculation":
+            result = CALCULATION_CREATEFIELDBODY_TYPE
         default:
             return nil, nil
     }

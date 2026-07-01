@@ -4,15 +4,15 @@
 package api
 
 import (
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 type V1FormsItemQuestionsPostResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The data property
-    data iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Questionable
+    data id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Questionable
     // The success property
     success *bool
 }
@@ -35,7 +35,7 @@ func (m *V1FormsItemQuestionsPostResponse) GetAdditionalData()(map[string]any) {
 }
 // GetData gets the data property value. The data property
 // returns a Questionable when successful
-func (m *V1FormsItemQuestionsPostResponse) GetData()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Questionable) {
+func (m *V1FormsItemQuestionsPostResponse) GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Questionable) {
     return m.data
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -43,12 +43,12 @@ func (m *V1FormsItemQuestionsPostResponse) GetData()(iaff47e4a4868373fab10f4216e
 func (m *V1FormsItemQuestionsPostResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["data"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateQuestionFromDiscriminatorValue)
+        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateQuestionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetData(val.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Questionable))
+            m.SetData(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Questionable))
         }
         return nil
     }
@@ -96,7 +96,7 @@ func (m *V1FormsItemQuestionsPostResponse) SetAdditionalData(value map[string]an
     m.additionalData = value
 }
 // SetData sets the data property value. The data property
-func (m *V1FormsItemQuestionsPostResponse) SetData(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Questionable)() {
+func (m *V1FormsItemQuestionsPostResponse) SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Questionable)() {
     m.data = value
 }
 // SetSuccess sets the success property value. The success property
@@ -106,8 +106,8 @@ func (m *V1FormsItemQuestionsPostResponse) SetSuccess(value *bool)() {
 type V1FormsItemQuestionsPostResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetData()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Questionable)
+    GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Questionable)
     GetSuccess()(*bool)
-    SetData(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Questionable)()
+    SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Questionable)()
     SetSuccess(value *bool)()
 }

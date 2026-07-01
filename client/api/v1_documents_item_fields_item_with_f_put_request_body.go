@@ -22,7 +22,7 @@ type V1DocumentsItemFieldsItemWithFPutRequestBody struct {
     isRequired *bool
     // The label property
     label *string
-    // The options property
+    // Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
     options V1DocumentsItemFieldsItemWithFPutRequestBody_optionsable
     // The order property
     order *int32
@@ -208,7 +208,7 @@ func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetIsRequired()(*bool) {
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetLabel()(*string) {
     return m.label
 }
-// GetOptions gets the options property value. The options property
+// GetOptions gets the options property value. Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
 // returns a V1DocumentsItemFieldsItemWithFPutRequestBody_optionsable when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetOptions()(V1DocumentsItemFieldsItemWithFPutRequestBody_optionsable) {
     return m.options
@@ -348,7 +348,7 @@ func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetIsRequired(value *bool
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetLabel(value *string)() {
     m.label = value
 }
-// SetOptions sets the options property value. The options property
+// SetOptions sets the options property value. Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetOptions(value V1DocumentsItemFieldsItemWithFPutRequestBody_optionsable)() {
     m.options = value
 }

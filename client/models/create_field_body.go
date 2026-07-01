@@ -24,7 +24,7 @@ type CreateFieldBody struct {
     isRequired *bool
     // The label property
     label *string
-    // The options property
+    // Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
     options CreateFieldBody_optionsable
     // The order property
     order *int32
@@ -239,7 +239,7 @@ func (m *CreateFieldBody) GetIsRequired()(*bool) {
 func (m *CreateFieldBody) GetLabel()(*string) {
     return m.label
 }
-// GetOptions gets the options property value. The options property
+// GetOptions gets the options property value. Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
 // returns a CreateFieldBody_optionsable when successful
 func (m *CreateFieldBody) GetOptions()(CreateFieldBody_optionsable) {
     return m.options
@@ -402,7 +402,7 @@ func (m *CreateFieldBody) SetIsRequired(value *bool)() {
 func (m *CreateFieldBody) SetLabel(value *string)() {
     m.label = value
 }
-// SetOptions sets the options property value. The options property
+// SetOptions sets the options property value. Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
 func (m *CreateFieldBody) SetOptions(value CreateFieldBody_optionsable)() {
     m.options = value
 }

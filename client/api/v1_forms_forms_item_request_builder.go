@@ -5,9 +5,9 @@ package api
 
 import (
     "context"
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i400135bc4b5793bdd0cfcb5c5dfabd4df37b5fbfabbb529c1c29a2c8976f4eab "client/api/v1/forms/item"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
+    i5035a3c431c10e2ee23f67af633a982e582c27e1cb0de72350222492fa48e184 "github.com/Formalingo/sdk-go/client/api/v1/forms/item"
 )
 
 // V1FormsFormsItemRequestBuilder builds and executes requests for operations under \api\v1\forms\{id}
@@ -16,7 +16,7 @@ type V1FormsFormsItemRequestBuilder struct {
 }
 // V1FormsFormsItemRequestBuilderDeleteQueryParameters soft-deletes the form by default. Pass `?permanent=true` to permanently delete (requires `delete:forms` scope).
 type V1FormsFormsItemRequestBuilderDeleteQueryParameters struct {
-    Permanent *i400135bc4b5793bdd0cfcb5c5dfabd4df37b5fbfabbb529c1c29a2c8976f4eab.DeletePermanentQueryParameterType `uriparametername:"permanent"`
+    Permanent *i5035a3c431c10e2ee23f67af633a982e582c27e1cb0de72350222492fa48e184.DeletePermanentQueryParameterType `uriparametername:"permanent"`
 }
 // NewV1FormsFormsItemRequestBuilderInternal instantiates a new V1FormsFormsItemRequestBuilder and sets the default values.
 func NewV1FormsFormsItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1FormsFormsItemRequestBuilder) {
@@ -80,7 +80,7 @@ func (m *V1FormsFormsItemRequestBuilder) Publish()(*V1FormsItemPublishRequestBui
 // returns a V1FormsItemFormsPutResponseable when successful
 // returns a V1FormsItemForms400Error error when the service returns a 400 status code
 // returns a V1FormsItemForms404Error error when the service returns a 404 status code
-func (m *V1FormsFormsItemRequestBuilder) Put(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.UpdateFormBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemFormsPutResponseable, error) {
+func (m *V1FormsFormsItemRequestBuilder) Put(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.UpdateFormBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemFormsPutResponseable, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
@@ -136,7 +136,7 @@ func (m *V1FormsFormsItemRequestBuilder) ToGetRequestInformation(ctx context.Con
 }
 // ToPutRequestInformation update a form
 // returns a *RequestInformation when successful
-func (m *V1FormsFormsItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.UpdateFormBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *V1FormsFormsItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.UpdateFormBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
     requestInfo.Headers.TryAdd("Accept", "application/json")

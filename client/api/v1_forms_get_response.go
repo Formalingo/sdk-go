@@ -4,15 +4,15 @@
 package api
 
 import (
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 type V1FormsGetResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The data property
-    data []iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable
+    data []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable
     // The meta property
     meta V1FormsGetResponse_metaable
     // The success property
@@ -37,7 +37,7 @@ func (m *V1FormsGetResponse) GetAdditionalData()(map[string]any) {
 }
 // GetData gets the data property value. The data property
 // returns a []Formable when successful
-func (m *V1FormsGetResponse) GetData()([]iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable) {
+func (m *V1FormsGetResponse) GetData()([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable) {
     return m.data
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -45,15 +45,15 @@ func (m *V1FormsGetResponse) GetData()([]iaff47e4a4868373fab10f4216e997721eefe3d
 func (m *V1FormsGetResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["data"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateFormFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateFormFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable, len(val))
+            res := make([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable, len(val))
             for i, v := range val {
                 if v != nil {
-                    res[i] = v.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable)
+                    res[i] = v.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable)
                 }
             }
             m.SetData(res)
@@ -131,7 +131,7 @@ func (m *V1FormsGetResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetData sets the data property value. The data property
-func (m *V1FormsGetResponse) SetData(value []iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable)() {
+func (m *V1FormsGetResponse) SetData(value []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable)() {
     m.data = value
 }
 // SetMeta sets the meta property value. The meta property
@@ -145,10 +145,10 @@ func (m *V1FormsGetResponse) SetSuccess(value *bool)() {
 type V1FormsGetResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetData()([]iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable)
+    GetData()([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable)
     GetMeta()(V1FormsGetResponse_metaable)
     GetSuccess()(*bool)
-    SetData(value []iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable)()
+    SetData(value []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable)()
     SetMeta(value V1FormsGetResponse_metaable)()
     SetSuccess(value *bool)()
 }

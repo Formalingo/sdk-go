@@ -19,10 +19,11 @@ const (
     EMAIL_WITHFPUTREQUESTBODY_TYPE
     PHONE_WITHFPUTREQUESTBODY_TYPE
     INITIALS_WITHFPUTREQUESTBODY_TYPE
+    CALCULATION_WITHFPUTREQUESTBODY_TYPE
 )
 
 func (i WithFPutRequestBody_type) String() string {
-    return []string{"short_text", "long_text", "mcq", "multi_select", "rating", "date", "number", "yes_no", "file_upload", "dropdown", "digital_signature", "email", "phone", "initials"}[i]
+    return []string{"short_text", "long_text", "mcq", "multi_select", "rating", "date", "number", "yes_no", "file_upload", "dropdown", "digital_signature", "email", "phone", "initials", "calculation"}[i]
 }
 func ParseWithFPutRequestBody_type(v string) (any, error) {
     result := SHORT_TEXT_WITHFPUTREQUESTBODY_TYPE
@@ -55,6 +56,8 @@ func ParseWithFPutRequestBody_type(v string) (any, error) {
             result = PHONE_WITHFPUTREQUESTBODY_TYPE
         case "initials":
             result = INITIALS_WITHFPUTREQUESTBODY_TYPE
+        case "calculation":
+            result = CALCULATION_WITHFPUTREQUESTBODY_TYPE
         default:
             return nil, nil
     }

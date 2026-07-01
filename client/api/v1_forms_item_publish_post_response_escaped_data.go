@@ -4,17 +4,17 @@
 package api
 
 import (
-    iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f "client/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 type V1FormsItemPublishPostResponse_data struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The form property
-    form iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable
+    form id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable
     // The revision property
-    revision iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.FormRevisionable
+    revision id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FormRevisionable
 }
 // NewV1FormsItemPublishPostResponse_data instantiates a new V1FormsItemPublishPostResponse_data and sets the default values.
 func NewV1FormsItemPublishPostResponse_data()(*V1FormsItemPublishPostResponse_data) {
@@ -38,22 +38,22 @@ func (m *V1FormsItemPublishPostResponse_data) GetAdditionalData()(map[string]any
 func (m *V1FormsItemPublishPostResponse_data) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["form"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateFormFromDiscriminatorValue)
+        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateFormFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetForm(val.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable))
+            m.SetForm(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable))
         }
         return nil
     }
     res["revision"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.CreateFormRevisionFromDiscriminatorValue)
+        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateFormRevisionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRevision(val.(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.FormRevisionable))
+            m.SetRevision(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FormRevisionable))
         }
         return nil
     }
@@ -61,12 +61,12 @@ func (m *V1FormsItemPublishPostResponse_data) GetFieldDeserializers()(map[string
 }
 // GetForm gets the form property value. The form property
 // returns a Formable when successful
-func (m *V1FormsItemPublishPostResponse_data) GetForm()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable) {
+func (m *V1FormsItemPublishPostResponse_data) GetForm()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable) {
     return m.form
 }
 // GetRevision gets the revision property value. The revision property
 // returns a FormRevisionable when successful
-func (m *V1FormsItemPublishPostResponse_data) GetRevision()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.FormRevisionable) {
+func (m *V1FormsItemPublishPostResponse_data) GetRevision()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FormRevisionable) {
     return m.revision
 }
 // Serialize serializes information the current object
@@ -96,18 +96,18 @@ func (m *V1FormsItemPublishPostResponse_data) SetAdditionalData(value map[string
     m.additionalData = value
 }
 // SetForm sets the form property value. The form property
-func (m *V1FormsItemPublishPostResponse_data) SetForm(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable)() {
+func (m *V1FormsItemPublishPostResponse_data) SetForm(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable)() {
     m.form = value
 }
 // SetRevision sets the revision property value. The revision property
-func (m *V1FormsItemPublishPostResponse_data) SetRevision(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.FormRevisionable)() {
+func (m *V1FormsItemPublishPostResponse_data) SetRevision(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FormRevisionable)() {
     m.revision = value
 }
 type V1FormsItemPublishPostResponse_dataable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetForm()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable)
-    GetRevision()(iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.FormRevisionable)
-    SetForm(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.Formable)()
-    SetRevision(value iaff47e4a4868373fab10f4216e997721eefe3df47195770f8e45cd166886968f.FormRevisionable)()
+    GetForm()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable)
+    GetRevision()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FormRevisionable)
+    SetForm(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Formable)()
+    SetRevision(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FormRevisionable)()
 }
