@@ -18,6 +18,8 @@ type SubmissionPdf struct {
     downloadUrl *string
     // URL expiry in seconds
     expiresIn *float64
+    // The file property
+    file FileDescriptorable
     // The submissionId property
     submissionId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 }
@@ -87,6 +89,16 @@ func (m *SubmissionPdf) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["file"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateFileDescriptorFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFile(val.(FileDescriptorable))
+        }
+        return nil
+    }
     res["submissionId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetUUIDValue()
         if err != nil {
@@ -98,6 +110,11 @@ func (m *SubmissionPdf) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         return nil
     }
     return res
+}
+// GetFile gets the file property value. The file property
+// returns a FileDescriptorable when successful
+func (m *SubmissionPdf) GetFile()(FileDescriptorable) {
+    return m.file
 }
 // GetSubmissionId gets the submissionId property value. The submissionId property
 // returns a *UUID when successful
@@ -120,6 +137,12 @@ func (m *SubmissionPdf) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     {
         err := writer.WriteFloat64Value("expiresIn", m.GetExpiresIn())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("file", m.GetFile())
         if err != nil {
             return err
         }
@@ -154,6 +177,10 @@ func (m *SubmissionPdf) SetDownloadUrl(value *string)() {
 func (m *SubmissionPdf) SetExpiresIn(value *float64)() {
     m.expiresIn = value
 }
+// SetFile sets the file property value. The file property
+func (m *SubmissionPdf) SetFile(value FileDescriptorable)() {
+    m.file = value
+}
 // SetSubmissionId sets the submissionId property value. The submissionId property
 func (m *SubmissionPdf) SetSubmissionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.submissionId = value
@@ -164,9 +191,11 @@ type SubmissionPdfable interface {
     GetCompletedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDownloadUrl()(*string)
     GetExpiresIn()(*float64)
+    GetFile()(FileDescriptorable)
     GetSubmissionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     SetCompletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDownloadUrl(value *string)()
     SetExpiresIn(value *float64)()
+    SetFile(value FileDescriptorable)()
     SetSubmissionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
 }

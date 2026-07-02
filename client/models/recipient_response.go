@@ -18,7 +18,7 @@ type RecipientResponse struct {
     questionId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The updatedAt property
     updatedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The value property
+    // Response value. File upload answers may use the FileValue schema for descriptor-style downloads.
     value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable
 }
 // NewRecipientResponse instantiates a new RecipientResponse and sets the default values.
@@ -99,7 +99,7 @@ func (m *RecipientResponse) GetQuestionId()(*i561e97a8befe7661a44c8f54600992b420
 func (m *RecipientResponse) GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.updatedAt
 }
-// GetValue gets the value property value. The value property
+// GetValue gets the value property value. Response value. File upload answers may use the FileValue schema for descriptor-style downloads.
 // returns a UntypedNodeable when successful
 func (m *RecipientResponse) GetValue()(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable) {
     return m.value
@@ -154,7 +154,7 @@ func (m *RecipientResponse) SetQuestionId(value *i561e97a8befe7661a44c8f54600992
 func (m *RecipientResponse) SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.updatedAt = value
 }
-// SetValue sets the value property value. The value property
+// SetValue sets the value property value. Response value. File upload answers may use the FileValue schema for descriptor-style downloads.
 func (m *RecipientResponse) SetValue(value i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.UntypedNodeable)() {
     m.value = value
 }

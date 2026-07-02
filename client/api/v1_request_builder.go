@@ -39,6 +39,11 @@ func (m *V1RequestBuilder) Deliveries()(*V1DeliveriesRequestBuilder) {
 func (m *V1RequestBuilder) Documents()(*V1DocumentsRequestBuilder) {
     return NewV1DocumentsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Files the files property
+// returns a *V1FilesRequestBuilder when successful
+func (m *V1RequestBuilder) Files()(*V1FilesRequestBuilder) {
+    return NewV1FilesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Forms the forms property
 // returns a *V1FormsRequestBuilder when successful
 func (m *V1RequestBuilder) Forms()(*V1FormsRequestBuilder) {
