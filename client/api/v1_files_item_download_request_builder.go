@@ -26,7 +26,7 @@ func NewV1FilesItemDownloadRequestBuilder(rawUrl string, requestAdapter i2ae4187
     urlParams["request-raw-url"] = rawUrl
     return NewV1FilesItemDownloadRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns a short-lived signed URL for a response upload or signed PDF file. Requires the submissions:download_files permission.
+// Get returns a short-lived signed URL for a response upload or signed PDF file. Permission is file-kind specific: response uploads require submissions:download_files; signed PDFs require submissions:download_pdf.
 // returns a FileDownloadResponseable when successful
 // returns a V1FilesItemFileDownloadResponse401Error error when the service returns a 401 status code
 // returns a V1FilesItemFileDownloadResponse403Error error when the service returns a 403 status code
@@ -50,7 +50,7 @@ func (m *V1FilesItemDownloadRequestBuilder) Get(ctx context.Context, requestConf
     }
     return res.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FileDownloadResponseable), nil
 }
-// ToGetRequestInformation returns a short-lived signed URL for a response upload or signed PDF file. Requires the submissions:download_files permission.
+// ToGetRequestInformation returns a short-lived signed URL for a response upload or signed PDF file. Permission is file-kind specific: response uploads require submissions:download_files; signed PDFs require submissions:download_pdf.
 // returns a *RequestInformation when successful
 func (m *V1FilesItemDownloadRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
