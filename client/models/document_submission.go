@@ -14,7 +14,7 @@ type DocumentSubmission struct {
     additionalData map[string]any
     // The completedAt property
     completedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The completedPdfUrl property
+    // Deprecated compatibility alias. For completed submissions this points to Formalingo's API-key-gated signed PDF descriptor endpoint, not raw storage. Prefer signedPdf.downloadUrl.
     completedPdfUrl *string
     // The createdAt property
     createdAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
@@ -22,6 +22,8 @@ type DocumentSubmission struct {
     documentId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // Stable API-key-gated file descriptor for the completed signed PDF.
+    signedPdf DocumentSubmission_signedPdfable
     // The signers property
     signers []Signerable
     // The status property
@@ -49,7 +51,7 @@ func (m *DocumentSubmission) GetAdditionalData()(map[string]any) {
 func (m *DocumentSubmission) GetCompletedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.completedAt
 }
-// GetCompletedPdfUrl gets the completedPdfUrl property value. The completedPdfUrl property
+// GetCompletedPdfUrl gets the completedPdfUrl property value. Deprecated compatibility alias. For completed submissions this points to Formalingo's API-key-gated signed PDF descriptor endpoint, not raw storage. Prefer signedPdf.downloadUrl.
 // returns a *string when successful
 func (m *DocumentSubmission) GetCompletedPdfUrl()(*string) {
     return m.completedPdfUrl
@@ -118,6 +120,16 @@ func (m *DocumentSubmission) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         return nil
     }
+    res["signedPdf"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateDocumentSubmission_signedPdfFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSignedPdf(val.(DocumentSubmission_signedPdfable))
+        }
+        return nil
+    }
     res["signers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateSignerFromDiscriminatorValue)
         if err != nil {
@@ -150,6 +162,11 @@ func (m *DocumentSubmission) GetFieldDeserializers()(map[string]func(i878a80d233
 // returns a *UUID when successful
 func (m *DocumentSubmission) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
+}
+// GetSignedPdf gets the signedPdf property value. Stable API-key-gated file descriptor for the completed signed PDF.
+// returns a DocumentSubmission_signedPdfable when successful
+func (m *DocumentSubmission) GetSignedPdf()(DocumentSubmission_signedPdfable) {
+    return m.signedPdf
 }
 // GetSigners gets the signers property value. The signers property
 // returns a []Signerable when successful
@@ -193,6 +210,12 @@ func (m *DocumentSubmission) Serialize(writer i878a80d2330e89d26896388a3f487eef2
             return err
         }
     }
+    {
+        err := writer.WriteObjectValue("signedPdf", m.GetSignedPdf())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetSigners() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSigners()))
         for i, v := range m.GetSigners() {
@@ -228,7 +251,7 @@ func (m *DocumentSubmission) SetAdditionalData(value map[string]any)() {
 func (m *DocumentSubmission) SetCompletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.completedAt = value
 }
-// SetCompletedPdfUrl sets the completedPdfUrl property value. The completedPdfUrl property
+// SetCompletedPdfUrl sets the completedPdfUrl property value. Deprecated compatibility alias. For completed submissions this points to Formalingo's API-key-gated signed PDF descriptor endpoint, not raw storage. Prefer signedPdf.downloadUrl.
 func (m *DocumentSubmission) SetCompletedPdfUrl(value *string)() {
     m.completedPdfUrl = value
 }
@@ -243,6 +266,10 @@ func (m *DocumentSubmission) SetDocumentId(value *i561e97a8befe7661a44c8f5460099
 // SetId sets the id property value. The id property
 func (m *DocumentSubmission) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
+}
+// SetSignedPdf sets the signedPdf property value. Stable API-key-gated file descriptor for the completed signed PDF.
+func (m *DocumentSubmission) SetSignedPdf(value DocumentSubmission_signedPdfable)() {
+    m.signedPdf = value
 }
 // SetSigners sets the signers property value. The signers property
 func (m *DocumentSubmission) SetSigners(value []Signerable)() {
@@ -260,6 +287,7 @@ type DocumentSubmissionable interface {
     GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDocumentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetSignedPdf()(DocumentSubmission_signedPdfable)
     GetSigners()([]Signerable)
     GetStatus()(*DocumentSubmission_status)
     SetCompletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
@@ -267,6 +295,7 @@ type DocumentSubmissionable interface {
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDocumentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetSignedPdf(value DocumentSubmission_signedPdfable)()
     SetSigners(value []Signerable)()
     SetStatus(value *DocumentSubmission_status)()
 }

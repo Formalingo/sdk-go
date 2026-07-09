@@ -46,6 +46,11 @@ func (m *V1DocumentsDocumentsItemRequestBuilder) Delete(ctx context.Context, req
     }
     return res.(V1DocumentsItemDocumentsDeleteResponseable), nil
 }
+// Export the export property
+// returns a *V1DocumentsItemExportRequestBuilder when successful
+func (m *V1DocumentsDocumentsItemRequestBuilder) Export()(*V1DocumentsItemExportRequestBuilder) {
+    return NewV1DocumentsItemExportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Fields the fields property
 // returns a *V1DocumentsItemFieldsRequestBuilder when successful
 func (m *V1DocumentsDocumentsItemRequestBuilder) Fields()(*V1DocumentsItemFieldsRequestBuilder) {

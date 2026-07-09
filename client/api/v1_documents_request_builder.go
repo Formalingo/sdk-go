@@ -59,6 +59,11 @@ func (m *V1DocumentsRequestBuilder) Get(ctx context.Context, requestConfiguratio
     }
     return res.(V1DocumentsGetResponseable), nil
 }
+// ImportEscaped the import property
+// returns a *V1DocumentsImportRequestBuilder when successful
+func (m *V1DocumentsRequestBuilder) ImportEscaped()(*V1DocumentsImportRequestBuilder) {
+    return NewV1DocumentsImportRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Post upload a PDF or DOCX file using multipart/form-data. Max file size: 50 MB.
 // returns a V1DocumentsPostResponseable when successful
 func (m *V1DocumentsRequestBuilder) Post(ctx context.Context, body i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.MultipartBody, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsPostResponseable, error) {
