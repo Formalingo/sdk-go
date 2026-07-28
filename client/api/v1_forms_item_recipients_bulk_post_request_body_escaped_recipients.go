@@ -19,7 +19,7 @@ type V1FormsItemRecipientsBulkPostRequestBody_recipients struct {
     label *string
     // The password property
     password *string
-    // The phone property
+    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
     // The prefill property
     prefill V1FormsItemRecipientsBulkPostRequestBody_recipients_prefillable
@@ -127,7 +127,7 @@ func (m *V1FormsItemRecipientsBulkPostRequestBody_recipients) GetLabel()(*string
 func (m *V1FormsItemRecipientsBulkPostRequestBody_recipients) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. The phone property
+// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *V1FormsItemRecipientsBulkPostRequestBody_recipients) GetPhone()(*string) {
     return m.phone
@@ -203,7 +203,7 @@ func (m *V1FormsItemRecipientsBulkPostRequestBody_recipients) SetLabel(value *st
 func (m *V1FormsItemRecipientsBulkPostRequestBody_recipients) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. The phone property
+// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *V1FormsItemRecipientsBulkPostRequestBody_recipients) SetPhone(value *string)() {
     m.phone = value
 }
