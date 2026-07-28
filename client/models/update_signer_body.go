@@ -11,16 +11,26 @@ import (
 type UpdateSignerBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The email property
+    // Set true to clear the stored phone number. Omit to leave it unchanged.
+    clearPhone *bool
+    // The color property
+    color *string
+    // Email address; null clears it.
     email *string
-    // The expiresAt property
+    // ISO 8601 expiry; null clears it.
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The label property
     label *string
-    // The name property
+    // Signer name; null clears it.
     name *string
-    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+    // The order property
+    order *int32
+    // Write-only password; null removes it and it is never returned.
+    password *string
+    // Accepted formatted phone input; null clears it.
     phone *string
+    // The role property
+    role *string
 }
 // NewUpdateSignerBody instantiates a new UpdateSignerBody and sets the default values.
 func NewUpdateSignerBody()(*UpdateSignerBody) {
@@ -39,12 +49,22 @@ func CreateUpdateSignerBodyFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 func (m *UpdateSignerBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetEmail gets the email property value. The email property
+// GetClearPhone gets the clearPhone property value. Set true to clear the stored phone number. Omit to leave it unchanged.
+// returns a *bool when successful
+func (m *UpdateSignerBody) GetClearPhone()(*bool) {
+    return m.clearPhone
+}
+// GetColor gets the color property value. The color property
+// returns a *string when successful
+func (m *UpdateSignerBody) GetColor()(*string) {
+    return m.color
+}
+// GetEmail gets the email property value. Email address; null clears it.
 // returns a *string when successful
 func (m *UpdateSignerBody) GetEmail()(*string) {
     return m.email
 }
-// GetExpiresAt gets the expiresAt property value. The expiresAt property
+// GetExpiresAt gets the expiresAt property value. ISO 8601 expiry; null clears it.
 // returns a *Time when successful
 func (m *UpdateSignerBody) GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.expiresAt
@@ -53,6 +73,26 @@ func (m *UpdateSignerBody) GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *UpdateSignerBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["clearPhone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClearPhone(val)
+        }
+        return nil
+    }
+    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetColor(val)
+        }
+        return nil
+    }
     res["email"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -93,6 +133,26 @@ func (m *UpdateSignerBody) GetFieldDeserializers()(map[string]func(i878a80d2330e
         }
         return nil
     }
+    res["order"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOrder(val)
+        }
+        return nil
+    }
+    res["password"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPassword(val)
+        }
+        return nil
+    }
     res["phone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -103,6 +163,16 @@ func (m *UpdateSignerBody) GetFieldDeserializers()(map[string]func(i878a80d2330e
         }
         return nil
     }
+    res["role"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRole(val)
+        }
+        return nil
+    }
     return res
 }
 // GetLabel gets the label property value. The label property
@@ -110,18 +180,45 @@ func (m *UpdateSignerBody) GetFieldDeserializers()(map[string]func(i878a80d2330e
 func (m *UpdateSignerBody) GetLabel()(*string) {
     return m.label
 }
-// GetName gets the name property value. The name property
+// GetName gets the name property value. Signer name; null clears it.
 // returns a *string when successful
 func (m *UpdateSignerBody) GetName()(*string) {
     return m.name
 }
-// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+// GetOrder gets the order property value. The order property
+// returns a *int32 when successful
+func (m *UpdateSignerBody) GetOrder()(*int32) {
+    return m.order
+}
+// GetPassword gets the password property value. Write-only password; null removes it and it is never returned.
+// returns a *string when successful
+func (m *UpdateSignerBody) GetPassword()(*string) {
+    return m.password
+}
+// GetPhone gets the phone property value. Accepted formatted phone input; null clears it.
 // returns a *string when successful
 func (m *UpdateSignerBody) GetPhone()(*string) {
     return m.phone
 }
+// GetRole gets the role property value. The role property
+// returns a *string when successful
+func (m *UpdateSignerBody) GetRole()(*string) {
+    return m.role
+}
 // Serialize serializes information the current object
 func (m *UpdateSignerBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteBoolValue("clearPhone", m.GetClearPhone())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("color", m.GetColor())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteStringValue("email", m.GetEmail())
         if err != nil {
@@ -147,7 +244,25 @@ func (m *UpdateSignerBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
         }
     }
     {
+        err := writer.WriteInt32Value("order", m.GetOrder())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("password", m.GetPassword())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("phone", m.GetPhone())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("role", m.GetRole())
         if err != nil {
             return err
         }
@@ -164,11 +279,19 @@ func (m *UpdateSignerBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 func (m *UpdateSignerBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetEmail sets the email property value. The email property
+// SetClearPhone sets the clearPhone property value. Set true to clear the stored phone number. Omit to leave it unchanged.
+func (m *UpdateSignerBody) SetClearPhone(value *bool)() {
+    m.clearPhone = value
+}
+// SetColor sets the color property value. The color property
+func (m *UpdateSignerBody) SetColor(value *string)() {
+    m.color = value
+}
+// SetEmail sets the email property value. Email address; null clears it.
 func (m *UpdateSignerBody) SetEmail(value *string)() {
     m.email = value
 }
-// SetExpiresAt sets the expiresAt property value. The expiresAt property
+// SetExpiresAt sets the expiresAt property value. ISO 8601 expiry; null clears it.
 func (m *UpdateSignerBody) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiresAt = value
 }
@@ -176,25 +299,47 @@ func (m *UpdateSignerBody) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6
 func (m *UpdateSignerBody) SetLabel(value *string)() {
     m.label = value
 }
-// SetName sets the name property value. The name property
+// SetName sets the name property value. Signer name; null clears it.
 func (m *UpdateSignerBody) SetName(value *string)() {
     m.name = value
 }
-// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+// SetOrder sets the order property value. The order property
+func (m *UpdateSignerBody) SetOrder(value *int32)() {
+    m.order = value
+}
+// SetPassword sets the password property value. Write-only password; null removes it and it is never returned.
+func (m *UpdateSignerBody) SetPassword(value *string)() {
+    m.password = value
+}
+// SetPhone sets the phone property value. Accepted formatted phone input; null clears it.
 func (m *UpdateSignerBody) SetPhone(value *string)() {
     m.phone = value
+}
+// SetRole sets the role property value. The role property
+func (m *UpdateSignerBody) SetRole(value *string)() {
+    m.role = value
 }
 type UpdateSignerBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClearPhone()(*bool)
+    GetColor()(*string)
     GetEmail()(*string)
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetLabel()(*string)
     GetName()(*string)
+    GetOrder()(*int32)
+    GetPassword()(*string)
     GetPhone()(*string)
+    GetRole()(*string)
+    SetClearPhone(value *bool)()
+    SetColor(value *string)()
     SetEmail(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetLabel(value *string)()
     SetName(value *string)()
+    SetOrder(value *int32)()
+    SetPassword(value *string)()
     SetPhone(value *string)()
+    SetRole(value *string)()
 }

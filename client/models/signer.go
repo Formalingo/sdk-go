@@ -32,7 +32,7 @@ type Signer struct {
     name *string
     // The order property
     order *float64
-    // Responses are canonical E.164 phone values stored after successful creates and edits.
+    // Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
     phone *string
     // The role property
     role *string
@@ -266,7 +266,7 @@ func (m *Signer) GetName()(*string) {
 func (m *Signer) GetOrder()(*float64) {
     return m.order
 }
-// GetPhone gets the phone property value. Responses are canonical E.164 phone values stored after successful creates and edits.
+// GetPhone gets the phone property value. Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
 // returns a *string when successful
 func (m *Signer) GetPhone()(*string) {
     return m.phone
@@ -436,7 +436,7 @@ func (m *Signer) SetName(value *string)() {
 func (m *Signer) SetOrder(value *float64)() {
     m.order = value
 }
-// SetPhone sets the phone property value. Responses are canonical E.164 phone values stored after successful creates and edits.
+// SetPhone sets the phone property value. Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
 func (m *Signer) SetPhone(value *string)() {
     m.phone = value
 }

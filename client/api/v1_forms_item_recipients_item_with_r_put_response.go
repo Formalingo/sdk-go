@@ -12,7 +12,7 @@ type V1FormsItemRecipientsItemWithRPutResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The data property
-    data id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Recipientable
+    data id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CanonicalRecipientable
     // The success property
     success *bool
 }
@@ -34,8 +34,8 @@ func (m *V1FormsItemRecipientsItemWithRPutResponse) GetAdditionalData()(map[stri
     return m.additionalData
 }
 // GetData gets the data property value. The data property
-// returns a Recipientable when successful
-func (m *V1FormsItemRecipientsItemWithRPutResponse) GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Recipientable) {
+// returns a CanonicalRecipientable when successful
+func (m *V1FormsItemRecipientsItemWithRPutResponse) GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CanonicalRecipientable) {
     return m.data
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -43,12 +43,12 @@ func (m *V1FormsItemRecipientsItemWithRPutResponse) GetData()(id2ed2db38d54d578f
 func (m *V1FormsItemRecipientsItemWithRPutResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["data"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateRecipientFromDiscriminatorValue)
+        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateCanonicalRecipientFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetData(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Recipientable))
+            m.SetData(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CanonicalRecipientable))
         }
         return nil
     }
@@ -96,7 +96,7 @@ func (m *V1FormsItemRecipientsItemWithRPutResponse) SetAdditionalData(value map[
     m.additionalData = value
 }
 // SetData sets the data property value. The data property
-func (m *V1FormsItemRecipientsItemWithRPutResponse) SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Recipientable)() {
+func (m *V1FormsItemRecipientsItemWithRPutResponse) SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CanonicalRecipientable)() {
     m.data = value
 }
 // SetSuccess sets the success property value. The success property
@@ -106,8 +106,8 @@ func (m *V1FormsItemRecipientsItemWithRPutResponse) SetSuccess(value *bool)() {
 type V1FormsItemRecipientsItemWithRPutResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Recipientable)
+    GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CanonicalRecipientable)
     GetSuccess()(*bool)
-    SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.Recipientable)()
+    SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CanonicalRecipientable)()
     SetSuccess(value *bool)()
 }

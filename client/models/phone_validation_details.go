@@ -7,56 +7,56 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type PhoneValidationError_details struct {
+type PhoneValidationDetails struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // Stable phone-normalization failure code.
-    code *PhoneValidationError_details_code
+    code *PhoneValidationDetails_code
     // The invalid phone field. Indexed signer paths identify the failing signer.
     field *string
     // Zero-based signer index when a submission signer phone is invalid.
     index *int32
-    // One-based CSV import row when an imported phone is invalid.
+    // One-based import or bulk-recipient position when a phone is invalid.
     row *int32
 }
-// NewPhoneValidationError_details instantiates a new PhoneValidationError_details and sets the default values.
-func NewPhoneValidationError_details()(*PhoneValidationError_details) {
-    m := &PhoneValidationError_details{
+// NewPhoneValidationDetails instantiates a new PhoneValidationDetails and sets the default values.
+func NewPhoneValidationDetails()(*PhoneValidationDetails) {
+    m := &PhoneValidationDetails{
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreatePhoneValidationError_detailsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreatePhoneValidationDetailsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreatePhoneValidationError_detailsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPhoneValidationError_details(), nil
+func CreatePhoneValidationDetailsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewPhoneValidationDetails(), nil
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *PhoneValidationError_details) GetAdditionalData()(map[string]any) {
+func (m *PhoneValidationDetails) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCode gets the code property value. Stable phone-normalization failure code.
-// returns a *PhoneValidationError_details_code when successful
-func (m *PhoneValidationError_details) GetCode()(*PhoneValidationError_details_code) {
+// returns a *PhoneValidationDetails_code when successful
+func (m *PhoneValidationDetails) GetCode()(*PhoneValidationDetails_code) {
     return m.code
 }
 // GetField gets the field property value. The invalid phone field. Indexed signer paths identify the failing signer.
 // returns a *string when successful
-func (m *PhoneValidationError_details) GetField()(*string) {
+func (m *PhoneValidationDetails) GetField()(*string) {
     return m.field
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *PhoneValidationError_details) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *PhoneValidationDetails) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["code"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParsePhoneValidationError_details_code)
+        val, err := n.GetEnumValue(ParsePhoneValidationDetails_code)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCode(val.(*PhoneValidationError_details_code))
+            m.SetCode(val.(*PhoneValidationDetails_code))
         }
         return nil
     }
@@ -94,16 +94,16 @@ func (m *PhoneValidationError_details) GetFieldDeserializers()(map[string]func(i
 }
 // GetIndex gets the index property value. Zero-based signer index when a submission signer phone is invalid.
 // returns a *int32 when successful
-func (m *PhoneValidationError_details) GetIndex()(*int32) {
+func (m *PhoneValidationDetails) GetIndex()(*int32) {
     return m.index
 }
-// GetRow gets the row property value. One-based CSV import row when an imported phone is invalid.
+// GetRow gets the row property value. One-based import or bulk-recipient position when a phone is invalid.
 // returns a *int32 when successful
-func (m *PhoneValidationError_details) GetRow()(*int32) {
+func (m *PhoneValidationDetails) GetRow()(*int32) {
     return m.row
 }
 // Serialize serializes information the current object
-func (m *PhoneValidationError_details) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *PhoneValidationDetails) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     if m.GetCode() != nil {
         cast := (*m.GetCode()).String()
         err := writer.WriteStringValue("code", &cast)
@@ -138,33 +138,33 @@ func (m *PhoneValidationError_details) Serialize(writer i878a80d2330e89d26896388
     return nil
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PhoneValidationError_details) SetAdditionalData(value map[string]any)() {
+func (m *PhoneValidationDetails) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCode sets the code property value. Stable phone-normalization failure code.
-func (m *PhoneValidationError_details) SetCode(value *PhoneValidationError_details_code)() {
+func (m *PhoneValidationDetails) SetCode(value *PhoneValidationDetails_code)() {
     m.code = value
 }
 // SetField sets the field property value. The invalid phone field. Indexed signer paths identify the failing signer.
-func (m *PhoneValidationError_details) SetField(value *string)() {
+func (m *PhoneValidationDetails) SetField(value *string)() {
     m.field = value
 }
 // SetIndex sets the index property value. Zero-based signer index when a submission signer phone is invalid.
-func (m *PhoneValidationError_details) SetIndex(value *int32)() {
+func (m *PhoneValidationDetails) SetIndex(value *int32)() {
     m.index = value
 }
-// SetRow sets the row property value. One-based CSV import row when an imported phone is invalid.
-func (m *PhoneValidationError_details) SetRow(value *int32)() {
+// SetRow sets the row property value. One-based import or bulk-recipient position when a phone is invalid.
+func (m *PhoneValidationDetails) SetRow(value *int32)() {
     m.row = value
 }
-type PhoneValidationError_detailsable interface {
+type PhoneValidationDetailsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetCode()(*PhoneValidationError_details_code)
+    GetCode()(*PhoneValidationDetails_code)
     GetField()(*string)
     GetIndex()(*int32)
     GetRow()(*int32)
-    SetCode(value *PhoneValidationError_details_code)()
+    SetCode(value *PhoneValidationDetails_code)()
     SetField(value *string)()
     SetIndex(value *int32)()
     SetRow(value *int32)()

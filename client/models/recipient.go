@@ -34,7 +34,7 @@ type Recipient struct {
     last_activity_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The link property
     link *string
-    // Responses are canonical E.164 phone values stored after successful creates and edits.
+    // Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
     phone *string
     // The response_count property
     response_count *float64
@@ -295,7 +295,7 @@ func (m *Recipient) GetLastActivityAt()(*i336074805fc853987abe6f7fe3ad97a6a6f307
 func (m *Recipient) GetLink()(*string) {
     return m.link
 }
-// GetPhone gets the phone property value. Responses are canonical E.164 phone values stored after successful creates and edits.
+// GetPhone gets the phone property value. Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
 // returns a *string when successful
 func (m *Recipient) GetPhone()(*string) {
     return m.phone
@@ -486,7 +486,7 @@ func (m *Recipient) SetLastActivityAt(value *i336074805fc853987abe6f7fe3ad97a6a6
 func (m *Recipient) SetLink(value *string)() {
     m.link = value
 }
-// SetPhone sets the phone property value. Responses are canonical E.164 phone values stored after successful creates and edits.
+// SetPhone sets the phone property value. Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
 func (m *Recipient) SetPhone(value *string)() {
     m.phone = value
 }

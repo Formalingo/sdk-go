@@ -1,6 +1,6 @@
 {
-  "descriptionHash": "27C518B485BFD1287C509FDD98163003F91FC6304F6EC6266F02781A64690F1282EC42B3CB4A337A69A6140260256BF551D5750126989FC7B73F7F70ECC335F6",
-  "descriptionLocation": "../../../../../../../../../tmp/task8-openapi.json",
+  "descriptionHash": "449014EA42D4B36ED27D85B51838D1E7D6D382CCBDE9CA0A5C7D4F17B9FD4C367AB173E43A66961DFF31E2B4CE4B6BF2FB7CFB9EC3C99B5A699379D7349BD109",
+  "descriptionLocation": "../../../.superpowers/sdd/2026-07-28-phone-normalization-boundaries/task-8-openapi.json",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.30.0",
   "clientClassName": "FormalingoClient",
