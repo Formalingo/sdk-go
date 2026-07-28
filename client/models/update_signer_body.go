@@ -17,7 +17,7 @@ type UpdateSignerBody struct {
     color *string
     // The email property
     email *string
-    // The expiresAt property
+    // ISO 8601 expiry; null clears it.
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The label property
     label *string
@@ -27,7 +27,7 @@ type UpdateSignerBody struct {
     order *int32
     // Write-only password; null removes it and it is never returned.
     password *string
-    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+    // Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
     // The role property
     role *string
@@ -64,7 +64,7 @@ func (m *UpdateSignerBody) GetColor()(*string) {
 func (m *UpdateSignerBody) GetEmail()(*string) {
     return m.email
 }
-// GetExpiresAt gets the expiresAt property value. The expiresAt property
+// GetExpiresAt gets the expiresAt property value. ISO 8601 expiry; null clears it.
 // returns a *Time when successful
 func (m *UpdateSignerBody) GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.expiresAt
@@ -195,7 +195,7 @@ func (m *UpdateSignerBody) GetOrder()(*int32) {
 func (m *UpdateSignerBody) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+// GetPhone gets the phone property value. Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *UpdateSignerBody) GetPhone()(*string) {
     return m.phone
@@ -291,7 +291,7 @@ func (m *UpdateSignerBody) SetColor(value *string)() {
 func (m *UpdateSignerBody) SetEmail(value *string)() {
     m.email = value
 }
-// SetExpiresAt sets the expiresAt property value. The expiresAt property
+// SetExpiresAt sets the expiresAt property value. ISO 8601 expiry; null clears it.
 func (m *UpdateSignerBody) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiresAt = value
 }
@@ -311,7 +311,7 @@ func (m *UpdateSignerBody) SetOrder(value *int32)() {
 func (m *UpdateSignerBody) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+// SetPhone sets the phone property value. Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *UpdateSignerBody) SetPhone(value *string)() {
     m.phone = value
 }

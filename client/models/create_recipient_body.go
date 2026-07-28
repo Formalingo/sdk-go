@@ -19,7 +19,7 @@ type CreateRecipientBody struct {
     label *string
     // Optional password to protect the form link
     password *string
-    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+    // Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
     // Map of question ID or exact question text → pre-filled value. The value is saved as a Response.
     prefill CreateRecipientBody_prefillable
@@ -139,7 +139,7 @@ func (m *CreateRecipientBody) GetLabel()(*string) {
 func (m *CreateRecipientBody) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+// GetPhone gets the phone property value. Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *CreateRecipientBody) GetPhone()(*string) {
     return m.phone
@@ -226,7 +226,7 @@ func (m *CreateRecipientBody) SetLabel(value *string)() {
 func (m *CreateRecipientBody) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+// SetPhone sets the phone property value. Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *CreateRecipientBody) SetPhone(value *string)() {
     m.phone = value
 }

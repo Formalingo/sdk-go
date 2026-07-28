@@ -15,7 +15,7 @@ type UpdateRecipientBody struct {
     clearPhone *bool
     // The email property
     email *string
-    // The expires_at property
+    // ISO 8601 expiry; null clears it.
     expires_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The is_active property
     is_active *bool
@@ -23,7 +23,7 @@ type UpdateRecipientBody struct {
     label *string
     // Write-only; null removes the password.
     password *string
-    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+    // Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
 }
 // NewUpdateRecipientBody instantiates a new UpdateRecipientBody and sets the default values.
@@ -53,7 +53,7 @@ func (m *UpdateRecipientBody) GetClearPhone()(*bool) {
 func (m *UpdateRecipientBody) GetEmail()(*string) {
     return m.email
 }
-// GetExpiresAt gets the expires_at property value. The expires_at property
+// GetExpiresAt gets the expires_at property value. ISO 8601 expiry; null clears it.
 // returns a *Time when successful
 func (m *UpdateRecipientBody) GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.expires_at
@@ -149,7 +149,7 @@ func (m *UpdateRecipientBody) GetLabel()(*string) {
 func (m *UpdateRecipientBody) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+// GetPhone gets the phone property value. Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *UpdateRecipientBody) GetPhone()(*string) {
     return m.phone
@@ -218,7 +218,7 @@ func (m *UpdateRecipientBody) SetClearPhone(value *bool)() {
 func (m *UpdateRecipientBody) SetEmail(value *string)() {
     m.email = value
 }
-// SetExpiresAt sets the expires_at property value. The expires_at property
+// SetExpiresAt sets the expires_at property value. ISO 8601 expiry; null clears it.
 func (m *UpdateRecipientBody) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expires_at = value
 }
@@ -234,7 +234,7 @@ func (m *UpdateRecipientBody) SetLabel(value *string)() {
 func (m *UpdateRecipientBody) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
+// SetPhone sets the phone property value. Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *UpdateRecipientBody) SetPhone(value *string)() {
     m.phone = value
 }
