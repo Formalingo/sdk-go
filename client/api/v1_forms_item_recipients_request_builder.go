@@ -60,12 +60,16 @@ func (m *V1FormsItemRecipientsRequestBuilder) Get(ctx context.Context, requestCo
 }
 // Post creates a form recipient with an optional pre-fill map. The `prefill` field accepts question IDs or exact question text as keys; resolved values are saved as Response records immediately.
 // returns a V1FormsItemRecipientsPostResponseable when successful
+// returns a PhoneValidationError error when the service returns a 400 status code
 func (m *V1FormsItemRecipientsRequestBuilder) Post(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateRecipientBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemRecipientsPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1FormsItemRecipientsPostResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreatePhoneValidationErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1FormsItemRecipientsPostResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }

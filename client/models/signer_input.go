@@ -16,7 +16,7 @@ type SignerInput struct {
     name *string
     // Optional password to protect the signing link
     password *string
-    // The phone property
+    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
     // Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. Creates DocumentResponse records immediately.
     prefill SignerInput_prefillable
@@ -151,7 +151,7 @@ func (m *SignerInput) GetName()(*string) {
 func (m *SignerInput) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. The phone property
+// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *SignerInput) GetPhone()(*string) {
     return m.phone
@@ -250,7 +250,7 @@ func (m *SignerInput) SetName(value *string)() {
 func (m *SignerInput) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. The phone property
+// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *SignerInput) SetPhone(value *string)() {
     m.phone = value
 }

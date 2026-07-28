@@ -6,6 +6,7 @@ package api
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1FormsItemRecipientsBulkRequestBuilder builds and executes requests for operations under \api\v1\forms\{id}\recipients\bulk
@@ -27,7 +28,7 @@ func NewV1FormsItemRecipientsBulkRequestBuilder(rawUrl string, requestAdapter i2
 }
 // Post creates up to 100 recipients in one request. Requires `recipients:bulk`, and also `recipients:send_notifications` when `sendNotifications` is true.
 // returns a V1FormsItemRecipientsBulkPostResponseable when successful
-// returns a V1FormsItemRecipientsBulk400Error error when the service returns a 400 status code
+// returns a PhoneValidationError error when the service returns a 400 status code
 // returns a V1FormsItemRecipientsBulk403Error error when the service returns a 403 status code
 // returns a V1FormsItemRecipientsBulk404Error error when the service returns a 404 status code
 func (m *V1FormsItemRecipientsBulkRequestBuilder) Post(ctx context.Context, body V1FormsItemRecipientsBulkPostRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemRecipientsBulkPostResponseable, error) {
@@ -36,7 +37,7 @@ func (m *V1FormsItemRecipientsBulkRequestBuilder) Post(ctx context.Context, body
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": CreateV1FormsItemRecipientsBulk400ErrorFromDiscriminatorValue,
+        "400": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreatePhoneValidationErrorFromDiscriminatorValue,
         "403": CreateV1FormsItemRecipientsBulk403ErrorFromDiscriminatorValue,
         "404": CreateV1FormsItemRecipientsBulk404ErrorFromDiscriminatorValue,
     }

@@ -55,12 +55,16 @@ func (m *V1DocumentsItemSubmissionsRequestBuilder) Get(ctx context.Context, requ
 }
 // Post creates a signing submission. Each signer entry maps to a signer role. Use the `prefill` field to pre-fill specific document fields for a signer. Prefill keys can be field UUIDs or field labels (resolved per signer role). The `readonlyFieldIds` field also accepts labels. Notifications are suppressed by default; set `suppress_notifications` to false to send signer invites.
 // returns a V1DocumentsItemSubmissionsPostResponseable when successful
+// returns a PhoneValidationError error when the service returns a 400 status code
 func (m *V1DocumentsItemSubmissionsRequestBuilder) Post(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateSubmissionBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemSubmissionsPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemSubmissionsPostResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreatePhoneValidationErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemSubmissionsPostResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }

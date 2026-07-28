@@ -32,6 +32,8 @@ type Signer struct {
     name *string
     // The order property
     order *float64
+    // Responses are canonical E.164 phone values stored after successful creates and edits.
+    phone *string
     // The role property
     role *string
     // The status property
@@ -187,6 +189,16 @@ func (m *Signer) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["phone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPhone(val)
+        }
+        return nil
+    }
     res["role"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -253,6 +265,11 @@ func (m *Signer) GetName()(*string) {
 // returns a *float64 when successful
 func (m *Signer) GetOrder()(*float64) {
     return m.order
+}
+// GetPhone gets the phone property value. Responses are canonical E.164 phone values stored after successful creates and edits.
+// returns a *string when successful
+func (m *Signer) GetPhone()(*string) {
+    return m.phone
 }
 // GetRole gets the role property value. The role property
 // returns a *string when successful
@@ -337,6 +354,12 @@ func (m *Signer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     {
+        err := writer.WriteStringValue("phone", m.GetPhone())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("role", m.GetRole())
         if err != nil {
             return err
@@ -413,6 +436,10 @@ func (m *Signer) SetName(value *string)() {
 func (m *Signer) SetOrder(value *float64)() {
     m.order = value
 }
+// SetPhone sets the phone property value. Responses are canonical E.164 phone values stored after successful creates and edits.
+func (m *Signer) SetPhone(value *string)() {
+    m.phone = value
+}
 // SetRole sets the role property value. The role property
 func (m *Signer) SetRole(value *string)() {
     m.role = value
@@ -442,6 +469,7 @@ type Signerable interface {
     GetLink()(*string)
     GetName()(*string)
     GetOrder()(*float64)
+    GetPhone()(*string)
     GetRole()(*string)
     GetStatus()(*Signer_status)
     GetSubmissionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -456,6 +484,7 @@ type Signerable interface {
     SetLink(value *string)()
     SetName(value *string)()
     SetOrder(value *float64)()
+    SetPhone(value *string)()
     SetRole(value *string)()
     SetStatus(value *Signer_status)()
     SetSubmissionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

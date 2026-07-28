@@ -21,7 +21,7 @@ type UpdateRecipientBody struct {
     label *string
     // null to remove password
     password *string
-    // The phone property
+    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
 }
 // NewUpdateRecipientBody instantiates a new UpdateRecipientBody and sets the default values.
@@ -132,7 +132,7 @@ func (m *UpdateRecipientBody) GetLabel()(*string) {
 func (m *UpdateRecipientBody) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. The phone property
+// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *UpdateRecipientBody) GetPhone()(*string) {
     return m.phone
@@ -207,7 +207,7 @@ func (m *UpdateRecipientBody) SetLabel(value *string)() {
 func (m *UpdateRecipientBody) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. The phone property
+// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *UpdateRecipientBody) SetPhone(value *string)() {
     m.phone = value
 }
