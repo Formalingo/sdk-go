@@ -11,23 +11,23 @@ import (
 type UpdateSignerBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Set true to clear the stored phone number. Omit to leave it unchanged.
+    // Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
     clearPhone *bool
     // The color property
     color *string
-    // Email address; null clears it.
+    // The email property
     email *string
-    // ISO 8601 expiry; null clears it.
+    // The expiresAt property
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The label property
     label *string
-    // Signer name; null clears it.
+    // The name property
     name *string
     // The order property
     order *int32
     // Write-only password; null removes it and it is never returned.
     password *string
-    // Accepted formatted phone input; null clears it.
+    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
     // The role property
     role *string
@@ -49,7 +49,7 @@ func CreateUpdateSignerBodyFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 func (m *UpdateSignerBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetClearPhone gets the clearPhone property value. Set true to clear the stored phone number. Omit to leave it unchanged.
+// GetClearPhone gets the clearPhone property value. Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
 // returns a *bool when successful
 func (m *UpdateSignerBody) GetClearPhone()(*bool) {
     return m.clearPhone
@@ -59,12 +59,12 @@ func (m *UpdateSignerBody) GetClearPhone()(*bool) {
 func (m *UpdateSignerBody) GetColor()(*string) {
     return m.color
 }
-// GetEmail gets the email property value. Email address; null clears it.
+// GetEmail gets the email property value. The email property
 // returns a *string when successful
 func (m *UpdateSignerBody) GetEmail()(*string) {
     return m.email
 }
-// GetExpiresAt gets the expiresAt property value. ISO 8601 expiry; null clears it.
+// GetExpiresAt gets the expiresAt property value. The expiresAt property
 // returns a *Time when successful
 func (m *UpdateSignerBody) GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.expiresAt
@@ -180,7 +180,7 @@ func (m *UpdateSignerBody) GetFieldDeserializers()(map[string]func(i878a80d2330e
 func (m *UpdateSignerBody) GetLabel()(*string) {
     return m.label
 }
-// GetName gets the name property value. Signer name; null clears it.
+// GetName gets the name property value. The name property
 // returns a *string when successful
 func (m *UpdateSignerBody) GetName()(*string) {
     return m.name
@@ -195,7 +195,7 @@ func (m *UpdateSignerBody) GetOrder()(*int32) {
 func (m *UpdateSignerBody) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. Accepted formatted phone input; null clears it.
+// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *UpdateSignerBody) GetPhone()(*string) {
     return m.phone
@@ -279,7 +279,7 @@ func (m *UpdateSignerBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 func (m *UpdateSignerBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetClearPhone sets the clearPhone property value. Set true to clear the stored phone number. Omit to leave it unchanged.
+// SetClearPhone sets the clearPhone property value. Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
 func (m *UpdateSignerBody) SetClearPhone(value *bool)() {
     m.clearPhone = value
 }
@@ -287,11 +287,11 @@ func (m *UpdateSignerBody) SetClearPhone(value *bool)() {
 func (m *UpdateSignerBody) SetColor(value *string)() {
     m.color = value
 }
-// SetEmail sets the email property value. Email address; null clears it.
+// SetEmail sets the email property value. The email property
 func (m *UpdateSignerBody) SetEmail(value *string)() {
     m.email = value
 }
-// SetExpiresAt sets the expiresAt property value. ISO 8601 expiry; null clears it.
+// SetExpiresAt sets the expiresAt property value. The expiresAt property
 func (m *UpdateSignerBody) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiresAt = value
 }
@@ -299,7 +299,7 @@ func (m *UpdateSignerBody) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6
 func (m *UpdateSignerBody) SetLabel(value *string)() {
     m.label = value
 }
-// SetName sets the name property value. Signer name; null clears it.
+// SetName sets the name property value. The name property
 func (m *UpdateSignerBody) SetName(value *string)() {
     m.name = value
 }
@@ -311,7 +311,7 @@ func (m *UpdateSignerBody) SetOrder(value *int32)() {
 func (m *UpdateSignerBody) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. Accepted formatted phone input; null clears it.
+// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *UpdateSignerBody) SetPhone(value *string)() {
     m.phone = value
 }

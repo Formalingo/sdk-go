@@ -11,7 +11,7 @@ import (
 type UpdateRecipientBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Set true to clear the stored phone number. Omit to leave it unchanged.
+    // Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
     clearPhone *bool
     // The email property
     email *string
@@ -21,9 +21,9 @@ type UpdateRecipientBody struct {
     is_active *bool
     // The label property
     label *string
-    // The password property
+    // Write-only; null removes the password.
     password *string
-    // Accepted formatted phone input (maximum 80 characters). International input may include spaces, parentheses, and hyphens but must include `+`; national input uses the workspace default country.
+    // Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
 }
 // NewUpdateRecipientBody instantiates a new UpdateRecipientBody and sets the default values.
@@ -43,7 +43,7 @@ func CreateUpdateRecipientBodyFromDiscriminatorValue(parseNode i878a80d2330e89d2
 func (m *UpdateRecipientBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetClearPhone gets the clearPhone property value. Set true to clear the stored phone number. Omit to leave it unchanged.
+// GetClearPhone gets the clearPhone property value. Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
 // returns a *bool when successful
 func (m *UpdateRecipientBody) GetClearPhone()(*bool) {
     return m.clearPhone
@@ -144,12 +144,12 @@ func (m *UpdateRecipientBody) GetIsActive()(*bool) {
 func (m *UpdateRecipientBody) GetLabel()(*string) {
     return m.label
 }
-// GetPassword gets the password property value. The password property
+// GetPassword gets the password property value. Write-only; null removes the password.
 // returns a *string when successful
 func (m *UpdateRecipientBody) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. Accepted formatted phone input (maximum 80 characters). International input may include spaces, parentheses, and hyphens but must include `+`; national input uses the workspace default country.
+// GetPhone gets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *UpdateRecipientBody) GetPhone()(*string) {
     return m.phone
@@ -210,7 +210,7 @@ func (m *UpdateRecipientBody) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *UpdateRecipientBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetClearPhone sets the clearPhone property value. Set true to clear the stored phone number. Omit to leave it unchanged.
+// SetClearPhone sets the clearPhone property value. Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
 func (m *UpdateRecipientBody) SetClearPhone(value *bool)() {
     m.clearPhone = value
 }
@@ -230,11 +230,11 @@ func (m *UpdateRecipientBody) SetIsActive(value *bool)() {
 func (m *UpdateRecipientBody) SetLabel(value *string)() {
     m.label = value
 }
-// SetPassword sets the password property value. The password property
+// SetPassword sets the password property value. Write-only; null removes the password.
 func (m *UpdateRecipientBody) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. Accepted formatted phone input (maximum 80 characters). International input may include spaces, parentheses, and hyphens but must include `+`; national input uses the workspace default country.
+// SetPhone sets the phone property value. Accepted formatted input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *UpdateRecipientBody) SetPhone(value *string)() {
     m.phone = value
 }
