@@ -1,7 +1,10 @@
 Warning: KiotaBuilder OpenAPI warning: #/paths/~1api~1v1~1forms~1{id}~1recipients~1bulk/post/requestBody/content/application~1json/schema/properties/recipients/items/properties/email - The format email is not supported by Kiota and the string type will be used.
-Warning: KiotaBuilder OpenAPI warning: #/paths/~1api~1v1~1documents~1{id}~1submissions~1{sid}~1signers~1{signerId}/put/requestBody/content/application~1json/schema/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Recipient/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Recipient/properties/link - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientUpdate/properties/link - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientUpdate/properties/email - The format email is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientCreateResult/properties/email - The format email is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientCreateResult/properties/link - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Document/properties/originalUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Document/properties/completedPdfUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/ImportDocumentBundleResponse/properties/data/properties/originalUrl - The format uri is not supported by Kiota and the string type will be used.
@@ -9,6 +12,7 @@ Warning: KiotaBuilder OpenAPI warning: #/components/schemas/DocumentSubmission/p
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/DocumentSubmission/properties/signedPdf/properties/downloadUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Signer/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Signer/properties/link - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/SignerUpdate/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/FileDescriptor/properties/downloadUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/FileDownload/properties/downloadUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/FileValue/properties/url - The format uri is not supported by Kiota and the string type will be used.
@@ -17,3 +21,4 @@ Warning: KiotaBuilder OpenAPI warning: #/components/schemas/CreateRecipientBody/
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/UpdateRecipientBody/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/SignerInput/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/SubmissionPdf/properties/downloadUrl - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/UpdateSignerBody/properties/email - The format email is not supported by Kiota and the string type will be used.
