@@ -10,6 +10,8 @@ import (
 type CreateSubmissionBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // Signing experience used by generated links. Defaults to the document signing view.
+    deliveryFormat *CreateSubmissionBody_deliveryFormat
     // One entry per signer role. Must provide all required roles.
     signers []SignerInputable
     // Suppresses signer_invite notifications for all signers in this submission. Defaults to true; set false to send notifications.
@@ -20,6 +22,8 @@ func NewCreateSubmissionBody()(*CreateSubmissionBody) {
     m := &CreateSubmissionBody{
     }
     m.SetAdditionalData(make(map[string]any))
+    deliveryFormatValue := DOCUMENT_CREATESUBMISSIONBODY_DELIVERYFORMAT
+    m.SetDeliveryFormat(&deliveryFormatValue)
     return m
 }
 // CreateCreateSubmissionBodyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -32,10 +36,25 @@ func CreateCreateSubmissionBodyFromDiscriminatorValue(parseNode i878a80d2330e89d
 func (m *CreateSubmissionBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetDeliveryFormat gets the deliveryFormat property value. Signing experience used by generated links. Defaults to the document signing view.
+// returns a *CreateSubmissionBody_deliveryFormat when successful
+func (m *CreateSubmissionBody) GetDeliveryFormat()(*CreateSubmissionBody_deliveryFormat) {
+    return m.deliveryFormat
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *CreateSubmissionBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["deliveryFormat"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseCreateSubmissionBody_deliveryFormat)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeliveryFormat(val.(*CreateSubmissionBody_deliveryFormat))
+        }
+        return nil
+    }
     res["signers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateSignerInputFromDiscriminatorValue)
         if err != nil {
@@ -76,6 +95,13 @@ func (m *CreateSubmissionBody) GetSuppressNotifications()(*bool) {
 }
 // Serialize serializes information the current object
 func (m *CreateSubmissionBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetDeliveryFormat() != nil {
+        cast := (*m.GetDeliveryFormat()).String()
+        err := writer.WriteStringValue("deliveryFormat", &cast)
+        if err != nil {
+            return err
+        }
+    }
     if m.GetSigners() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSigners()))
         for i, v := range m.GetSigners() {
@@ -106,6 +132,10 @@ func (m *CreateSubmissionBody) Serialize(writer i878a80d2330e89d26896388a3f487ee
 func (m *CreateSubmissionBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetDeliveryFormat sets the deliveryFormat property value. Signing experience used by generated links. Defaults to the document signing view.
+func (m *CreateSubmissionBody) SetDeliveryFormat(value *CreateSubmissionBody_deliveryFormat)() {
+    m.deliveryFormat = value
+}
 // SetSigners sets the signers property value. One entry per signer role. Must provide all required roles.
 func (m *CreateSubmissionBody) SetSigners(value []SignerInputable)() {
     m.signers = value
@@ -117,8 +147,10 @@ func (m *CreateSubmissionBody) SetSuppressNotifications(value *bool)() {
 type CreateSubmissionBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDeliveryFormat()(*CreateSubmissionBody_deliveryFormat)
     GetSigners()([]SignerInputable)
     GetSuppressNotifications()(*bool)
+    SetDeliveryFormat(value *CreateSubmissionBody_deliveryFormat)()
     SetSigners(value []SignerInputable)()
     SetSuppressNotifications(value *bool)()
 }

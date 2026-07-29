@@ -12,6 +12,7 @@ Warning: KiotaBuilder OpenAPI warning: #/components/schemas/DocumentSubmission/p
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/DocumentSubmission/properties/signedPdf/properties/downloadUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Signer/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Signer/properties/link - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/CreateSubmissionSignerResult/properties/link - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/SignerUpdate/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/FileDescriptor/properties/downloadUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/FileDownload/properties/downloadUrl - The format uri is not supported by Kiota and the string type will be used.

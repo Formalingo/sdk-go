@@ -80,3 +80,55 @@ func TestRecipientCreateResultDispatchSerialization(t *testing.T) {
 		t.Fatal("passwordHash must not be serialized")
 	}
 }
+
+func TestDocumentSubmissionDispatchSerialization(t *testing.T) {
+	submission := models.NewCreateSubmissionResult()
+	submissionID := uuid.MustParse("00000000-0000-0000-0000-000000000041")
+	dispatchID := uuid.MustParse("00000000-0000-0000-0000-000000000042")
+	reused := true
+	linksCreated := true
+	submission.SetSubmissionId(&submissionID)
+	submission.SetDispatchId(&dispatchID)
+	submission.SetDispatchReused(&reused)
+	submission.SetLinksCreated(&linksCreated)
+
+	payload := phonePayload(t, submission)
+	if got := payload["submissionId"]; got != submissionID.String() {
+		t.Fatalf("submissionId = %v, want %s", got, submissionID)
+	}
+	if got := payload["dispatchId"]; got != dispatchID.String() {
+		t.Fatalf("dispatchId = %v, want %s", got, dispatchID)
+	}
+	if got := payload["dispatchReused"]; got != true {
+		t.Fatalf("dispatchReused = %v, want true", got)
+	}
+	if got := payload["linksCreated"]; got != true {
+		t.Fatalf("linksCreated = %v, want true", got)
+	}
+
+	signer := models.NewCreateSubmissionSignerResult()
+	signerID := uuid.MustParse("00000000-0000-0000-0000-000000000043")
+	label := "Buyer"
+	role := "buyer"
+	name := "Alice"
+	color := "#13A373"
+	order := int32(0)
+	link := "https://www.formalingo.com/d/one-time-token"
+	signer.SetId(&signerID)
+	signer.SetLabel(&label)
+	signer.SetRole(&role)
+	signer.SetName(&name)
+	signer.SetColor(&color)
+	signer.SetOrder(&order)
+	signer.SetLink(&link)
+
+	signerPayload := phonePayload(t, signer)
+	if got := signerPayload["link"]; got != link {
+		t.Fatalf("link = %v, want %s", got, link)
+	}
+	for _, privateField := range []string{"token", "email", "phone", "passwordHash"} {
+		if _, ok := signerPayload[privateField]; ok {
+			t.Fatalf("%s must not be serialized", privateField)
+		}
+	}
+}
