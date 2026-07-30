@@ -26,11 +26,13 @@ func NewV1FormsItemRecipientsBulkRequestBuilder(rawUrl string, requestAdapter i2
     urlParams["request-raw-url"] = rawUrl
     return NewV1FormsItemRecipientsBulkRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post creates up to 100 recipients in one request. Requires `recipients:bulk`, and also `recipients:send_notifications` when `sendNotifications` is true.
+// Post creates up to 100 recipients in one request. Requires `recipients:bulk`, and also `recipients:send_notifications` when `sendNotifications` is true. A caller-owned Idempotency-Key is required; reuse it only with the exact same serialized request body.
 // returns a V1FormsItemRecipientsBulkPostResponseable when successful
 // returns a ValidationError error when the service returns a 400 status code
+// returns a QuotaExceededError error when the service returns a 402 status code
 // returns a V1FormsItemRecipientsBulk403Error error when the service returns a 403 status code
 // returns a V1FormsItemRecipientsBulk404Error error when the service returns a 404 status code
+// returns a V1FormsItemRecipientsBulk409Error error when the service returns a 409 status code
 func (m *V1FormsItemRecipientsBulkRequestBuilder) Post(ctx context.Context, body V1FormsItemRecipientsBulkPostRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1FormsItemRecipientsBulkPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -38,8 +40,10 @@ func (m *V1FormsItemRecipientsBulkRequestBuilder) Post(ctx context.Context, body
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
         "400": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateValidationErrorFromDiscriminatorValue,
+        "402": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateQuotaExceededErrorFromDiscriminatorValue,
         "403": CreateV1FormsItemRecipientsBulk403ErrorFromDiscriminatorValue,
         "404": CreateV1FormsItemRecipientsBulk404ErrorFromDiscriminatorValue,
+        "409": CreateV1FormsItemRecipientsBulk409ErrorFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1FormsItemRecipientsBulkPostResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
@@ -50,7 +54,7 @@ func (m *V1FormsItemRecipientsBulkRequestBuilder) Post(ctx context.Context, body
     }
     return res.(V1FormsItemRecipientsBulkPostResponseable), nil
 }
-// ToPostRequestInformation creates up to 100 recipients in one request. Requires `recipients:bulk`, and also `recipients:send_notifications` when `sendNotifications` is true.
+// ToPostRequestInformation creates up to 100 recipients in one request. Requires `recipients:bulk`, and also `recipients:send_notifications` when `sendNotifications` is true. A caller-owned Idempotency-Key is required; reuse it only with the exact same serialized request body.
 // returns a *RequestInformation when successful
 func (m *V1FormsItemRecipientsBulkRequestBuilder) ToPostRequestInformation(ctx context.Context, body V1FormsItemRecipientsBulkPostRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

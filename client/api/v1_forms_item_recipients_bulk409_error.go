@@ -8,7 +8,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type V1IntegrationsStatus403Error struct {
+type V1FormsItemRecipientsBulk409Error struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ApiError
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
@@ -21,42 +21,42 @@ type V1IntegrationsStatus403Error struct {
     // The success property
     success *bool
 }
-// NewV1IntegrationsStatus403Error instantiates a new V1IntegrationsStatus403Error and sets the default values.
-func NewV1IntegrationsStatus403Error()(*V1IntegrationsStatus403Error) {
-    m := &V1IntegrationsStatus403Error{
+// NewV1FormsItemRecipientsBulk409Error instantiates a new V1FormsItemRecipientsBulk409Error and sets the default values.
+func NewV1FormsItemRecipientsBulk409Error()(*V1FormsItemRecipientsBulk409Error) {
+    m := &V1FormsItemRecipientsBulk409Error{
         ApiError: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewApiError(),
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreateV1IntegrationsStatus403ErrorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateV1FormsItemRecipientsBulk409ErrorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateV1IntegrationsStatus403ErrorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewV1IntegrationsStatus403Error(), nil
+func CreateV1FormsItemRecipientsBulk409ErrorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewV1FormsItemRecipientsBulk409Error(), nil
 }
 // Error the primary error message.
 // returns a string when successful
-func (m *V1IntegrationsStatus403Error) Error()(string) {
+func (m *V1FormsItemRecipientsBulk409Error) Error()(string) {
     return m.ApiError.Error()
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *V1IntegrationsStatus403Error) GetAdditionalData()(map[string]any) {
+func (m *V1FormsItemRecipientsBulk409Error) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCode gets the code property value. Stable machine-readable error code when available.
 // returns a *string when successful
-func (m *V1IntegrationsStatus403Error) GetCode()(*string) {
+func (m *V1FormsItemRecipientsBulk409Error) GetCode()(*string) {
     return m.code
 }
 // GetErrorEscaped gets the error property value. The error property
 // returns a *string when successful
-func (m *V1IntegrationsStatus403Error) GetErrorEscaped()(*string) {
+func (m *V1FormsItemRecipientsBulk409Error) GetErrorEscaped()(*string) {
     return m.errorEscaped
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *V1IntegrationsStatus403Error) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *V1FormsItemRecipientsBulk409Error) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["code"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
@@ -102,16 +102,16 @@ func (m *V1IntegrationsStatus403Error) GetFieldDeserializers()(map[string]func(i
 }
 // GetHint gets the hint property value. The hint property
 // returns a *string when successful
-func (m *V1IntegrationsStatus403Error) GetHint()(*string) {
+func (m *V1FormsItemRecipientsBulk409Error) GetHint()(*string) {
     return m.hint
 }
 // GetSuccess gets the success property value. The success property
 // returns a *bool when successful
-func (m *V1IntegrationsStatus403Error) GetSuccess()(*bool) {
+func (m *V1FormsItemRecipientsBulk409Error) GetSuccess()(*bool) {
     return m.success
 }
 // Serialize serializes information the current object
-func (m *V1IntegrationsStatus403Error) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *V1FormsItemRecipientsBulk409Error) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("code", m.GetCode())
         if err != nil {
@@ -145,26 +145,26 @@ func (m *V1IntegrationsStatus403Error) Serialize(writer i878a80d2330e89d26896388
     return nil
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *V1IntegrationsStatus403Error) SetAdditionalData(value map[string]any)() {
+func (m *V1FormsItemRecipientsBulk409Error) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCode sets the code property value. Stable machine-readable error code when available.
-func (m *V1IntegrationsStatus403Error) SetCode(value *string)() {
+func (m *V1FormsItemRecipientsBulk409Error) SetCode(value *string)() {
     m.code = value
 }
 // SetErrorEscaped sets the error property value. The error property
-func (m *V1IntegrationsStatus403Error) SetErrorEscaped(value *string)() {
+func (m *V1FormsItemRecipientsBulk409Error) SetErrorEscaped(value *string)() {
     m.errorEscaped = value
 }
 // SetHint sets the hint property value. The hint property
-func (m *V1IntegrationsStatus403Error) SetHint(value *string)() {
+func (m *V1FormsItemRecipientsBulk409Error) SetHint(value *string)() {
     m.hint = value
 }
 // SetSuccess sets the success property value. The success property
-func (m *V1IntegrationsStatus403Error) SetSuccess(value *bool)() {
+func (m *V1FormsItemRecipientsBulk409Error) SetSuccess(value *bool)() {
     m.success = value
 }
-type V1IntegrationsStatus403Errorable interface {
+type V1FormsItemRecipientsBulk409Errorable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCode()(*string)

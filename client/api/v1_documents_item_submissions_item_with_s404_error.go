@@ -12,6 +12,8 @@ type V1DocumentsItemSubmissionsItemWithS404Error struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ApiError
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // Stable machine-readable error code when available.
+    code *string
     // The error property
     errorEscaped *string
     // The hint property
@@ -42,6 +44,11 @@ func (m *V1DocumentsItemSubmissionsItemWithS404Error) Error()(string) {
 func (m *V1DocumentsItemSubmissionsItemWithS404Error) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetCode gets the code property value. Stable machine-readable error code when available.
+// returns a *string when successful
+func (m *V1DocumentsItemSubmissionsItemWithS404Error) GetCode()(*string) {
+    return m.code
+}
 // GetErrorEscaped gets the error property value. The error property
 // returns a *string when successful
 func (m *V1DocumentsItemSubmissionsItemWithS404Error) GetErrorEscaped()(*string) {
@@ -51,6 +58,16 @@ func (m *V1DocumentsItemSubmissionsItemWithS404Error) GetErrorEscaped()(*string)
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *V1DocumentsItemSubmissionsItemWithS404Error) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["code"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCode(val)
+        }
+        return nil
+    }
     res["error"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -96,6 +113,12 @@ func (m *V1DocumentsItemSubmissionsItemWithS404Error) GetSuccess()(*bool) {
 // Serialize serializes information the current object
 func (m *V1DocumentsItemSubmissionsItemWithS404Error) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteStringValue("code", m.GetCode())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("error", m.GetErrorEscaped())
         if err != nil {
             return err
@@ -125,6 +148,10 @@ func (m *V1DocumentsItemSubmissionsItemWithS404Error) Serialize(writer i878a80d2
 func (m *V1DocumentsItemSubmissionsItemWithS404Error) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetCode sets the code property value. Stable machine-readable error code when available.
+func (m *V1DocumentsItemSubmissionsItemWithS404Error) SetCode(value *string)() {
+    m.code = value
+}
 // SetErrorEscaped sets the error property value. The error property
 func (m *V1DocumentsItemSubmissionsItemWithS404Error) SetErrorEscaped(value *string)() {
     m.errorEscaped = value
@@ -140,9 +167,11 @@ func (m *V1DocumentsItemSubmissionsItemWithS404Error) SetSuccess(value *bool)() 
 type V1DocumentsItemSubmissionsItemWithS404Errorable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCode()(*string)
     GetErrorEscaped()(*string)
     GetHint()(*string)
     GetSuccess()(*bool)
+    SetCode(value *string)()
     SetErrorEscaped(value *string)()
     SetHint(value *string)()
     SetSuccess(value *bool)()

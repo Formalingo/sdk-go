@@ -12,7 +12,7 @@ type V1FormsItemRecipientsBulkPostResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The data property
-    data []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientCreateResultable
+    data []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientBulkCreateResultable
     // The success property
     success *bool
 }
@@ -34,8 +34,8 @@ func (m *V1FormsItemRecipientsBulkPostResponse) GetAdditionalData()(map[string]a
     return m.additionalData
 }
 // GetData gets the data property value. The data property
-// returns a []RecipientCreateResultable when successful
-func (m *V1FormsItemRecipientsBulkPostResponse) GetData()([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientCreateResultable) {
+// returns a []RecipientBulkCreateResultable when successful
+func (m *V1FormsItemRecipientsBulkPostResponse) GetData()([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientBulkCreateResultable) {
     return m.data
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -43,15 +43,15 @@ func (m *V1FormsItemRecipientsBulkPostResponse) GetData()([]id2ed2db38d54d578f2d
 func (m *V1FormsItemRecipientsBulkPostResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["data"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateRecipientCreateResultFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateRecipientBulkCreateResultFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientCreateResultable, len(val))
+            res := make([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientBulkCreateResultable, len(val))
             for i, v := range val {
                 if v != nil {
-                    res[i] = v.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientCreateResultable)
+                    res[i] = v.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientBulkCreateResultable)
                 }
             }
             m.SetData(res)
@@ -108,7 +108,7 @@ func (m *V1FormsItemRecipientsBulkPostResponse) SetAdditionalData(value map[stri
     m.additionalData = value
 }
 // SetData sets the data property value. The data property
-func (m *V1FormsItemRecipientsBulkPostResponse) SetData(value []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientCreateResultable)() {
+func (m *V1FormsItemRecipientsBulkPostResponse) SetData(value []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientBulkCreateResultable)() {
     m.data = value
 }
 // SetSuccess sets the success property value. The success property
@@ -118,8 +118,8 @@ func (m *V1FormsItemRecipientsBulkPostResponse) SetSuccess(value *bool)() {
 type V1FormsItemRecipientsBulkPostResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetData()([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientCreateResultable)
+    GetData()([]id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientBulkCreateResultable)
     GetSuccess()(*bool)
-    SetData(value []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientCreateResultable)()
+    SetData(value []id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.RecipientBulkCreateResultable)()
     SetSuccess(value *bool)()
 }

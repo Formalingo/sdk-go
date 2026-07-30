@@ -1,12 +1,19 @@
 package formalingo_test
 
 import (
+	"context"
 	"encoding/json"
+	"strings"
 	"testing"
 
+	formalingo "github.com/Formalingo/sdk-go"
+	sdkclient "github.com/Formalingo/sdk-go/client"
+	sdkapi "github.com/Formalingo/sdk-go/client/api"
 	"github.com/Formalingo/sdk-go/client/models"
 	"github.com/google/uuid"
+	abstractions "github.com/microsoft/kiota-abstractions-go"
 	serialization "github.com/microsoft/kiota-abstractions-go/serialization"
+	"github.com/microsoft/kiota-abstractions-go/store"
 	jsonserialization "github.com/microsoft/kiota-serialization-json-go"
 )
 
@@ -131,4 +138,268 @@ func TestDocumentSubmissionDispatchSerialization(t *testing.T) {
 			t.Fatalf("%s must not be serialized", privateField)
 		}
 	}
+}
+
+func TestCreateDocumentSubmissionEmitsIdempotencyMetadataAndReturnsDataSigners(t *testing.T) {
+	signerResult := models.NewCreateSubmissionSignerResult()
+	signerID := uuid.MustParse("00000000-0000-0000-0000-000000000043")
+	signerRole := "buyer"
+	signerLink := "https://www.formalingo.com/d/one-time-token"
+	signerResult.SetId(&signerID)
+	signerResult.SetRole(&signerRole)
+	signerResult.SetLink(&signerLink)
+
+	result := models.NewCreateSubmissionResult()
+	submissionID := uuid.MustParse("00000000-0000-0000-0000-000000000041")
+	result.SetSubmissionId(&submissionID)
+	result.SetSigners([]models.CreateSubmissionSignerResultable{signerResult})
+	response := models.NewCreateSubmissionResponse()
+	response.SetData(result)
+
+	adapter := &capturingRequestAdapter{
+		baseURL:       "https://example.test",
+		response:      response,
+		writerFactory: jsonserialization.NewJsonSerializationWriterFactory(),
+	}
+	client := sdkclient.NewFormalingoClient(adapter)
+	signer := models.NewSignerInput()
+	name := "Alice"
+	email := "alice@example.com"
+	signer.SetRole(&signerRole)
+	signer.SetName(&name)
+	signer.SetEmail(&email)
+	body := models.NewCreateSubmissionBody()
+	body.SetSigners([]models.SignerInputable{signer})
+
+	submission, err := formalingo.CreateDocumentSubmission(
+		context.Background(),
+		client,
+		uuid.MustParse("00000000-0000-0000-0000-000000000001"),
+		body,
+		"document-create-1",
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	request := adapter.requestInfo
+	if request == nil {
+		t.Fatal("request metadata was not captured")
+	}
+	if request.Method != abstractions.POST {
+		t.Fatalf("method = %s, want POST", request.Method)
+	}
+	uri, err := request.GetUri()
+	if err != nil {
+		t.Fatal(err)
+	}
+	wantURL := "https://example.test/api/v1/documents/00000000-0000-0000-0000-000000000001/submissions"
+	if uri.String() != wantURL {
+		t.Fatalf("url = %s, want %s", uri, wantURL)
+	}
+	headerValues := request.Headers.Get("Idempotency-Key")
+	if len(headerValues) != 1 || headerValues[0] != "document-create-1" {
+		t.Fatalf("Idempotency-Key = %v, want document-create-1", headerValues)
+	}
+	var requestBody map[string]any
+	if err := json.Unmarshal(request.Content, &requestBody); err != nil {
+		t.Fatal(err)
+	}
+	if got := requestBody["deliveryFormat"]; got != "document" {
+		t.Fatalf("deliveryFormat = %v, want document", got)
+	}
+	signers, ok := requestBody["signers"].([]any)
+	if !ok || len(signers) != 1 {
+		t.Fatalf("signers = %#v, want one signer", requestBody["signers"])
+	}
+	emittedSigner := signers[0].(map[string]any)
+	if emittedSigner["role"] != "buyer" ||
+		emittedSigner["name"] != "Alice" ||
+		emittedSigner["email"] != "alice@example.com" {
+		t.Fatalf("emitted signer = %#v", emittedSigner)
+	}
+	if got := *submission.GetSigners()[0].GetLink(); got != signerLink {
+		t.Fatalf("signer link = %s, want %s", got, signerLink)
+	}
+}
+
+func TestCreateBulkRecipientsEmitsRequiredIdempotencyMetadataAndReturnsData(t *testing.T) {
+	recipient := models.NewRecipientBulkCreateResult()
+	recipientID := uuid.MustParse("00000000-0000-0000-0000-000000000043")
+	label := "Alice"
+	recipient.SetId(&recipientID)
+	recipient.SetLabel(&label)
+	response := sdkapi.NewV1FormsItemRecipientsBulkPostResponse()
+	response.SetData([]models.RecipientBulkCreateResultable{recipient})
+
+	adapter := &capturingRequestAdapter{
+		baseURL:       "https://example.test",
+		response:      response,
+		writerFactory: jsonserialization.NewJsonSerializationWriterFactory(),
+	}
+	client := sdkclient.NewFormalingoClient(adapter)
+	body := sdkapi.NewV1FormsItemRecipientsBulkPostRequestBody()
+	confirmBulk := true
+	sendNotifications := false
+	input := sdkapi.NewV1FormsItemRecipientsBulkPostRequestBody_recipients()
+	input.SetLabel(&label)
+	body.SetConfirmBulk(&confirmBulk)
+	body.SetSendNotifications(&sendNotifications)
+	body.SetRecipients(
+		[]sdkapi.V1FormsItemRecipientsBulkPostRequestBody_recipientsable{input},
+	)
+
+	recipients, err := formalingo.CreateBulkRecipients(
+		context.Background(),
+		client,
+		uuid.MustParse("00000000-0000-0000-0000-000000000001"),
+		body,
+		"recipient-bulk-1",
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	request := adapter.requestInfo
+	if request == nil {
+		t.Fatal("request metadata was not captured")
+	}
+	uri, err := request.GetUri()
+	if err != nil {
+		t.Fatal(err)
+	}
+	wantURL := "https://example.test/api/v1/forms/00000000-0000-0000-0000-000000000001/recipients/bulk"
+	if uri.String() != wantURL {
+		t.Fatalf("url = %s, want %s", uri, wantURL)
+	}
+	headerValues := request.Headers.Get("Idempotency-Key")
+	if len(headerValues) != 1 || headerValues[0] != "recipient-bulk-1" {
+		t.Fatalf("Idempotency-Key = %v, want recipient-bulk-1", headerValues)
+	}
+	if len(recipients) != 1 || recipients[0].GetLabel() == nil ||
+		*recipients[0].GetLabel() != "Alice" {
+		t.Fatalf("recipients = %#v, want Alice", recipients)
+	}
+}
+
+func TestCreateBulkRecipientsRejectsInvalidIdempotencyMetadata(t *testing.T) {
+	for _, value := range []string{"", "contains a space", strings.Repeat("a", 256)} {
+		t.Run(value, func(t *testing.T) {
+			_, err := formalingo.CreateBulkRecipients(
+				context.Background(),
+				nil,
+				uuid.Nil,
+				nil,
+				value,
+			)
+			if err == nil {
+				t.Fatal("expected invalid idempotency metadata error")
+			}
+		})
+	}
+}
+
+func TestCreateDocumentSubmissionRejectsInvalidIdempotencyMetadata(t *testing.T) {
+	_, err := formalingo.CreateDocumentSubmission(
+		context.Background(),
+		nil,
+		uuid.Nil,
+		nil,
+		"contains a space",
+	)
+	if err == nil {
+		t.Fatal("expected invalid idempotency metadata error")
+	}
+}
+
+type capturingRequestAdapter struct {
+	baseURL       string
+	requestInfo   *abstractions.RequestInformation
+	response      serialization.Parsable
+	writerFactory serialization.SerializationWriterFactory
+}
+
+func (adapter *capturingRequestAdapter) Send(
+	ctx context.Context,
+	requestInfo *abstractions.RequestInformation,
+	constructor serialization.ParsableFactory,
+	errorMappings abstractions.ErrorMappings,
+) (serialization.Parsable, error) {
+	adapter.requestInfo = requestInfo
+	return adapter.response, nil
+}
+
+func (adapter *capturingRequestAdapter) SendEnum(
+	context.Context,
+	*abstractions.RequestInformation,
+	serialization.EnumFactory,
+	abstractions.ErrorMappings,
+) (any, error) {
+	return nil, nil
+}
+
+func (adapter *capturingRequestAdapter) SendCollection(
+	context.Context,
+	*abstractions.RequestInformation,
+	serialization.ParsableFactory,
+	abstractions.ErrorMappings,
+) ([]serialization.Parsable, error) {
+	return nil, nil
+}
+
+func (adapter *capturingRequestAdapter) SendEnumCollection(
+	context.Context,
+	*abstractions.RequestInformation,
+	serialization.EnumFactory,
+	abstractions.ErrorMappings,
+) ([]any, error) {
+	return nil, nil
+}
+
+func (adapter *capturingRequestAdapter) SendPrimitive(
+	context.Context,
+	*abstractions.RequestInformation,
+	string,
+	abstractions.ErrorMappings,
+) (any, error) {
+	return nil, nil
+}
+
+func (adapter *capturingRequestAdapter) SendPrimitiveCollection(
+	context.Context,
+	*abstractions.RequestInformation,
+	string,
+	abstractions.ErrorMappings,
+) ([]any, error) {
+	return nil, nil
+}
+
+func (adapter *capturingRequestAdapter) SendNoContent(
+	context.Context,
+	*abstractions.RequestInformation,
+	abstractions.ErrorMappings,
+) error {
+	return nil
+}
+
+func (adapter *capturingRequestAdapter) GetSerializationWriterFactory() serialization.SerializationWriterFactory {
+	return adapter.writerFactory
+}
+
+func (adapter *capturingRequestAdapter) EnableBackingStore(store.BackingStoreFactory) {
+}
+
+func (adapter *capturingRequestAdapter) SetBaseUrl(baseURL string) {
+	adapter.baseURL = baseURL
+}
+
+func (adapter *capturingRequestAdapter) GetBaseUrl() string {
+	return adapter.baseURL
+}
+
+func (adapter *capturingRequestAdapter) ConvertToNativeRequest(
+	context.Context,
+	*abstractions.RequestInformation,
+) (any, error) {
+	return nil, nil
 }

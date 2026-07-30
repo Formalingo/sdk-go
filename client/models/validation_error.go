@@ -12,6 +12,8 @@ type ValidationError struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ApiError
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // Stable machine-readable error code when available.
+    code *string
     // The details property
     details PhoneValidationDetailsable
     // The error property
@@ -44,6 +46,11 @@ func (m *ValidationError) Error()(string) {
 func (m *ValidationError) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetCode gets the code property value. Stable machine-readable error code when available.
+// returns a *string when successful
+func (m *ValidationError) GetCode()(*string) {
+    return m.code
+}
 // GetDetails gets the details property value. The details property
 // returns a PhoneValidationDetailsable when successful
 func (m *ValidationError) GetDetails()(PhoneValidationDetailsable) {
@@ -58,6 +65,16 @@ func (m *ValidationError) GetErrorEscaped()(*string) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *ValidationError) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["code"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCode(val)
+        }
+        return nil
+    }
     res["details"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreatePhoneValidationDetailsFromDiscriminatorValue)
         if err != nil {
@@ -113,6 +130,12 @@ func (m *ValidationError) GetSuccess()(*bool) {
 // Serialize serializes information the current object
 func (m *ValidationError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteStringValue("code", m.GetCode())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteObjectValue("details", m.GetDetails())
         if err != nil {
             return err
@@ -148,6 +171,10 @@ func (m *ValidationError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 func (m *ValidationError) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetCode sets the code property value. Stable machine-readable error code when available.
+func (m *ValidationError) SetCode(value *string)() {
+    m.code = value
+}
 // SetDetails sets the details property value. The details property
 func (m *ValidationError) SetDetails(value PhoneValidationDetailsable)() {
     m.details = value
@@ -167,10 +194,12 @@ func (m *ValidationError) SetSuccess(value *bool)() {
 type ValidationErrorable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCode()(*string)
     GetDetails()(PhoneValidationDetailsable)
     GetErrorEscaped()(*string)
     GetHint()(*string)
     GetSuccess()(*bool)
+    SetCode(value *string)()
     SetDetails(value PhoneValidationDetailsable)()
     SetErrorEscaped(value *string)()
     SetHint(value *string)()

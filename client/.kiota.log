@@ -5,6 +5,8 @@ Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientUpdate/prop
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientUpdate/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientCreateResult/properties/email - The format email is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientCreateResult/properties/link - The format uri is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientBulkCreateResult/properties/email - The format email is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/RecipientBulkCreateResult/properties/link - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Document/properties/originalUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Document/properties/completedPdfUrl - The format uri is not supported by Kiota and the string type will be used.
 Warning: KiotaBuilder OpenAPI warning: #/components/schemas/ImportDocumentBundleResponse/properties/data/properties/originalUrl - The format uri is not supported by Kiota and the string type will be used.

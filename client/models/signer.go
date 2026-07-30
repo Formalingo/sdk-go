@@ -26,7 +26,7 @@ type Signer struct {
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The label property
     label *string
-    // The link property
+    // Signing link for a live document and signer; null when lifecycle rules withhold access.
     link *string
     // The name property
     name *string
@@ -40,7 +40,7 @@ type Signer struct {
     status *Signer_status
     // The submissionId property
     submissionId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The token property
+    // Bearer signing token; omitted when the document or signer is no longer live.
     token *string
 }
 // NewSigner instantiates a new Signer and sets the default values.
@@ -251,7 +251,7 @@ func (m *Signer) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949
 func (m *Signer) GetLabel()(*string) {
     return m.label
 }
-// GetLink gets the link property value. The link property
+// GetLink gets the link property value. Signing link for a live document and signer; null when lifecycle rules withhold access.
 // returns a *string when successful
 func (m *Signer) GetLink()(*string) {
     return m.link
@@ -286,7 +286,7 @@ func (m *Signer) GetStatus()(*Signer_status) {
 func (m *Signer) GetSubmissionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.submissionId
 }
-// GetToken gets the token property value. The token property
+// GetToken gets the token property value. Bearer signing token; omitted when the document or signer is no longer live.
 // returns a *string when successful
 func (m *Signer) GetToken()(*string) {
     return m.token
@@ -424,7 +424,7 @@ func (m *Signer) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e555
 func (m *Signer) SetLabel(value *string)() {
     m.label = value
 }
-// SetLink sets the link property value. The link property
+// SetLink sets the link property value. Signing link for a live document and signer; null when lifecycle rules withhold access.
 func (m *Signer) SetLink(value *string)() {
     m.link = value
 }
@@ -452,7 +452,7 @@ func (m *Signer) SetStatus(value *Signer_status)() {
 func (m *Signer) SetSubmissionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.submissionId = value
 }
-// SetToken sets the token property value. The token property
+// SetToken sets the token property value. Bearer signing token; omitted when the document or signer is no longer live.
 func (m *Signer) SetToken(value *string)() {
     m.token = value
 }

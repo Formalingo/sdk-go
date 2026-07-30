@@ -7,12 +7,13 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
+// CreateSubmissionBody creates a signing submission. The normalized serialized request cannot exceed 1048576 UTF-8 bytes.
 type CreateSubmissionBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // Signing experience used by generated links. Defaults to the document signing view.
     deliveryFormat *CreateSubmissionBody_deliveryFormat
-    // One entry per signer role. Must provide all required roles.
+    // One entry per signer role. Must provide all required roles. Maximum 100 signers per submission.
     signers []SignerInputable
     // Suppresses signer_invite notifications for all signers in this submission. Defaults to true; set false to send notifications.
     suppress_notifications *bool
@@ -83,7 +84,7 @@ func (m *CreateSubmissionBody) GetFieldDeserializers()(map[string]func(i878a80d2
     }
     return res
 }
-// GetSigners gets the signers property value. One entry per signer role. Must provide all required roles.
+// GetSigners gets the signers property value. One entry per signer role. Must provide all required roles. Maximum 100 signers per submission.
 // returns a []SignerInputable when successful
 func (m *CreateSubmissionBody) GetSigners()([]SignerInputable) {
     return m.signers
@@ -136,7 +137,7 @@ func (m *CreateSubmissionBody) SetAdditionalData(value map[string]any)() {
 func (m *CreateSubmissionBody) SetDeliveryFormat(value *CreateSubmissionBody_deliveryFormat)() {
     m.deliveryFormat = value
 }
-// SetSigners sets the signers property value. One entry per signer role. Must provide all required roles.
+// SetSigners sets the signers property value. One entry per signer role. Must provide all required roles. Maximum 100 signers per submission.
 func (m *CreateSubmissionBody) SetSigners(value []SignerInputable)() {
     m.signers = value
 }

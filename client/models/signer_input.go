@@ -18,7 +18,7 @@ type SignerInput struct {
     password *string
     // Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
-    // Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. Creates DocumentResponse records immediately.
+    // Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. At most 100 fields, 10 nesting levels, and 65536 serialized UTF-8 bytes are accepted per signer. Creates DocumentResponse records immediately.
     prefill SignerInput_prefillable
     // If true, prefilled fields are marked read-only on the document
     prefillReadonly *bool
@@ -156,7 +156,7 @@ func (m *SignerInput) GetPassword()(*string) {
 func (m *SignerInput) GetPhone()(*string) {
     return m.phone
 }
-// GetPrefill gets the prefill property value. Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. Creates DocumentResponse records immediately.
+// GetPrefill gets the prefill property value. Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. At most 100 fields, 10 nesting levels, and 65536 serialized UTF-8 bytes are accepted per signer. Creates DocumentResponse records immediately.
 // returns a SignerInput_prefillable when successful
 func (m *SignerInput) GetPrefill()(SignerInput_prefillable) {
     return m.prefill
@@ -254,7 +254,7 @@ func (m *SignerInput) SetPassword(value *string)() {
 func (m *SignerInput) SetPhone(value *string)() {
     m.phone = value
 }
-// SetPrefill sets the prefill property value. Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. Creates DocumentResponse records immediately.
+// SetPrefill sets the prefill property value. Map of field identifier → pre-filled value. Keys can be field UUIDs or field labels. Label-based keys are resolved against fields assigned to this signer's role. If a label matches multiple fields for the same role, the request is rejected with disambiguation details. At most 100 fields, 10 nesting levels, and 65536 serialized UTF-8 bytes are accepted per signer. Creates DocumentResponse records immediately.
 func (m *SignerInput) SetPrefill(value SignerInput_prefillable)() {
     m.prefill = value
 }
