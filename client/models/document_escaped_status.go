@@ -9,10 +9,11 @@ const (
     PUBLISHED_DOCUMENT_STATUS
     COMPLETED_DOCUMENT_STATUS
     EXPIRED_DOCUMENT_STATUS
+    VOIDED_DOCUMENT_STATUS
 )
 
 func (i Document_status) String() string {
-    return []string{"draft", "published", "completed", "expired"}[i]
+    return []string{"draft", "published", "completed", "expired", "voided"}[i]
 }
 func ParseDocument_status(v string) (any, error) {
     result := DRAFT_DOCUMENT_STATUS
@@ -25,6 +26,8 @@ func ParseDocument_status(v string) (any, error) {
             result = COMPLETED_DOCUMENT_STATUS
         case "expired":
             result = EXPIRED_DOCUMENT_STATUS
+        case "voided":
+            result = VOIDED_DOCUMENT_STATUS
         default:
             return nil, nil
     }

@@ -6,6 +6,7 @@ package api
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
     i11a45c5e34dd0c0080a08d2dcbba983da3b67730b359cfa94e84806a6a7abdab "github.com/Formalingo/sdk-go/client/api/v1/documents/item"
 )
 
@@ -82,14 +83,22 @@ func (m *V1DocumentsDocumentsItemRequestBuilder) ParseJobs()(*V1DocumentsItemPar
 func (m *V1DocumentsDocumentsItemRequestBuilder) Publish()(*V1DocumentsItemPublishRequestBuilder) {
     return NewV1DocumentsItemPublishRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Put update a document
+// Put updates editable document metadata. Snapshot-affecting changes move the document to draft. Publish through the dedicated publish endpoint so an immutable revision is created.
 // returns a V1DocumentsItemDocumentsPutResponseable when successful
+// returns a V1DocumentsItemDocuments400Error error when the service returns a 400 status code
+// returns a V1DocumentsItemDocuments404Error error when the service returns a 404 status code
+// returns a DocumentNotEditableConflict error when the service returns a 409 status code
 func (m *V1DocumentsDocumentsItemRequestBuilder) Put(ctx context.Context, body V1DocumentsItemDocumentsPutRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemDocumentsPutResponseable, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemDocumentsPutResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": CreateV1DocumentsItemDocuments400ErrorFromDiscriminatorValue,
+        "404": CreateV1DocumentsItemDocuments404ErrorFromDiscriminatorValue,
+        "409": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentNotEditableConflictFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemDocumentsPutResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
@@ -129,7 +138,7 @@ func (m *V1DocumentsDocumentsItemRequestBuilder) ToGetRequestInformation(ctx con
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPutRequestInformation update a document
+// ToPutRequestInformation updates editable document metadata. Snapshot-affecting changes move the document to draft. Publish through the dedicated publish endpoint so an immutable revision is created.
 // returns a *RequestInformation when successful
 func (m *V1DocumentsDocumentsItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body V1DocumentsItemDocumentsPutRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

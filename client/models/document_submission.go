@@ -20,6 +20,8 @@ type DocumentSubmission struct {
     createdAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The documentId property
     documentId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // Immutable document revision pinned to this submission.
+    documentRevisionId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // Stable API-key-gated file descriptor for the completed signed PDF.
@@ -66,6 +68,11 @@ func (m *DocumentSubmission) GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6
 func (m *DocumentSubmission) GetDocumentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.documentId
 }
+// GetDocumentRevisionId gets the documentRevisionId property value. Immutable document revision pinned to this submission.
+// returns a *UUID when successful
+func (m *DocumentSubmission) GetDocumentRevisionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.documentRevisionId
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *DocumentSubmission) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
@@ -107,6 +114,16 @@ func (m *DocumentSubmission) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         if val != nil {
             m.SetDocumentId(val)
+        }
+        return nil
+    }
+    res["documentRevisionId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDocumentRevisionId(val)
         }
         return nil
     }
@@ -205,6 +222,12 @@ func (m *DocumentSubmission) Serialize(writer i878a80d2330e89d26896388a3f487eef2
         }
     }
     {
+        err := writer.WriteUUIDValue("documentRevisionId", m.GetDocumentRevisionId())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteUUIDValue("id", m.GetId())
         if err != nil {
             return err
@@ -263,6 +286,10 @@ func (m *DocumentSubmission) SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97
 func (m *DocumentSubmission) SetDocumentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.documentId = value
 }
+// SetDocumentRevisionId sets the documentRevisionId property value. Immutable document revision pinned to this submission.
+func (m *DocumentSubmission) SetDocumentRevisionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.documentRevisionId = value
+}
 // SetId sets the id property value. The id property
 func (m *DocumentSubmission) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
@@ -286,6 +313,7 @@ type DocumentSubmissionable interface {
     GetCompletedPdfUrl()(*string)
     GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDocumentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetDocumentRevisionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetSignedPdf()(DocumentSubmission_signedPdfable)
     GetSigners()([]Signerable)
@@ -294,6 +322,7 @@ type DocumentSubmissionable interface {
     SetCompletedPdfUrl(value *string)()
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDocumentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetDocumentRevisionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetSignedPdf(value DocumentSubmission_signedPdfable)()
     SetSigners(value []Signerable)()
