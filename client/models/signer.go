@@ -26,19 +26,21 @@ type Signer struct {
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The label property
     label *string
-    // The link property
+    // Signing link for a live document and signer; null when lifecycle rules withhold access.
     link *string
     // The name property
     name *string
     // The order property
     order *float64
+    // Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
+    phone *string
     // The role property
     role *string
     // The status property
     status *Signer_status
     // The submissionId property
     submissionId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
-    // The token property
+    // Bearer signing token; omitted when the document or signer is no longer live.
     token *string
 }
 // NewSigner instantiates a new Signer and sets the default values.
@@ -187,6 +189,16 @@ func (m *Signer) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["phone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPhone(val)
+        }
+        return nil
+    }
     res["role"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -239,7 +251,7 @@ func (m *Signer) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949
 func (m *Signer) GetLabel()(*string) {
     return m.label
 }
-// GetLink gets the link property value. The link property
+// GetLink gets the link property value. Signing link for a live document and signer; null when lifecycle rules withhold access.
 // returns a *string when successful
 func (m *Signer) GetLink()(*string) {
     return m.link
@@ -253,6 +265,11 @@ func (m *Signer) GetName()(*string) {
 // returns a *float64 when successful
 func (m *Signer) GetOrder()(*float64) {
     return m.order
+}
+// GetPhone gets the phone property value. Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
+// returns a *string when successful
+func (m *Signer) GetPhone()(*string) {
+    return m.phone
 }
 // GetRole gets the role property value. The role property
 // returns a *string when successful
@@ -269,7 +286,7 @@ func (m *Signer) GetStatus()(*Signer_status) {
 func (m *Signer) GetSubmissionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.submissionId
 }
-// GetToken gets the token property value. The token property
+// GetToken gets the token property value. Bearer signing token; omitted when the document or signer is no longer live.
 // returns a *string when successful
 func (m *Signer) GetToken()(*string) {
     return m.token
@@ -332,6 +349,12 @@ func (m *Signer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     }
     {
         err := writer.WriteFloat64Value("order", m.GetOrder())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("phone", m.GetPhone())
         if err != nil {
             return err
         }
@@ -401,7 +424,7 @@ func (m *Signer) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e555
 func (m *Signer) SetLabel(value *string)() {
     m.label = value
 }
-// SetLink sets the link property value. The link property
+// SetLink sets the link property value. Signing link for a live document and signer; null when lifecycle rules withhold access.
 func (m *Signer) SetLink(value *string)() {
     m.link = value
 }
@@ -412,6 +435,10 @@ func (m *Signer) SetName(value *string)() {
 // SetOrder sets the order property value. The order property
 func (m *Signer) SetOrder(value *float64)() {
     m.order = value
+}
+// SetPhone sets the phone property value. Stored phone value. Legacy list/get records can retain their pre-normalization stored value until corrected.
+func (m *Signer) SetPhone(value *string)() {
+    m.phone = value
 }
 // SetRole sets the role property value. The role property
 func (m *Signer) SetRole(value *string)() {
@@ -425,7 +452,7 @@ func (m *Signer) SetStatus(value *Signer_status)() {
 func (m *Signer) SetSubmissionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.submissionId = value
 }
-// SetToken sets the token property value. The token property
+// SetToken sets the token property value. Bearer signing token; omitted when the document or signer is no longer live.
 func (m *Signer) SetToken(value *string)() {
     m.token = value
 }
@@ -442,6 +469,7 @@ type Signerable interface {
     GetLink()(*string)
     GetName()(*string)
     GetOrder()(*float64)
+    GetPhone()(*string)
     GetRole()(*string)
     GetStatus()(*Signer_status)
     GetSubmissionId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -456,6 +484,7 @@ type Signerable interface {
     SetLink(value *string)()
     SetName(value *string)()
     SetOrder(value *float64)()
+    SetPhone(value *string)()
     SetRole(value *string)()
     SetStatus(value *Signer_status)()
     SetSubmissionId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

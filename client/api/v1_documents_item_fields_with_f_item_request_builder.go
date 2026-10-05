@@ -6,6 +6,7 @@ package api
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1DocumentsItemFieldsWithFItemRequestBuilder builds and executes requests for operations under \api\v1\documents\{id}\fields\{fid}
@@ -27,12 +28,16 @@ func NewV1DocumentsItemFieldsWithFItemRequestBuilder(rawUrl string, requestAdapt
 }
 // Delete delete a field
 // returns a V1DocumentsItemFieldsItemWithFDeleteResponseable when successful
+// returns a DocumentNotEditableConflict error when the service returns a 409 status code
 func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemFieldsItemWithFDeleteResponseable, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemFieldsItemWithFDeleteResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "409": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentNotEditableConflictFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemFieldsItemWithFDeleteResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
@@ -43,12 +48,16 @@ func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Delete(ctx context.Contex
 }
 // Put update a field
 // returns a V1DocumentsItemFieldsItemWithFPutResponseable when successful
+// returns a DocumentNotEditableConflict error when the service returns a 409 status code
 func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Put(ctx context.Context, body V1DocumentsItemFieldsItemWithFPutRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemFieldsItemWithFPutResponseable, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemFieldsItemWithFPutResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "409": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentNotEditableConflictFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemFieldsItemWithFPutResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }

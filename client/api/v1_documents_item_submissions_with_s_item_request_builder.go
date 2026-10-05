@@ -41,6 +41,11 @@ func (m *V1DocumentsItemSubmissionsWithSItemRequestBuilder) Delete(ctx context.C
     }
     return res.(V1DocumentsItemSubmissionsItemWithSDeleteResponseable), nil
 }
+// Expire the expire property
+// returns a *V1DocumentsItemSubmissionsItemExpireRequestBuilder when successful
+func (m *V1DocumentsItemSubmissionsWithSItemRequestBuilder) Expire()(*V1DocumentsItemSubmissionsItemExpireRequestBuilder) {
+    return NewV1DocumentsItemSubmissionsItemExpireRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Get get a submission status
 // returns a V1DocumentsItemSubmissionsItemWithSGetResponseable when successful
 // returns a V1DocumentsItemSubmissionsItemWithS404Error error when the service returns a 404 status code

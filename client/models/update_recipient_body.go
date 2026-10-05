@@ -11,17 +11,19 @@ import (
 type UpdateRecipientBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
+    clearPhone *bool
     // The email property
     email *string
-    // The expires_at property
+    // ISO 8601 expiry; null clears it.
     expires_at *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The is_active property
     is_active *bool
     // The label property
     label *string
-    // null to remove password
+    // Write-only; null removes the password.
     password *string
-    // The phone property
+    // Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
     phone *string
 }
 // NewUpdateRecipientBody instantiates a new UpdateRecipientBody and sets the default values.
@@ -41,12 +43,17 @@ func CreateUpdateRecipientBodyFromDiscriminatorValue(parseNode i878a80d2330e89d2
 func (m *UpdateRecipientBody) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetClearPhone gets the clearPhone property value. Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
+// returns a *bool when successful
+func (m *UpdateRecipientBody) GetClearPhone()(*bool) {
+    return m.clearPhone
+}
 // GetEmail gets the email property value. The email property
 // returns a *string when successful
 func (m *UpdateRecipientBody) GetEmail()(*string) {
     return m.email
 }
-// GetExpiresAt gets the expires_at property value. The expires_at property
+// GetExpiresAt gets the expires_at property value. ISO 8601 expiry; null clears it.
 // returns a *Time when successful
 func (m *UpdateRecipientBody) GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.expires_at
@@ -55,6 +62,16 @@ func (m *UpdateRecipientBody) GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *UpdateRecipientBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["clearPhone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClearPhone(val)
+        }
+        return nil
+    }
     res["email"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -127,18 +144,24 @@ func (m *UpdateRecipientBody) GetIsActive()(*bool) {
 func (m *UpdateRecipientBody) GetLabel()(*string) {
     return m.label
 }
-// GetPassword gets the password property value. null to remove password
+// GetPassword gets the password property value. Write-only; null removes the password.
 // returns a *string when successful
 func (m *UpdateRecipientBody) GetPassword()(*string) {
     return m.password
 }
-// GetPhone gets the phone property value. The phone property
+// GetPhone gets the phone property value. Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 // returns a *string when successful
 func (m *UpdateRecipientBody) GetPhone()(*string) {
     return m.phone
 }
 // Serialize serializes information the current object
 func (m *UpdateRecipientBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteBoolValue("clearPhone", m.GetClearPhone())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteStringValue("email", m.GetEmail())
         if err != nil {
@@ -187,11 +210,15 @@ func (m *UpdateRecipientBody) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *UpdateRecipientBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetClearPhone sets the clearPhone property value. Set true to clear the stored phone. Omit to leave it unchanged; cannot be combined with a non-null phone.
+func (m *UpdateRecipientBody) SetClearPhone(value *bool)() {
+    m.clearPhone = value
+}
 // SetEmail sets the email property value. The email property
 func (m *UpdateRecipientBody) SetEmail(value *string)() {
     m.email = value
 }
-// SetExpiresAt sets the expires_at property value. The expires_at property
+// SetExpiresAt sets the expires_at property value. ISO 8601 expiry; null clears it.
 func (m *UpdateRecipientBody) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expires_at = value
 }
@@ -203,23 +230,25 @@ func (m *UpdateRecipientBody) SetIsActive(value *bool)() {
 func (m *UpdateRecipientBody) SetLabel(value *string)() {
     m.label = value
 }
-// SetPassword sets the password property value. null to remove password
+// SetPassword sets the password property value. Write-only; null removes the password.
 func (m *UpdateRecipientBody) SetPassword(value *string)() {
     m.password = value
 }
-// SetPhone sets the phone property value. The phone property
+// SetPhone sets the phone property value. Accepted formatted phone input. International input may include spaces, parentheses, and hyphens, but must include `+`. National input uses the workspace default phone country.
 func (m *UpdateRecipientBody) SetPhone(value *string)() {
     m.phone = value
 }
 type UpdateRecipientBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClearPhone()(*bool)
     GetEmail()(*string)
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetIsActive()(*bool)
     GetLabel()(*string)
     GetPassword()(*string)
     GetPhone()(*string)
+    SetClearPhone(value *bool)()
     SetEmail(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetIsActive(value *bool)()

@@ -10,6 +10,8 @@ import (
 type V1DocumentsItemDocumentsPutRequestBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The pageCount property
+    pageCount *int32
     // The title property
     title *string
 }
@@ -34,6 +36,16 @@ func (m *V1DocumentsItemDocumentsPutRequestBody) GetAdditionalData()(map[string]
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *V1DocumentsItemDocumentsPutRequestBody) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["pageCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPageCount(val)
+        }
+        return nil
+    }
     res["title"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -46,6 +58,11 @@ func (m *V1DocumentsItemDocumentsPutRequestBody) GetFieldDeserializers()(map[str
     }
     return res
 }
+// GetPageCount gets the pageCount property value. The pageCount property
+// returns a *int32 when successful
+func (m *V1DocumentsItemDocumentsPutRequestBody) GetPageCount()(*int32) {
+    return m.pageCount
+}
 // GetTitle gets the title property value. The title property
 // returns a *string when successful
 func (m *V1DocumentsItemDocumentsPutRequestBody) GetTitle()(*string) {
@@ -53,6 +70,12 @@ func (m *V1DocumentsItemDocumentsPutRequestBody) GetTitle()(*string) {
 }
 // Serialize serializes information the current object
 func (m *V1DocumentsItemDocumentsPutRequestBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteInt32Value("pageCount", m.GetPageCount())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteStringValue("title", m.GetTitle())
         if err != nil {
@@ -71,6 +94,10 @@ func (m *V1DocumentsItemDocumentsPutRequestBody) Serialize(writer i878a80d2330e8
 func (m *V1DocumentsItemDocumentsPutRequestBody) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetPageCount sets the pageCount property value. The pageCount property
+func (m *V1DocumentsItemDocumentsPutRequestBody) SetPageCount(value *int32)() {
+    m.pageCount = value
+}
 // SetTitle sets the title property value. The title property
 func (m *V1DocumentsItemDocumentsPutRequestBody) SetTitle(value *string)() {
     m.title = value
@@ -78,6 +105,8 @@ func (m *V1DocumentsItemDocumentsPutRequestBody) SetTitle(value *string)() {
 type V1DocumentsItemDocumentsPutRequestBodyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetPageCount()(*int32)
     GetTitle()(*string)
+    SetPageCount(value *int32)()
     SetTitle(value *string)()
 }

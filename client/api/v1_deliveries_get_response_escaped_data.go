@@ -14,15 +14,25 @@ type V1DeliveriesGetResponse_data struct {
     additionalData map[string]any
     // The attemptedAt property
     attemptedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The blockedReason property
+    blockedReason *string
+    // The channel property
+    channel *string
     // The eventType property
     eventType *string
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The profile property
     profile V1DeliveriesGetResponse_data_profileable
+    // The providerStatus property
+    providerStatus *string
+    // The requestAccepted property
+    requestAccepted *bool
+    // The state property
+    state *string
     // The statusCode property
     statusCode *int32
-    // The success property
+    // For email and WhatsApp, whether the provider accepted the request. This does not establish inbox delivery; inspect state and providerStatus.
     success *bool
 }
 // NewV1DeliveriesGetResponse_data instantiates a new V1DeliveriesGetResponse_data and sets the default values.
@@ -47,6 +57,16 @@ func (m *V1DeliveriesGetResponse_data) GetAdditionalData()(map[string]any) {
 func (m *V1DeliveriesGetResponse_data) GetAttemptedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.attemptedAt
 }
+// GetBlockedReason gets the blockedReason property value. The blockedReason property
+// returns a *string when successful
+func (m *V1DeliveriesGetResponse_data) GetBlockedReason()(*string) {
+    return m.blockedReason
+}
+// GetChannel gets the channel property value. The channel property
+// returns a *string when successful
+func (m *V1DeliveriesGetResponse_data) GetChannel()(*string) {
+    return m.channel
+}
 // GetEventType gets the eventType property value. The eventType property
 // returns a *string when successful
 func (m *V1DeliveriesGetResponse_data) GetEventType()(*string) {
@@ -63,6 +83,26 @@ func (m *V1DeliveriesGetResponse_data) GetFieldDeserializers()(map[string]func(i
         }
         if val != nil {
             m.SetAttemptedAt(val)
+        }
+        return nil
+    }
+    res["blockedReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetBlockedReason(val)
+        }
+        return nil
+    }
+    res["channel"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetChannel(val)
         }
         return nil
     }
@@ -93,6 +133,36 @@ func (m *V1DeliveriesGetResponse_data) GetFieldDeserializers()(map[string]func(i
         }
         if val != nil {
             m.SetProfile(val.(V1DeliveriesGetResponse_data_profileable))
+        }
+        return nil
+    }
+    res["providerStatus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetProviderStatus(val)
+        }
+        return nil
+    }
+    res["requestAccepted"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRequestAccepted(val)
+        }
+        return nil
+    }
+    res["state"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetState(val)
         }
         return nil
     }
@@ -128,12 +198,27 @@ func (m *V1DeliveriesGetResponse_data) GetId()(*i561e97a8befe7661a44c8f54600992b
 func (m *V1DeliveriesGetResponse_data) GetProfile()(V1DeliveriesGetResponse_data_profileable) {
     return m.profile
 }
+// GetProviderStatus gets the providerStatus property value. The providerStatus property
+// returns a *string when successful
+func (m *V1DeliveriesGetResponse_data) GetProviderStatus()(*string) {
+    return m.providerStatus
+}
+// GetRequestAccepted gets the requestAccepted property value. The requestAccepted property
+// returns a *bool when successful
+func (m *V1DeliveriesGetResponse_data) GetRequestAccepted()(*bool) {
+    return m.requestAccepted
+}
+// GetState gets the state property value. The state property
+// returns a *string when successful
+func (m *V1DeliveriesGetResponse_data) GetState()(*string) {
+    return m.state
+}
 // GetStatusCode gets the statusCode property value. The statusCode property
 // returns a *int32 when successful
 func (m *V1DeliveriesGetResponse_data) GetStatusCode()(*int32) {
     return m.statusCode
 }
-// GetSuccess gets the success property value. The success property
+// GetSuccess gets the success property value. For email and WhatsApp, whether the provider accepted the request. This does not establish inbox delivery; inspect state and providerStatus.
 // returns a *bool when successful
 func (m *V1DeliveriesGetResponse_data) GetSuccess()(*bool) {
     return m.success
@@ -142,6 +227,18 @@ func (m *V1DeliveriesGetResponse_data) GetSuccess()(*bool) {
 func (m *V1DeliveriesGetResponse_data) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteTimeValue("attemptedAt", m.GetAttemptedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("blockedReason", m.GetBlockedReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("channel", m.GetChannel())
         if err != nil {
             return err
         }
@@ -160,6 +257,24 @@ func (m *V1DeliveriesGetResponse_data) Serialize(writer i878a80d2330e89d26896388
     }
     {
         err := writer.WriteObjectValue("profile", m.GetProfile())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("providerStatus", m.GetProviderStatus())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("requestAccepted", m.GetRequestAccepted())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("state", m.GetState())
         if err != nil {
             return err
         }
@@ -192,6 +307,14 @@ func (m *V1DeliveriesGetResponse_data) SetAdditionalData(value map[string]any)()
 func (m *V1DeliveriesGetResponse_data) SetAttemptedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.attemptedAt = value
 }
+// SetBlockedReason sets the blockedReason property value. The blockedReason property
+func (m *V1DeliveriesGetResponse_data) SetBlockedReason(value *string)() {
+    m.blockedReason = value
+}
+// SetChannel sets the channel property value. The channel property
+func (m *V1DeliveriesGetResponse_data) SetChannel(value *string)() {
+    m.channel = value
+}
 // SetEventType sets the eventType property value. The eventType property
 func (m *V1DeliveriesGetResponse_data) SetEventType(value *string)() {
     m.eventType = value
@@ -204,11 +327,23 @@ func (m *V1DeliveriesGetResponse_data) SetId(value *i561e97a8befe7661a44c8f54600
 func (m *V1DeliveriesGetResponse_data) SetProfile(value V1DeliveriesGetResponse_data_profileable)() {
     m.profile = value
 }
+// SetProviderStatus sets the providerStatus property value. The providerStatus property
+func (m *V1DeliveriesGetResponse_data) SetProviderStatus(value *string)() {
+    m.providerStatus = value
+}
+// SetRequestAccepted sets the requestAccepted property value. The requestAccepted property
+func (m *V1DeliveriesGetResponse_data) SetRequestAccepted(value *bool)() {
+    m.requestAccepted = value
+}
+// SetState sets the state property value. The state property
+func (m *V1DeliveriesGetResponse_data) SetState(value *string)() {
+    m.state = value
+}
 // SetStatusCode sets the statusCode property value. The statusCode property
 func (m *V1DeliveriesGetResponse_data) SetStatusCode(value *int32)() {
     m.statusCode = value
 }
-// SetSuccess sets the success property value. The success property
+// SetSuccess sets the success property value. For email and WhatsApp, whether the provider accepted the request. This does not establish inbox delivery; inspect state and providerStatus.
 func (m *V1DeliveriesGetResponse_data) SetSuccess(value *bool)() {
     m.success = value
 }
@@ -216,15 +351,25 @@ type V1DeliveriesGetResponse_dataable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAttemptedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetBlockedReason()(*string)
+    GetChannel()(*string)
     GetEventType()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetProfile()(V1DeliveriesGetResponse_data_profileable)
+    GetProviderStatus()(*string)
+    GetRequestAccepted()(*bool)
+    GetState()(*string)
     GetStatusCode()(*int32)
     GetSuccess()(*bool)
     SetAttemptedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetBlockedReason(value *string)()
+    SetChannel(value *string)()
     SetEventType(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetProfile(value V1DeliveriesGetResponse_data_profileable)()
+    SetProviderStatus(value *string)()
+    SetRequestAccepted(value *bool)()
+    SetState(value *string)()
     SetStatusCode(value *int32)()
     SetSuccess(value *bool)()
 }

@@ -8,47 +8,47 @@ import (
     id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
-type V1DocumentsItemSubmissionsPostResponse struct {
+type V1DocumentsItemSignerRolesItemWithRPutResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The data property
-    data id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentSubmissionable
+    data id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.SignerRoleable
     // The success property
     success *bool
 }
-// NewV1DocumentsItemSubmissionsPostResponse instantiates a new V1DocumentsItemSubmissionsPostResponse and sets the default values.
-func NewV1DocumentsItemSubmissionsPostResponse()(*V1DocumentsItemSubmissionsPostResponse) {
-    m := &V1DocumentsItemSubmissionsPostResponse{
+// NewV1DocumentsItemSignerRolesItemWithRPutResponse instantiates a new V1DocumentsItemSignerRolesItemWithRPutResponse and sets the default values.
+func NewV1DocumentsItemSignerRolesItemWithRPutResponse()(*V1DocumentsItemSignerRolesItemWithRPutResponse) {
+    m := &V1DocumentsItemSignerRolesItemWithRPutResponse{
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreateV1DocumentsItemSubmissionsPostResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateV1DocumentsItemSignerRolesItemWithRPutResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateV1DocumentsItemSubmissionsPostResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewV1DocumentsItemSubmissionsPostResponse(), nil
+func CreateV1DocumentsItemSignerRolesItemWithRPutResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewV1DocumentsItemSignerRolesItemWithRPutResponse(), nil
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *V1DocumentsItemSubmissionsPostResponse) GetAdditionalData()(map[string]any) {
+func (m *V1DocumentsItemSignerRolesItemWithRPutResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetData gets the data property value. The data property
-// returns a DocumentSubmissionable when successful
-func (m *V1DocumentsItemSubmissionsPostResponse) GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentSubmissionable) {
+// returns a SignerRoleable when successful
+func (m *V1DocumentsItemSignerRolesItemWithRPutResponse) GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.SignerRoleable) {
     return m.data
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *V1DocumentsItemSubmissionsPostResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *V1DocumentsItemSignerRolesItemWithRPutResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["data"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentSubmissionFromDiscriminatorValue)
+        val, err := n.GetObjectValue(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateSignerRoleFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetData(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentSubmissionable))
+            m.SetData(val.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.SignerRoleable))
         }
         return nil
     }
@@ -66,11 +66,11 @@ func (m *V1DocumentsItemSubmissionsPostResponse) GetFieldDeserializers()(map[str
 }
 // GetSuccess gets the success property value. The success property
 // returns a *bool when successful
-func (m *V1DocumentsItemSubmissionsPostResponse) GetSuccess()(*bool) {
+func (m *V1DocumentsItemSignerRolesItemWithRPutResponse) GetSuccess()(*bool) {
     return m.success
 }
 // Serialize serializes information the current object
-func (m *V1DocumentsItemSubmissionsPostResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *V1DocumentsItemSignerRolesItemWithRPutResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteObjectValue("data", m.GetData())
         if err != nil {
@@ -92,22 +92,22 @@ func (m *V1DocumentsItemSubmissionsPostResponse) Serialize(writer i878a80d2330e8
     return nil
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *V1DocumentsItemSubmissionsPostResponse) SetAdditionalData(value map[string]any)() {
+func (m *V1DocumentsItemSignerRolesItemWithRPutResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetData sets the data property value. The data property
-func (m *V1DocumentsItemSubmissionsPostResponse) SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentSubmissionable)() {
+func (m *V1DocumentsItemSignerRolesItemWithRPutResponse) SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.SignerRoleable)() {
     m.data = value
 }
 // SetSuccess sets the success property value. The success property
-func (m *V1DocumentsItemSubmissionsPostResponse) SetSuccess(value *bool)() {
+func (m *V1DocumentsItemSignerRolesItemWithRPutResponse) SetSuccess(value *bool)() {
     m.success = value
 }
-type V1DocumentsItemSubmissionsPostResponseable interface {
+type V1DocumentsItemSignerRolesItemWithRPutResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentSubmissionable)
+    GetData()(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.SignerRoleable)
     GetSuccess()(*bool)
-    SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.DocumentSubmissionable)()
+    SetData(value id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.SignerRoleable)()
     SetSuccess(value *bool)()
 }
