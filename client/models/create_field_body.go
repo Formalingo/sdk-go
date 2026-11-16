@@ -4,9 +4,11 @@
 package models
 
 import (
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
+// CreateFieldBody create a placed field or a supporting file_upload request. Supporting requests require options.supporting_attachment=true and an assigned signer; omitted geometry is canonicalized to all zero and Required defaults to true. Ordinary fields require complete page placement. Field purpose is immutable after creation.
 type CreateFieldBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
@@ -16,27 +18,29 @@ type CreateFieldBody struct {
     defaultValue *string
     // The direction property
     direction *CreateFieldBody_direction
-    // The height property
+    // Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
     height *float64
-    // The isReadOnly property
+    // Optional client UUID for retry-safe supporting attachment creation. Reusing the same UUID and request returns the original field; conflicting reuse returns 409. Not supported for placed fields.
+    id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // Supporting attachment requests must remain writable.
     isReadOnly *bool
-    // The isRequired property
+    // Defaults to true for supporting attachment requests and false for ordinary placed fields.
     isRequired *bool
     // The label property
     label *string
-    // Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
+    // Type-specific options, including additional options supported by the field type. For calculation fields, use formula and result_type (text or number).
     options CreateFieldBody_optionsable
-    // The order property
+    // Field order. For supporting attachment requests, the value must be between 0 and 1,000,000 inclusive.
     order *int32
-    // The pageNumber property
+    // Required and at least 1 for placed fields. Omit or use 0 for a supporting attachment request.
     pageNumber *int32
     // The type property
     typeEscaped *CreateFieldBody_type
-    // The width property
+    // Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
     width *float64
-    // The x property
+    // Required for placed fields. Omit or use 0 for a supporting attachment request.
     x *float64
-    // The y property
+    // Required for placed fields. Omit or use 0 for a supporting attachment request.
     y *float64
 }
 // NewCreateFieldBody instantiates a new CreateFieldBody and sets the default values.
@@ -114,6 +118,16 @@ func (m *CreateFieldBody) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         if val != nil {
             m.SetHeight(val)
+        }
+        return nil
+    }
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
         }
         return nil
     }
@@ -219,17 +233,22 @@ func (m *CreateFieldBody) GetFieldDeserializers()(map[string]func(i878a80d2330e8
     }
     return res
 }
-// GetHeight gets the height property value. The height property
+// GetHeight gets the height property value. Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *float64 when successful
 func (m *CreateFieldBody) GetHeight()(*float64) {
     return m.height
 }
-// GetIsReadOnly gets the isReadOnly property value. The isReadOnly property
+// GetId gets the id property value. Optional client UUID for retry-safe supporting attachment creation. Reusing the same UUID and request returns the original field; conflicting reuse returns 409. Not supported for placed fields.
+// returns a *UUID when successful
+func (m *CreateFieldBody) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.id
+}
+// GetIsReadOnly gets the isReadOnly property value. Supporting attachment requests must remain writable.
 // returns a *bool when successful
 func (m *CreateFieldBody) GetIsReadOnly()(*bool) {
     return m.isReadOnly
 }
-// GetIsRequired gets the isRequired property value. The isRequired property
+// GetIsRequired gets the isRequired property value. Defaults to true for supporting attachment requests and false for ordinary placed fields.
 // returns a *bool when successful
 func (m *CreateFieldBody) GetIsRequired()(*bool) {
     return m.isRequired
@@ -239,17 +258,17 @@ func (m *CreateFieldBody) GetIsRequired()(*bool) {
 func (m *CreateFieldBody) GetLabel()(*string) {
     return m.label
 }
-// GetOptions gets the options property value. Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
+// GetOptions gets the options property value. Type-specific options, including additional options supported by the field type. For calculation fields, use formula and result_type (text or number).
 // returns a CreateFieldBody_optionsable when successful
 func (m *CreateFieldBody) GetOptions()(CreateFieldBody_optionsable) {
     return m.options
 }
-// GetOrder gets the order property value. The order property
+// GetOrder gets the order property value. Field order. For supporting attachment requests, the value must be between 0 and 1,000,000 inclusive.
 // returns a *int32 when successful
 func (m *CreateFieldBody) GetOrder()(*int32) {
     return m.order
 }
-// GetPageNumber gets the pageNumber property value. The pageNumber property
+// GetPageNumber gets the pageNumber property value. Required and at least 1 for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *int32 when successful
 func (m *CreateFieldBody) GetPageNumber()(*int32) {
     return m.pageNumber
@@ -259,17 +278,17 @@ func (m *CreateFieldBody) GetPageNumber()(*int32) {
 func (m *CreateFieldBody) GetTypeEscaped()(*CreateFieldBody_type) {
     return m.typeEscaped
 }
-// GetWidth gets the width property value. The width property
+// GetWidth gets the width property value. Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *float64 when successful
 func (m *CreateFieldBody) GetWidth()(*float64) {
     return m.width
 }
-// GetX gets the x property value. The x property
+// GetX gets the x property value. Required for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *float64 when successful
 func (m *CreateFieldBody) GetX()(*float64) {
     return m.x
 }
-// GetY gets the y property value. The y property
+// GetY gets the y property value. Required for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *float64 when successful
 func (m *CreateFieldBody) GetY()(*float64) {
     return m.y
@@ -297,6 +316,12 @@ func (m *CreateFieldBody) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     }
     {
         err := writer.WriteFloat64Value("height", m.GetHeight())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteUUIDValue("id", m.GetId())
         if err != nil {
             return err
         }
@@ -386,15 +411,19 @@ func (m *CreateFieldBody) SetDefaultValue(value *string)() {
 func (m *CreateFieldBody) SetDirection(value *CreateFieldBody_direction)() {
     m.direction = value
 }
-// SetHeight sets the height property value. The height property
+// SetHeight sets the height property value. Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *CreateFieldBody) SetHeight(value *float64)() {
     m.height = value
 }
-// SetIsReadOnly sets the isReadOnly property value. The isReadOnly property
+// SetId sets the id property value. Optional client UUID for retry-safe supporting attachment creation. Reusing the same UUID and request returns the original field; conflicting reuse returns 409. Not supported for placed fields.
+func (m *CreateFieldBody) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.id = value
+}
+// SetIsReadOnly sets the isReadOnly property value. Supporting attachment requests must remain writable.
 func (m *CreateFieldBody) SetIsReadOnly(value *bool)() {
     m.isReadOnly = value
 }
-// SetIsRequired sets the isRequired property value. The isRequired property
+// SetIsRequired sets the isRequired property value. Defaults to true for supporting attachment requests and false for ordinary placed fields.
 func (m *CreateFieldBody) SetIsRequired(value *bool)() {
     m.isRequired = value
 }
@@ -402,15 +431,15 @@ func (m *CreateFieldBody) SetIsRequired(value *bool)() {
 func (m *CreateFieldBody) SetLabel(value *string)() {
     m.label = value
 }
-// SetOptions sets the options property value. Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
+// SetOptions sets the options property value. Type-specific options, including additional options supported by the field type. For calculation fields, use formula and result_type (text or number).
 func (m *CreateFieldBody) SetOptions(value CreateFieldBody_optionsable)() {
     m.options = value
 }
-// SetOrder sets the order property value. The order property
+// SetOrder sets the order property value. Field order. For supporting attachment requests, the value must be between 0 and 1,000,000 inclusive.
 func (m *CreateFieldBody) SetOrder(value *int32)() {
     m.order = value
 }
-// SetPageNumber sets the pageNumber property value. The pageNumber property
+// SetPageNumber sets the pageNumber property value. Required and at least 1 for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *CreateFieldBody) SetPageNumber(value *int32)() {
     m.pageNumber = value
 }
@@ -418,15 +447,15 @@ func (m *CreateFieldBody) SetPageNumber(value *int32)() {
 func (m *CreateFieldBody) SetTypeEscaped(value *CreateFieldBody_type)() {
     m.typeEscaped = value
 }
-// SetWidth sets the width property value. The width property
+// SetWidth sets the width property value. Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *CreateFieldBody) SetWidth(value *float64)() {
     m.width = value
 }
-// SetX sets the x property value. The x property
+// SetX sets the x property value. Required for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *CreateFieldBody) SetX(value *float64)() {
     m.x = value
 }
-// SetY sets the y property value. The y property
+// SetY sets the y property value. Required for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *CreateFieldBody) SetY(value *float64)() {
     m.y = value
 }
@@ -437,6 +466,7 @@ type CreateFieldBodyable interface {
     GetDefaultValue()(*string)
     GetDirection()(*CreateFieldBody_direction)
     GetHeight()(*float64)
+    GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetIsReadOnly()(*bool)
     GetIsRequired()(*bool)
     GetLabel()(*string)
@@ -451,6 +481,7 @@ type CreateFieldBodyable interface {
     SetDefaultValue(value *string)()
     SetDirection(value *CreateFieldBody_direction)()
     SetHeight(value *float64)()
+    SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetIsReadOnly(value *bool)()
     SetIsRequired(value *bool)()
     SetLabel(value *string)()

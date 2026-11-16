@@ -7,6 +7,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
+// V1DocumentsItemFieldsItemWithFPutRequestBody partial field update. Supporting requests allow label, assigned signer, requiredness and order changes; their file_upload type, true supporting flag, writable state, null default and zero geometry must remain unchanged. Field purpose cannot be converted. Omitted properties are preserved.
 type V1DocumentsItemFieldsItemWithFPutRequestBody struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
@@ -14,25 +15,25 @@ type V1DocumentsItemFieldsItemWithFPutRequestBody struct {
     assigneeRole *string
     // The defaultValue property
     defaultValue *string
-    // The height property
+    // Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
     height *float64
-    // The isReadOnly property
+    // Supporting attachment requests must remain writable.
     isReadOnly *bool
-    // The isRequired property
+    // Defaults to true for supporting attachment requests and false for ordinary placed fields.
     isRequired *bool
     // The label property
     label *string
-    // Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
+    // Type-specific options, including additional options supported by the field type. For calculation fields, use formula and result_type (text or number).
     options V1DocumentsItemFieldsItemWithFPutRequestBody_optionsable
-    // The order property
+    // Field order. For supporting attachment requests, the value must be between 0 and 1,000,000 inclusive.
     order *int32
-    // The pageNumber property
+    // Required and at least 1 for placed fields. Omit or use 0 for a supporting attachment request.
     pageNumber *int32
-    // The width property
+    // Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
     width *float64
-    // The x property
+    // Required for placed fields. Omit or use 0 for a supporting attachment request.
     x *float64
-    // The y property
+    // Required for placed fields. Omit or use 0 for a supporting attachment request.
     y *float64
 }
 // NewV1DocumentsItemFieldsItemWithFPutRequestBody instantiates a new V1DocumentsItemFieldsItemWithFPutRequestBody and sets the default values.
@@ -188,17 +189,17 @@ func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetFieldDeserializers()(m
     }
     return res
 }
-// GetHeight gets the height property value. The height property
+// GetHeight gets the height property value. Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *float64 when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetHeight()(*float64) {
     return m.height
 }
-// GetIsReadOnly gets the isReadOnly property value. The isReadOnly property
+// GetIsReadOnly gets the isReadOnly property value. Supporting attachment requests must remain writable.
 // returns a *bool when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetIsReadOnly()(*bool) {
     return m.isReadOnly
 }
-// GetIsRequired gets the isRequired property value. The isRequired property
+// GetIsRequired gets the isRequired property value. Defaults to true for supporting attachment requests and false for ordinary placed fields.
 // returns a *bool when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetIsRequired()(*bool) {
     return m.isRequired
@@ -208,32 +209,32 @@ func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetIsRequired()(*bool) {
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetLabel()(*string) {
     return m.label
 }
-// GetOptions gets the options property value. Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
+// GetOptions gets the options property value. Type-specific options, including additional options supported by the field type. For calculation fields, use formula and result_type (text or number).
 // returns a V1DocumentsItemFieldsItemWithFPutRequestBody_optionsable when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetOptions()(V1DocumentsItemFieldsItemWithFPutRequestBody_optionsable) {
     return m.options
 }
-// GetOrder gets the order property value. The order property
+// GetOrder gets the order property value. Field order. For supporting attachment requests, the value must be between 0 and 1,000,000 inclusive.
 // returns a *int32 when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetOrder()(*int32) {
     return m.order
 }
-// GetPageNumber gets the pageNumber property value. The pageNumber property
+// GetPageNumber gets the pageNumber property value. Required and at least 1 for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *int32 when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetPageNumber()(*int32) {
     return m.pageNumber
 }
-// GetWidth gets the width property value. The width property
+// GetWidth gets the width property value. Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *float64 when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetWidth()(*float64) {
     return m.width
 }
-// GetX gets the x property value. The x property
+// GetX gets the x property value. Required for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *float64 when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetX()(*float64) {
     return m.x
 }
-// GetY gets the y property value. The y property
+// GetY gets the y property value. Required for placed fields. Omit or use 0 for a supporting attachment request.
 // returns a *float64 when successful
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) GetY()(*float64) {
     return m.y
@@ -332,15 +333,15 @@ func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetAssigneeRole(value *st
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetDefaultValue(value *string)() {
     m.defaultValue = value
 }
-// SetHeight sets the height property value. The height property
+// SetHeight sets the height property value. Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetHeight(value *float64)() {
     m.height = value
 }
-// SetIsReadOnly sets the isReadOnly property value. The isReadOnly property
+// SetIsReadOnly sets the isReadOnly property value. Supporting attachment requests must remain writable.
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetIsReadOnly(value *bool)() {
     m.isReadOnly = value
 }
-// SetIsRequired sets the isRequired property value. The isRequired property
+// SetIsRequired sets the isRequired property value. Defaults to true for supporting attachment requests and false for ordinary placed fields.
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetIsRequired(value *bool)() {
     m.isRequired = value
 }
@@ -348,27 +349,27 @@ func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetIsRequired(value *bool
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetLabel(value *string)() {
     m.label = value
 }
-// SetOptions sets the options property value. Type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
+// SetOptions sets the options property value. Type-specific options, including additional options supported by the field type. For calculation fields, use formula and result_type (text or number).
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetOptions(value V1DocumentsItemFieldsItemWithFPutRequestBody_optionsable)() {
     m.options = value
 }
-// SetOrder sets the order property value. The order property
+// SetOrder sets the order property value. Field order. For supporting attachment requests, the value must be between 0 and 1,000,000 inclusive.
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetOrder(value *int32)() {
     m.order = value
 }
-// SetPageNumber sets the pageNumber property value. The pageNumber property
+// SetPageNumber sets the pageNumber property value. Required and at least 1 for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetPageNumber(value *int32)() {
     m.pageNumber = value
 }
-// SetWidth sets the width property value. The width property
+// SetWidth sets the width property value. Required and positive for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetWidth(value *float64)() {
     m.width = value
 }
-// SetX sets the x property value. The x property
+// SetX sets the x property value. Required for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetX(value *float64)() {
     m.x = value
 }
-// SetY sets the y property value. The y property
+// SetY sets the y property value. Required for placed fields. Omit or use 0 for a supporting attachment request.
 func (m *V1DocumentsItemFieldsItemWithFPutRequestBody) SetY(value *float64)() {
     m.y = value
 }

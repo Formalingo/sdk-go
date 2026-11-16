@@ -26,8 +26,9 @@ func NewV1DocumentsItemFieldsWithFItemRequestBuilder(rawUrl string, requestAdapt
     urlParams["request-raw-url"] = rawUrl
     return NewV1DocumentsItemFieldsWithFItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Delete delete a field
+// Delete deletes a field or supporting attachment request from the draft. Existing signing submissions keep their pinned requirements. API keys need documents:write; session/OAuth users must be the document creator for supporting requests.
 // returns a V1DocumentsItemFieldsItemWithFDeleteResponseable when successful
+// returns a V1DocumentsItemFieldsItemWithF403Error error when the service returns a 403 status code
 // returns a DocumentNotEditableConflict error when the service returns a 409 status code
 func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemFieldsItemWithFDeleteResponseable, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
@@ -35,6 +36,7 @@ func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Delete(ctx context.Contex
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "403": CreateV1DocumentsItemFieldsItemWithF403ErrorFromDiscriminatorValue,
         "409": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentNotEditableConflictFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemFieldsItemWithFDeleteResponseFromDiscriminatorValue, errorMapping)
@@ -46,8 +48,10 @@ func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Delete(ctx context.Contex
     }
     return res.(V1DocumentsItemFieldsItemWithFDeleteResponseable), nil
 }
-// Put update a field
+// Put partially updates a field. Supporting requests can change label, assigneeRole, isRequired and order; purpose, file_upload type, true supporting flag, writable state, null default and zero geometry cannot change. API keys need documents:write; session/OAuth users must be the document creator for supporting requests. Omitted properties are preserved.
 // returns a V1DocumentsItemFieldsItemWithFPutResponseable when successful
+// returns a V1DocumentsItemFieldsItemWithF400Error error when the service returns a 400 status code
+// returns a V1DocumentsItemFieldsItemWithF403Error error when the service returns a 403 status code
 // returns a DocumentNotEditableConflict error when the service returns a 409 status code
 func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Put(ctx context.Context, body V1DocumentsItemFieldsItemWithFPutRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemFieldsItemWithFPutResponseable, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
@@ -55,6 +59,8 @@ func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Put(ctx context.Context, 
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": CreateV1DocumentsItemFieldsItemWithF400ErrorFromDiscriminatorValue,
+        "403": CreateV1DocumentsItemFieldsItemWithF403ErrorFromDiscriminatorValue,
         "409": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentNotEditableConflictFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemFieldsItemWithFPutResponseFromDiscriminatorValue, errorMapping)
@@ -66,7 +72,7 @@ func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) Put(ctx context.Context, 
     }
     return res.(V1DocumentsItemFieldsItemWithFPutResponseable), nil
 }
-// ToDeleteRequestInformation delete a field
+// ToDeleteRequestInformation deletes a field or supporting attachment request from the draft. Existing signing submissions keep their pinned requirements. API keys need documents:write; session/OAuth users must be the document creator for supporting requests.
 // returns a *RequestInformation when successful
 func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -74,7 +80,7 @@ func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) ToDeleteRequestInformatio
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPutRequestInformation update a field
+// ToPutRequestInformation partially updates a field. Supporting requests can change label, assigneeRole, isRequired and order; purpose, file_upload type, true supporting flag, writable state, null default and zero geometry cannot change. API keys need documents:write; session/OAuth users must be the document creator for supporting requests. Omitted properties are preserved.
 // returns a *RequestInformation when successful
 func (m *V1DocumentsItemFieldsWithFItemRequestBuilder) ToPutRequestInformation(ctx context.Context, body V1DocumentsItemFieldsItemWithFPutRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.PUT, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

@@ -17,7 +17,7 @@ type FileDescriptor struct {
     contentType *string
     // The downloadMethod property
     downloadMethod *FileDescriptor_downloadMethod
-    // Formalingo API endpoint that requires Authorization: Bearer <api-key>
+    // Formalingo API endpoint requiring Authorization: Bearer <api-key>. Request it to receive JSON with a temporary storage URL, then fetch that URL for the bytes. Response uploads, including supporting files, require submissions:download_files; signed PDFs require submissions:download_pdf.
     downloadUrl *string
     // The fileId property
     fileId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
@@ -58,7 +58,7 @@ func (m *FileDescriptor) GetContentType()(*string) {
 func (m *FileDescriptor) GetDownloadMethod()(*FileDescriptor_downloadMethod) {
     return m.downloadMethod
 }
-// GetDownloadUrl gets the downloadUrl property value. Formalingo API endpoint that requires Authorization: Bearer <api-key>
+// GetDownloadUrl gets the downloadUrl property value. Formalingo API endpoint requiring Authorization: Bearer <api-key>. Request it to receive JSON with a temporary storage URL, then fetch that URL for the bytes. Response uploads, including supporting files, require submissions:download_files; signed PDFs require submissions:download_pdf.
 // returns a *string when successful
 func (m *FileDescriptor) GetDownloadUrl()(*string) {
     return m.downloadUrl
@@ -224,7 +224,7 @@ func (m *FileDescriptor) SetContentType(value *string)() {
 func (m *FileDescriptor) SetDownloadMethod(value *FileDescriptor_downloadMethod)() {
     m.downloadMethod = value
 }
-// SetDownloadUrl sets the downloadUrl property value. Formalingo API endpoint that requires Authorization: Bearer <api-key>
+// SetDownloadUrl sets the downloadUrl property value. Formalingo API endpoint requiring Authorization: Bearer <api-key>. Request it to receive JSON with a temporary storage URL, then fetch that URL for the bytes. Response uploads, including supporting files, require submissions:download_files; signed PDFs require submissions:download_pdf.
 func (m *FileDescriptor) SetDownloadUrl(value *string)() {
     m.downloadUrl = value
 }

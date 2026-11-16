@@ -26,14 +26,18 @@ func NewV1DocumentsItemSubmissionsItemSignersItemResponsesRequestBuilder(rawUrl 
     urlParams["request-raw-url"] = rawUrl
     return NewV1DocumentsItemSubmissionsItemSignersItemResponsesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns all saved field responses for this signer.
+// Get returns saved responses classified from immutable submission metadata. Supporting upload responses are included for the document creator or a workspace API key with submissions:download_files, and omitted for other clients. Uploaded values use the existing authenticated file-descriptor download flow.
 // returns a V1DocumentsItemSubmissionsItemSignersItemResponsesGetResponseable when successful
+// returns a V1DocumentsItemSubmissionsItemSignersItemResponses409Error error when the service returns a 409 status code
 func (m *V1DocumentsItemSubmissionsItemSignersItemResponsesRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemSubmissionsItemSignersItemResponsesGetResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemSubmissionsItemSignersItemResponsesGetResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "409": CreateV1DocumentsItemSubmissionsItemSignersItemResponses409ErrorFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemSubmissionsItemSignersItemResponsesGetResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
@@ -62,7 +66,7 @@ func (m *V1DocumentsItemSubmissionsItemSignersItemResponsesRequestBuilder) Patch
     }
     return res.(V1DocumentsItemSubmissionsItemSignersItemResponsesPatchResponseable), nil
 }
-// ToGetRequestInformation returns all saved field responses for this signer.
+// ToGetRequestInformation returns saved responses classified from immutable submission metadata. Supporting upload responses are included for the document creator or a workspace API key with submissions:download_files, and omitted for other clients. Uploaded values use the existing authenticated file-descriptor download flow.
 // returns a *RequestInformation when successful
 func (m *V1DocumentsItemSubmissionsItemSignersItemResponsesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

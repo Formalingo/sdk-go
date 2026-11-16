@@ -6,7 +6,6 @@ package api
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959 "github.com/Formalingo/sdk-go/client/models"
 )
 
 // V1DocumentsItemSignerRolesWithRItemRequestBuilder builds and executes requests for operations under \api\v1\documents\{id}\signer-roles\{rid}
@@ -28,14 +27,14 @@ func NewV1DocumentsItemSignerRolesWithRItemRequestBuilder(rawUrl string, request
 }
 // Delete delete a signer role
 // returns a V1DocumentsItemSignerRolesItemWithRDeleteResponseable when successful
-// returns a DocumentNotEditableConflict error when the service returns a 409 status code
+// returns a V1DocumentsItemSignerRolesItemWithR409Error error when the service returns a 409 status code
 func (m *V1DocumentsItemSignerRolesWithRItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemSignerRolesItemWithRDeleteResponseable, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "409": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentNotEditableConflictFromDiscriminatorValue,
+        "409": CreateV1DocumentsItemSignerRolesItemWithR409ErrorFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemSignerRolesItemWithRDeleteResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
@@ -48,14 +47,14 @@ func (m *V1DocumentsItemSignerRolesWithRItemRequestBuilder) Delete(ctx context.C
 }
 // Put update a signer role
 // returns a V1DocumentsItemSignerRolesItemWithRPutResponseable when successful
-// returns a DocumentNotEditableConflict error when the service returns a 409 status code
+// returns a V1DocumentsItemSignerRolesItemWithR409Error error when the service returns a 409 status code
 func (m *V1DocumentsItemSignerRolesWithRItemRequestBuilder) Put(ctx context.Context, body V1DocumentsItemSignerRolesItemWithRPutRequestBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemSignerRolesItemWithRPutResponseable, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "409": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentNotEditableConflictFromDiscriminatorValue,
+        "409": CreateV1DocumentsItemSignerRolesItemWithR409ErrorFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemSignerRolesItemWithRPutResponseFromDiscriminatorValue, errorMapping)
     if err != nil {

@@ -26,11 +26,12 @@ func NewV1FilesItemDownloadRequestBuilder(rawUrl string, requestAdapter i2ae4187
     urlParams["request-raw-url"] = rawUrl
     return NewV1FilesItemDownloadRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get returns a short-lived signed URL for a response upload or signed PDF file. Permission is file-kind specific: response uploads require submissions:download_files; signed PDFs require submissions:download_pdf.
+// Get returns JSON containing a short-lived signed URL, not the file bytes. Response uploads, including supporting files, require submissions:download_files; signed PDFs require submissions:download_pdf. Supporting uploads require the document creator for session/OAuth access; explicitly scoped workspace API keys are trusted integration credentials. Privacy is classified from immutable submission metadata, including verified legacy metadata.
 // returns a FileDownloadResponseable when successful
 // returns a V1FilesItemFileDownloadResponse401Error error when the service returns a 401 status code
 // returns a V1FilesItemFileDownloadResponse403Error error when the service returns a 403 status code
 // returns a V1FilesItemFileDownloadResponse404Error error when the service returns a 404 status code
+// returns a V1FilesItemFileDownloadResponse409Error error when the service returns a 409 status code
 func (m *V1FilesItemDownloadRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FileDownloadResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
@@ -40,6 +41,7 @@ func (m *V1FilesItemDownloadRequestBuilder) Get(ctx context.Context, requestConf
         "401": CreateV1FilesItemFileDownloadResponse401ErrorFromDiscriminatorValue,
         "403": CreateV1FilesItemFileDownloadResponse403ErrorFromDiscriminatorValue,
         "404": CreateV1FilesItemFileDownloadResponse404ErrorFromDiscriminatorValue,
+        "409": CreateV1FilesItemFileDownloadResponse409ErrorFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateFileDownloadResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
@@ -50,7 +52,7 @@ func (m *V1FilesItemDownloadRequestBuilder) Get(ctx context.Context, requestConf
     }
     return res.(id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.FileDownloadResponseable), nil
 }
-// ToGetRequestInformation returns a short-lived signed URL for a response upload or signed PDF file. Permission is file-kind specific: response uploads require submissions:download_files; signed PDFs require submissions:download_pdf.
+// ToGetRequestInformation returns JSON containing a short-lived signed URL, not the file bytes. Response uploads, including supporting files, require submissions:download_files; signed PDFs require submissions:download_pdf. Supporting uploads require the document creator for session/OAuth access; explicitly scoped workspace API keys are trusted integration credentials. Privacy is classified from immutable submission metadata, including verified legacy metadata.
 // returns a *RequestInformation when successful
 func (m *V1FilesItemDownloadRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

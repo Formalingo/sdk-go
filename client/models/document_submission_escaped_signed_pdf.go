@@ -18,7 +18,7 @@ type DocumentSubmission_signedPdf struct {
     contentType *string
     // The downloadMethod property
     downloadMethod *DocumentSubmission_signedPdf_downloadMethod
-    // Formalingo API endpoint that requires Authorization: Bearer <api-key>
+    // Formalingo API endpoint requiring Authorization: Bearer <api-key>. Request it to receive JSON with a temporary storage URL, then fetch that URL for the bytes. Response uploads, including supporting files, require submissions:download_files; signed PDFs require submissions:download_pdf.
     downloadUrl *string
     // The fileId property
     fileId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
@@ -59,7 +59,7 @@ func (m *DocumentSubmission_signedPdf) GetContentType()(*string) {
 func (m *DocumentSubmission_signedPdf) GetDownloadMethod()(*DocumentSubmission_signedPdf_downloadMethod) {
     return m.downloadMethod
 }
-// GetDownloadUrl gets the downloadUrl property value. Formalingo API endpoint that requires Authorization: Bearer <api-key>
+// GetDownloadUrl gets the downloadUrl property value. Formalingo API endpoint requiring Authorization: Bearer <api-key>. Request it to receive JSON with a temporary storage URL, then fetch that URL for the bytes. Response uploads, including supporting files, require submissions:download_files; signed PDFs require submissions:download_pdf.
 // returns a *string when successful
 func (m *DocumentSubmission_signedPdf) GetDownloadUrl()(*string) {
     return m.downloadUrl
@@ -225,7 +225,7 @@ func (m *DocumentSubmission_signedPdf) SetContentType(value *string)() {
 func (m *DocumentSubmission_signedPdf) SetDownloadMethod(value *DocumentSubmission_signedPdf_downloadMethod)() {
     m.downloadMethod = value
 }
-// SetDownloadUrl sets the downloadUrl property value. Formalingo API endpoint that requires Authorization: Bearer <api-key>
+// SetDownloadUrl sets the downloadUrl property value. Formalingo API endpoint requiring Authorization: Bearer <api-key>. Request it to receive JSON with a temporary storage URL, then fetch that URL for the bytes. Response uploads, including supporting files, require submissions:download_files; signed PDFs require submissions:download_pdf.
 func (m *DocumentSubmission_signedPdf) SetDownloadUrl(value *string)() {
     m.downloadUrl = value
 }

@@ -37,7 +37,7 @@ func NewV1DocumentsItemFieldsRequestBuilder(rawUrl string, requestAdapter i2ae41
     urlParams["request-raw-url"] = rawUrl
     return NewV1DocumentsItemFieldsRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get list fields
+// Get lists placed and non-positioned document fields. Page zero means no PDF-page placement. Workspace API keys with documents:read can read supporting request definitions without file-download permission. Session/OAuth access to those definitions requires the document creator. Actual uploaded values and downloads require separate authorization.
 // returns a V1DocumentsItemFieldsGetResponseable when successful
 func (m *V1DocumentsItemFieldsRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemFieldsGetResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -53,16 +53,20 @@ func (m *V1DocumentsItemFieldsRequestBuilder) Get(ctx context.Context, requestCo
     }
     return res.(V1DocumentsItemFieldsGetResponseable), nil
 }
-// Post create a field
+// Post creates a placed field or supporting attachment request. For a supporting request, use type=file_upload, options.supporting_attachment=true and a valid assigneeRole; geometry may be omitted or all zero, and isRequired defaults to true. API keys need documents:write; session/OAuth users must be the document creator. File-download permission is not needed to author requests. Optional client id UUID supports identical retry replay; field purpose is immutable.
 // returns a V1DocumentsItemFieldsPostResponseable when successful
-// returns a DocumentNotEditableConflict error when the service returns a 409 status code
+// returns a V1DocumentsItemFields400Error error when the service returns a 400 status code
+// returns a V1DocumentsItemFields403Error error when the service returns a 403 status code
+// returns a V1DocumentsItemFields409Error error when the service returns a 409 status code
 func (m *V1DocumentsItemFieldsRequestBuilder) Post(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateFieldBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(V1DocumentsItemFieldsPostResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "409": id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateDocumentNotEditableConflictFromDiscriminatorValue,
+        "400": CreateV1DocumentsItemFields400ErrorFromDiscriminatorValue,
+        "403": CreateV1DocumentsItemFields403ErrorFromDiscriminatorValue,
+        "409": CreateV1DocumentsItemFields409ErrorFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1DocumentsItemFieldsPostResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
@@ -73,7 +77,7 @@ func (m *V1DocumentsItemFieldsRequestBuilder) Post(ctx context.Context, body id2
     }
     return res.(V1DocumentsItemFieldsPostResponseable), nil
 }
-// ToGetRequestInformation list fields
+// ToGetRequestInformation lists placed and non-positioned document fields. Page zero means no PDF-page placement. Workspace API keys with documents:read can read supporting request definitions without file-download permission. Session/OAuth access to those definitions requires the document creator. Actual uploaded values and downloads require separate authorization.
 // returns a *RequestInformation when successful
 func (m *V1DocumentsItemFieldsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
@@ -81,7 +85,7 @@ func (m *V1DocumentsItemFieldsRequestBuilder) ToGetRequestInformation(ctx contex
     requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
-// ToPostRequestInformation create a field
+// ToPostRequestInformation creates a placed field or supporting attachment request. For a supporting request, use type=file_upload, options.supporting_attachment=true and a valid assigneeRole; geometry may be omitted or all zero, and isRequired defaults to true. API keys need documents:write; session/OAuth users must be the document creator. File-download permission is not needed to author requests. Optional client id UUID supports identical retry replay; field purpose is immutable.
 // returns a *RequestInformation when successful
 func (m *V1DocumentsItemFieldsRequestBuilder) ToPostRequestInformation(ctx context.Context, body id2ed2db38d54d578f2dfa5a7b6fdf7691a3bc7147b2ff0c8ec851780edd5b959.CreateFieldBodyable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)

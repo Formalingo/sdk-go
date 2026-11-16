@@ -32,11 +32,11 @@ type DocumentField struct {
     isRequired *bool
     // The label property
     label *string
-    // Type-specific options. For calculation fields, use { formula: "{{Field A}} {{Field B}}", result_type: "text" | "number" }.
+    // Type-specific options. A file_upload field with supporting_attachment: true is a supporting attachment request with zero geometry, excluded from the rendered document and signed PDF.
     options DocumentField_optionsable
     // The order property
     order *float64
-    // The pageNumber property
+    // PDF page number, starting at 1. Zero means no PDF-page placement, as used by generated block fields and supporting attachment requests.
     pageNumber *int32
     // The type property
     typeEscaped *DocumentField_type
@@ -290,7 +290,7 @@ func (m *DocumentField) GetIsRequired()(*bool) {
 func (m *DocumentField) GetLabel()(*string) {
     return m.label
 }
-// GetOptions gets the options property value. Type-specific options. For calculation fields, use { formula: "{{Field A}} {{Field B}}", result_type: "text" | "number" }.
+// GetOptions gets the options property value. Type-specific options. A file_upload field with supporting_attachment: true is a supporting attachment request with zero geometry, excluded from the rendered document and signed PDF.
 // returns a DocumentField_optionsable when successful
 func (m *DocumentField) GetOptions()(DocumentField_optionsable) {
     return m.options
@@ -300,7 +300,7 @@ func (m *DocumentField) GetOptions()(DocumentField_optionsable) {
 func (m *DocumentField) GetOrder()(*float64) {
     return m.order
 }
-// GetPageNumber gets the pageNumber property value. The pageNumber property
+// GetPageNumber gets the pageNumber property value. PDF page number, starting at 1. Zero means no PDF-page placement, as used by generated block fields and supporting attachment requests.
 // returns a *int32 when successful
 func (m *DocumentField) GetPageNumber()(*int32) {
     return m.pageNumber
@@ -483,7 +483,7 @@ func (m *DocumentField) SetIsRequired(value *bool)() {
 func (m *DocumentField) SetLabel(value *string)() {
     m.label = value
 }
-// SetOptions sets the options property value. Type-specific options. For calculation fields, use { formula: "{{Field A}} {{Field B}}", result_type: "text" | "number" }.
+// SetOptions sets the options property value. Type-specific options. A file_upload field with supporting_attachment: true is a supporting attachment request with zero geometry, excluded from the rendered document and signed PDF.
 func (m *DocumentField) SetOptions(value DocumentField_optionsable)() {
     m.options = value
 }
@@ -491,7 +491,7 @@ func (m *DocumentField) SetOptions(value DocumentField_optionsable)() {
 func (m *DocumentField) SetOrder(value *float64)() {
     m.order = value
 }
-// SetPageNumber sets the pageNumber property value. The pageNumber property
+// SetPageNumber sets the pageNumber property value. PDF page number, starting at 1. Zero means no PDF-page placement, as used by generated block fields and supporting attachment requests.
 func (m *DocumentField) SetPageNumber(value *int32)() {
     m.pageNumber = value
 }

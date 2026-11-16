@@ -7,10 +7,12 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// CreateFieldBody_options type-specific options. Calculation fields require formula and accept result_type ("text" or "number").
+// CreateFieldBody_options type-specific options, including additional options supported by the field type. For calculation fields, use formula and result_type (text or number).
 type CreateFieldBody_options struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // Set true for a supporting upload request excluded from the document and signed PDF. Only file_upload supports this flag; false and changing the field purpose after creation are rejected.
+    supporting_attachment *bool
 }
 // NewCreateFieldBody_options instantiates a new CreateFieldBody_options and sets the default values.
 func NewCreateFieldBody_options()(*CreateFieldBody_options) {
@@ -33,10 +35,31 @@ func (m *CreateFieldBody_options) GetAdditionalData()(map[string]any) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *CreateFieldBody_options) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["supporting_attachment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSupportingAttachment(val)
+        }
+        return nil
+    }
     return res
+}
+// GetSupportingAttachment gets the supporting_attachment property value. Set true for a supporting upload request excluded from the document and signed PDF. Only file_upload supports this flag; false and changing the field purpose after creation are rejected.
+// returns a *bool when successful
+func (m *CreateFieldBody_options) GetSupportingAttachment()(*bool) {
+    return m.supporting_attachment
 }
 // Serialize serializes information the current object
 func (m *CreateFieldBody_options) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteBoolValue("supporting_attachment", m.GetSupportingAttachment())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
@@ -49,7 +72,13 @@ func (m *CreateFieldBody_options) Serialize(writer i878a80d2330e89d26896388a3f48
 func (m *CreateFieldBody_options) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetSupportingAttachment sets the supporting_attachment property value. Set true for a supporting upload request excluded from the document and signed PDF. Only file_upload supports this flag; false and changing the field purpose after creation are rejected.
+func (m *CreateFieldBody_options) SetSupportingAttachment(value *bool)() {
+    m.supporting_attachment = value
+}
 type CreateFieldBody_optionsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetSupportingAttachment()(*bool)
+    SetSupportingAttachment(value *bool)()
 }
